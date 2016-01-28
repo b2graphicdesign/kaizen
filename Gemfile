@@ -37,7 +37,18 @@ gem 'puma'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'rspec-rails', '~> 3.4.0'
+  gem 'factory_girl_rails', '~> 4.5'
 end
+
+group :test do
+  gem 'faker', '~> 1.6', '>= 1.6.1'
+  gem 'capybara', '~> 2.4', '>= 2.4.4'
+  gem 'database_cleaner', '~> 1.5', '>= 1.5.1'
+  gem 'launchy', '~> 2.4', '>= 2.4.3'
+  gem 'selenium-webdriver', '~> 2.49'
+end
+
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
