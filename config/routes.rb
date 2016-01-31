@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :patients
   devise_for :admins
   devise_for :transit_providers
   devise_for :providers
