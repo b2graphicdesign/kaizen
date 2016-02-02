@@ -7,11 +7,60 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div class="container">
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
 
-<%= yield %>
+<header>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">
+        <img alt="Brand" src="https://pbs.twimg.com/profile_images/668850149188210688/5EWJ2qwv_400x400.png" class="brand-image">
+      </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Patient<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/patients/sign_up">Sign Up!</a></li>
+            <li><a href="/patients/sign_in">Log In!</a></li>
+            <li><%= link_to "Log Out!", "/patients/sign_out", method: :delete %></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Provider<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/providers/sign_up">Sign Up!</a></li>
+            <li><a href="/providers/sign_in">Log In!</a></li>
+            <li><a href="#">Log Out!</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Transit Provider<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/transit_providers/sign_up">Sign Up!</a></li>
+            <li><a href="/transit_providers/sign_in">Log In!</a></li>
+            <li><a href="#">Log Out!</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+</header>
+  <div class="container-fluid">
+  <% flash.each do |name, message| %>
+    <div class="alert alert-<%= name %> alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><p><%= message %></p>
+    </div>
+  <% end %>
+  </div>
+
+<div class="container">
+  <%= yield %>
 </div>
+
 </body>
 </html>
