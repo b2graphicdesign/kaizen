@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160202132516) do
+ActiveRecord::Schema.define(version: 20160204003935) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,39 +53,45 @@ ActiveRecord::Schema.define(version: 20160202132516) do
   end
 
   create_table "patients", force: :cascade do |t|
-    t.string   "email",                       default: "", null: false
-    t.string   "encrypted_password",          default: "", null: false
+    t.string   "email",                   limit: 25, default: "", null: false
+    t.string   "encrypted_password",                 default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",               default: 0,  null: false
+    t.integer  "sign_in_count",                      default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "full_name"
-    t.string   "address"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zip"
-    t.string   "phone_number"
-    t.string   "email_address"
-    t.integer  "age"
-    t.string   "gender"
-    t.string   "notes"
-    t.string   "insurance_name"
-    t.string   "insurance_type"
-    t.string   "primary_physician_full_name"
-    t.string   "primary_physician_phone"
-    t.string   "preferred_contact"
-    t.string   "emergency_contact_full_name"
-    t.string   "emergency_contact_address"
-    t.string   "emergency_contact_phone"
-    t.string   "emergency_contact_email"
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.string   "first_name",              limit: 25
+    t.string   "last_name",               limit: 25
+    t.string   "city",                    limit: 25
+    t.string   "state",                   limit: 25
+    t.string   "zip",                     limit: 15
+    t.string   "phone",                   limit: 15
+    t.string   "username",                limit: 15
+    t.integer  "provider_id"
+    t.string   "address_1",               limit: 25
+    t.string   "address_2",               limit: 25
+    t.string   "county",                  limit: 25
+    t.text     "address_notes"
+    t.string   "alternate_contact_name",  limit: 25
+    t.string   "alternate_contact_phone", limit: 15
+    t.string   "alternate_contact_email", limit: 25
+    t.boolean  "alert_call"
+    t.boolean  "alert_sms"
+    t.boolean  "alert_email"
+    t.boolean  "alert_alternate_call"
+    t.boolean  "alert_alternate_sms"
+    t.boolean  "alert_alternate_email"
+    t.string   "payer",                   limit: 15
+    t.string   "payer_state",             limit: 15
+    t.string   "payer_id",                limit: 25
+    t.string   "transportation_type"
+    t.text     "assistance_notes"
+    t.text     "comments"
   end
 
   add_index "patients", ["email"], name: "index_patients_on_email", unique: true, using: :btree
