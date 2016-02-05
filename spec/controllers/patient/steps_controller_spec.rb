@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Patient::StepsControllerController, type: :controller do
+RSpec.describe Patient::StepsController, type: :controller do
 
   describe "GET #show" do
     it "returns http success" do
