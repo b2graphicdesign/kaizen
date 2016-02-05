@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160204003935) do
+ActiveRecord::Schema.define(version: 20160205013122) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,20 +37,6 @@ ActiveRecord::Schema.define(version: 20160204003935) do
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
-
-  create_table "patient_health_providers", force: :cascade do |t|
-    t.integer  "patient_id"
-    t.integer  "provider_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  create_table "patient_transit_providers", force: :cascade do |t|
-    t.integer  "patient_id"
-    t.integer  "transit_provider_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-  end
 
   create_table "patients", force: :cascade do |t|
     t.string   "email",                   limit: 25, default: "", null: false
@@ -98,28 +84,29 @@ ActiveRecord::Schema.define(version: 20160204003935) do
   add_index "patients", ["reset_password_token"], name: "index_patients_on_reset_password_token", unique: true, using: :btree
 
   create_table "providers", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  limit: 15, default: "", null: false
+    t.string   "encrypted_password",                default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                     default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "full_name"
-    t.string   "company_name"
-    t.string   "address"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zip"
-    t.string   "phone_number"
-    t.string   "provider_type"
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
+    t.string   "city",                   limit: 25
+    t.string   "state",                  limit: 25
+    t.string   "zip",                    limit: 15
+    t.string   "username",               limit: 15
+    t.string   "facility_name",          limit: 50
+    t.string   "address_1",              limit: 25
+    t.string   "address_2",              limit: 25
+    t.string   "county",                 limit: 25
+    t.text     "address_notes"
+    t.string   "phone",                  limit: 15
+    t.string   "fax",                    limit: 15
   end
 
   add_index "providers", ["email"], name: "index_providers_on_email", unique: true, using: :btree
@@ -135,32 +122,31 @@ ActiveRecord::Schema.define(version: 20160204003935) do
     t.string   "comments"
   end
 
-  create_table "transit_providers", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+  create_table "transportations", force: :cascade do |t|
+    t.string   "email",                  limit: 25, default: "", null: false
+    t.string   "encrypted_password",                default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                     default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "full_name"
-    t.string   "company_name"
-    t.string   "address"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zip"
-    t.string   "phone_number"
-    t.string   "transit_type"
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
+    t.string   "username",               limit: 25
+    t.string   "company_name",           limit: 50
+    t.string   "address_1",              limit: 25
+    t.string   "address_2",              limit: 25
+    t.string   "city",                   limit: 25
+    t.string   "state",                  limit: 25
+    t.string   "zip",                    limit: 15
+    t.string   "phone",                  limit: 15
+    t.string   "fax",                    limit: 15
   end
 
-  add_index "transit_providers", ["email"], name: "index_transit_providers_on_email", unique: true, using: :btree
-  add_index "transit_providers", ["reset_password_token"], name: "index_transit_providers_on_reset_password_token", unique: true, using: :btree
+  add_index "transportations", ["email"], name: "index_transportations_on_email", unique: true, using: :btree
+  add_index "transportations", ["reset_password_token"], name: "index_transportations_on_reset_password_token", unique: true, using: :btree
 
 end
