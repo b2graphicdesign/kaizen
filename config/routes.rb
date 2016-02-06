@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   root "pages#home"
   resources :rides
   resources :patients
+
+  post 'sms/voice' => 'sms_messages#voice'
 end
