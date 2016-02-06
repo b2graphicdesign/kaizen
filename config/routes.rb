@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   namespace :patient do
   get 'steps/show'
   end
@@ -15,6 +16,8 @@ Rails.application.routes.draw do
   get 'steps_controller/update'
   end
 
+  devise_for :drivers
+  devise_for :transportations
   devise_for :patients
   devise_for :admins
   devise_for :transit_providers
@@ -25,4 +28,5 @@ Rails.application.routes.draw do
   resources :patients do 
     resources :steps, only: [:show, :update], controller: 'patient/steps'
   end
+
 end

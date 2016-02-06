@@ -12,9 +12,9 @@ class Patient < ActiveRecord::Base
   
   attr_accessor :form_step
 
-  validates :first_name, :last_name, :address_1, :city, :state, :county, presence: true, if: -> { required_for_step?(:basic) }
+  validates :email, :first_name, :last_name, :address_1, :city, :state, :county, presence: true, if: -> { required_for_step?(:basic) }
   validates :payer, :payer_id, :payer_state, :transportation_type , presence: true, if: -> { required_for_step?(:payment) }
-  validates :phone, :email, :alternate_contact_name, :alternate_contact_phone, :alternate_contact_email, presence: true, if: -> { required_for_step?(:contact) }
+  validates :phone, :alternate_contact_name, :alternate_contact_phone, :alternate_contact_email, presence: true, if: -> { required_for_step?(:contact) }
 
   def required_for_step?(step)
     return true if form_step.nil?

@@ -1,1 +1,29 @@
-payment.html.erb
+<%= form_for @patient, method: :put, url: wizard_path do |f| %>
+  <% if f.object.errors.any? %>
+    <div class="error_messages">
+      <% f.object.errors.full_messages.each do |error| %>
+        <p><%= error %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <fieldset>
+    <legend>New Patient - Step 2 of 3</legend>
+    
+   <div>
+      <%= f.text_field :payer, placeholder: "Payer" %>
+    </div>
+     <div>
+      <%= f.text_field :payer_id, placeholder: "Payer ID" %>
+    </div>
+    <div>
+      <%= f.text_field :payer_state, placeholder: "Payer State" %>
+    </div>
+    <div>
+      <%= f.select :transportation_type, "<option>Car</option><option>Van</option><option>Ambulance</option>".html_safe %>
+    </div>
+    <div>
+      <%= f.submit 'Next Step' %>
+    </div>
+  </fieldset>
+<% end %>
