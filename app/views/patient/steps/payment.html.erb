@@ -8,22 +8,23 @@
   <% end %>
 
   <fieldset>
-    <legend>New Patient - Step 2 of 3</legend>
-    
-   <div>
-      <%= f.text_field :payer, placeholder: "Payer" %>
-    </div>
-     <div>
-      <%= f.text_field :payer_id, placeholder: "Payer ID" %>
-    </div>
-    <div>
-      <%= f.text_field :payer_state, placeholder: "Payer State" %>
-    </div>
-    <div>
-      <%= f.select :transportation_type, "<option>Car</option><option>Van</option><option>Ambulance</option>".html_safe %>
-    </div>
-    <div>
-      <%= f.submit 'Next Step' %>
+  <legend><%= @patient.first_name %> <%= @patient.last_name %> - Step 2 of 3</legend>
+    <div class="jumbotron"> 
+      <div>
+        <%= f.text_field :payer, placeholder: "Payer" %>
+      </div>
+       <div>
+        <%= f.text_field :payer_id, placeholder: "Payer ID" %>
+      </div>
+      <div>
+        <%= f.text_field :payer_state, placeholder: "Payer State" %>
+      </div>
+      <div>
+        <%= f.select :transportation_type, "<option>Car</option><option>Van</option><option>Ambulance</option>".html_safe %>
+      </div>
+      <div>
+        <%= f.submit 'Next Step' %>
+      </div>
     </div>
   </fieldset>
 <% end %>

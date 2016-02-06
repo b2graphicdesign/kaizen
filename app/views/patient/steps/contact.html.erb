@@ -1,1 +1,54 @@
-contact.html.erb
+<%= form_for @patient, method: :put, url: wizard_path do |f| %>
+  <% if f.object.errors.any? %>
+    <div class="error_messages">
+      <% f.object.errors.full_messages.each do |error| %>
+        <p><%= error %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <fieldset>
+    <legend><%= @patient.first_name %> <%= @patient.last_name %>  - Step 3 of 3</legend>
+      <div class="jumbotron">
+      <div>
+        <%= f.text_field :phone, placeholder: "Phone Number" %>
+      </div>
+      <div>
+        <%= f.label "Check box to enable phone call alerts: " %>
+        <%= f.check_box :alert_call %>
+      </div>
+      <div>
+        <%= f.label "Check box to enable SMS alerts: " %>
+        <%= f.check_box :alert_sms %>
+      </div>
+      <div>
+        <%= f.label "Check box to enable email alerts: " %>
+        <%= f.check_box :alert_email %>
+      </div>
+      <div>
+        <%= f.text_field :alternate_contact_name, placeholder: "Alternate Contact Name" %>
+      </div>
+      <div>
+        <%= f.text_field :alternate_contact_phone, placeholder: "Alternate Contact Phone Number" %>
+      </div>
+      <div>
+        <%= f.text_field :alternate_contact_email, placeholder: "Alternate Contact Email Address" %>
+      </div>
+       <div>
+        <%= f.label "Check box to enable alternate contact phone call alerts: " %>
+        <%= f.check_box :alert_alternate_call %>
+      </div>
+      <div>
+        <%= f.label "Check box to enable alternate contact SMS alerts: " %>
+        <%= f.check_box :alert_alternate_sms %>
+      </div>
+      <div>
+        <%= f.label "Check box to enable alternate contact email alerts: " %>
+        <%= f.check_box :alert_alternate_email %>
+      </div>
+      <div>
+        <%= f.submit 'Submit' %>
+      </div>
+    </div>
+  </fieldset>
+<% end %>
