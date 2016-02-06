@@ -1,0 +1,38 @@
+<%= form_for @patient, method: :patch, url: wizard_path do |f| %>
+  <% if f.object.errors.any? %>
+    <div class="error_messages">
+      <% f.object.errors.full_messages.each do |error| %>
+        <p><%= error %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <fieldset>
+    <legend>New Patient - Step 1 of 3</legend>
+
+    <div>
+      <%= f.text_field :first_name, placeholder: "First name" %>
+    </div>
+    <div>
+      <%= f.text_field :last_name, placeholder: "Last name" %>
+    </div>
+    <div>
+      <%= f.text_field :address_1, placeholder: "Address 1" %>
+    </div>
+    <div>
+      <%= f.text_field :address_2, placeholder: "Address 2" %>
+    </div>
+    <div>
+      <%= f.text_field :city, placeholder: "City" %>
+    </div>
+    <div>
+      <%= f.text_field :state, placeholder: "State" %>
+    </div>
+    <div>
+      <%= f.text_field :county, placeholder: "County" %>
+    </div>
+    <div>
+      <%= f.submit 'Next Step' %>
+    </div>
+  </fieldset>
+<% end %>
