@@ -15,7 +15,7 @@ class SmsMessagesController < ApplicationController
 
   def voice
     response = Twilio::TwiML::Response.new do |r|
-      r.Say 'Hey there. Congrats on integratiing Twilio Bitches!', :voice => 'alice'
+      r.Say 'Hey there. Congrats on integratiing Twilio!', :voice => 'alice'
         r.Play 'http://linode.rabasa.com/cantina.mp3'
     end
 
