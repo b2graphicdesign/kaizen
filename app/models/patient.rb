@@ -3,8 +3,8 @@ class Patient < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   # Removed :registerable from devise to make new patient creation possible -SM
 
-  # devise :database_authenticatable, 
-         # :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, 
+         :recoverable, :rememberable, :trackable, :validatable
 
   cattr_accessor :form_steps do 
     %w(basic payment contact)
