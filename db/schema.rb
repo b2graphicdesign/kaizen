@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160206005712) do
+ActiveRecord::Schema.define(version: 20160209182601) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20160206005712) do
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
 
   create_table "drivers", force: :cascade do |t|
-    t.string   "email",                       limit: 25, default: "", null: false
+    t.string   "email",                                  default: "", null: false
     t.string   "encrypted_password",                     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 20160206005712) do
   add_index "drivers", ["reset_password_token"], name: "index_drivers_on_reset_password_token", unique: true, using: :btree
 
   create_table "patients", force: :cascade do |t|
-    t.string   "email",                   limit: 25, default: "", null: false
+    t.string   "email",                              default: "", null: false
     t.string   "encrypted_password",                 default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -124,7 +124,7 @@ ActiveRecord::Schema.define(version: 20160206005712) do
   add_index "patients", ["reset_password_token"], name: "index_patients_on_reset_password_token", unique: true, using: :btree
 
   create_table "providers", force: :cascade do |t|
-    t.string   "email",                  limit: 15, default: "", null: false
+    t.string   "email",                             default: "", null: false
     t.string   "encrypted_password",                default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -182,7 +182,7 @@ ActiveRecord::Schema.define(version: 20160206005712) do
   end
 
   create_table "transportations", force: :cascade do |t|
-    t.string   "email",                  limit: 25, default: "", null: false
+    t.string   "email",                             default: "", null: false
     t.string   "encrypted_password",                default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
