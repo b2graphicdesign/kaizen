@@ -6,9 +6,17 @@ class TransportationsController < ApplicationController
   end
 
   def new
+    @transportation = Transportation.new
   end
 
   def create
+    @transportation = Transportation.new
+    if @transportation.save
+      flash[:message] = "Transportation created"
+      redirect_to "/"
+    else
+      render :new
+    end
   end
 
   def edit
