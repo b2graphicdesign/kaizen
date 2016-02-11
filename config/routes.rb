@@ -32,4 +32,7 @@ Rails.application.routes.draw do
 
   post 'sms/voice' => 'sms_messages#voice'
 
+    get 'provider/new' => 'providers#new'
+    post 'provider' => 'providers#create'
+
 end
