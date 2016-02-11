@@ -19,7 +19,7 @@ class Patient::StepsController < ApplicationController
     permitted_attributes = 
       case step
       when "basic"
-        [:email, :first_name, :last_name, :address_1, :address_2, :city, :state, :county] 
+        [:email, :first_name, :last_name, :address_1, :address_2, :city, :state, :zip, :county] 
       when "payment"
         [:payer, :payer_id, :payer_state, :transportation_type]
       when "contact"
