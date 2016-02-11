@@ -25,10 +25,10 @@ Rails.application.routes.draw do
 
   root "pages#home"
   resources :rides
-
   resources :patients do 
     resources :steps, only: [:show, :update], controller: 'patient/steps'
   end
+  resources "transportations"
 
   post 'sms/voice' => 'sms_messages#voice'
 
