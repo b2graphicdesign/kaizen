@@ -10,9 +10,19 @@ class TransportationsController < ApplicationController
   end
 
   def create
-    @transportation = Transportation.new
-    if @transportation.save
-      flash[:message] = "Transportation created"
+    @transportation = Transportation.new(
+      company_name: params[:company_name],
+      username: params[:username],
+      address_1: params[:address_1],
+      address_2: params[:address_2],
+      city: params[:city],
+      state: params[:state],
+      zip: params[:zip],
+      phone: params[:phone],
+      email: params[:email]
+      )
+    if @transportation.save(validate: false)
+      flash[:success] = "Transportation created"
       redirect_to "/"
     else
       render :new

@@ -28,7 +28,9 @@ Rails.application.routes.draw do
   resources :patients do 
     resources :steps, only: [:show, :update], controller: 'patient/steps'
   end
-  resources "transportations"
+  
+  get "transportation/new" => "transportations#new"
+  post "transportation" => "transportations#create"
 
   post 'sms/voice' => 'sms_messages#voice'
 
