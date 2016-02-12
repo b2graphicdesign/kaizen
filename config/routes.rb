@@ -32,6 +32,8 @@ Rails.application.routes.draw do
     resources :steps, only: [:show, :update], controller: 'patient/steps'
   end
   
+  get 'patient' => 'patients#index'
+
   get 'transportation' => 'transportations#index'
   get 'transportation/new' => 'transportations#new'
   post 'transportation' => 'transportations#create'
