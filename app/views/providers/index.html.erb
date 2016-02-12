@@ -1,0 +1,17 @@
+<div class = "jumbotron">
+  <h1>List of Providers</h1>
+  <% @providers.each do |provider| %>
+    <div class ="row">
+      <ul>
+        <li>Username: <%= provider.username %></li>
+        <li>Facility: <%= provider.facility_name %></li>
+        <li>Address: <%= provider.address_1 %><%= provider.address_2 %></li>
+                     <%= provider.city %>, <%= provider.state %>  
+        <li>Notes: <%= provider.address_notes %></li>
+        <li>Phone: <%= provider.phone %></li>
+        <li>Fax: <%= provider.fax %></li>
+        <li>Email: <%= provider.email%></li>
+      </ul>
+    </div>
+  <% end %>
+</div>

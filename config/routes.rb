@@ -32,9 +32,11 @@ Rails.application.routes.draw do
     resources :steps, only: [:show, :update], controller: 'patient/steps'
   end
   
-  get "transportation/new" => "transportations#new"
-  post "transportation" => "transportations#create"
+  get 'transportation' => 'transportations#index'
+  get 'transportation/new' => 'transportations#new'
+  post 'transportation' => 'transportations#create'
 
+  get 'provider' => 'providers#index'
   get 'provider/new' => 'providers#new'
   post 'provider' => 'providers#create'
 
