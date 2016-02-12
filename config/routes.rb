@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  namespace :driver do
+  get 'steps/show'
+  end
+
+  namespace :driver do
+  get 'steps/update'
+  end
+
   namespace :patient do
   get 'steps/show'
   end
@@ -27,6 +35,9 @@ Rails.application.routes.draw do
   resources :rides
   resources :patients do 
     resources :steps, only: [:show, :update], controller: 'patient/steps'
+  end
+  resources :drivers do 
+    resources :steps, only: [:show, :update], controller: 'driver/steps'
   end
   
   get "transportation/new" => "transportations#new"
