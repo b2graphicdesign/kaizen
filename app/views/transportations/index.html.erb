@@ -1,0 +1,16 @@
+<div class = "jumbotron">
+  <h1>List of Transportation Providers</h1>
+  <% @transportations.each do |transport| %>
+    <div class ="row">
+      <ul>
+        <li>Username: <%= transport.username %></li>
+        <li>Company: <%= transport.company_name %></li>
+        <li>Address: <%= transport.address_1 %> <%= transport.address_2 %></li>
+                     <%= transport.city %>, <%= transport.state %> <%= transport.zip %>      
+        <li>Phone: <%= transport.phone %></li>
+        <li>Email: <%= transport.email%></li>
+      </ul>
+    </div>
+  <% end %>
+</div>
+

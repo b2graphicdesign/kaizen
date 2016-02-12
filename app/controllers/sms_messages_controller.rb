@@ -7,10 +7,15 @@ class SmsMessagesController < ApplicationController
 
   skip_before_action :verify_authenticity_token
 
-  #def create
-    #SmsMessage.create(message_attributes)
-    #head :ok
-  #end
+  def notify
+    twilio_account_sid = 'AC114bed221d1bbf7393d249eb980f432d'
+    twilio_auth_token = '44b3d88dd2cdc36ccd0c1cc6c4ccc9f2'
+    client = Twilio::REST::Client.new twilio_account_sid, twilio_auth_token
+
+    message = client.messages.create from: '+17085016742', to: '+12244568338', body: 'Learning to send SMS you are!'
+
+    render plain: message.status
+  end
 
 
   def voice
@@ -22,13 +27,4 @@ class SmsMessagesController < ApplicationController
     render_twiml response
   end
 
-  private
-
-  def message_attributes
-    { 
-      to: params[:To],
-      from: params[:From],
-      body: params[:Body].strip.downcase
-    }
-  end
 end

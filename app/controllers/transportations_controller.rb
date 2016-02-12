@@ -1,5 +1,7 @@
 class TransportationsController < ApplicationController
+  
   def index
+    @transportations = Transportation.all
   end
 
   def show
