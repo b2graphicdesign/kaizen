@@ -32,9 +32,11 @@ Rails.application.routes.draw do
   get "transportation/new" => "transportations#new"
   post "transportation" => "transportations#create"
 
+  get 'provider/new' => 'providers#new'
+  post 'provider' => 'providers#create'
+  
   post 'sms/voice' => 'sms_messages#voice'
 
-    get 'provider/new' => 'providers#new'
-    post 'provider' => 'providers#create'
+  
 
 end
