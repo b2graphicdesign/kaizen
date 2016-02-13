@@ -8,11 +8,9 @@ class SmsMessagesController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def notify
-    twilio_account_sid = 'AC114bed221d1bbf7393d249eb980f432d'
-    twilio_auth_token = '44b3d88dd2cdc36ccd0c1cc6c4ccc9f2'
-    client = Twilio::REST::Client.new twilio_account_sid, twilio_auth_token
+    client = Twilio::REST::Client.new ENV['twilio_account_sid'], ENV['twilio_auth_token']
 
-    message = client.messages.create from: '+17085016742', to: '+12244568338', body: 'Learning to send SMS you are!'
+    message = client.messages.create from: ENV['twilio_phone_num'], to: '+12244568338', body: 'Learning to send SMS you are a boss!'
 
     render plain: message.status
   end
