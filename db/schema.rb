@@ -11,32 +11,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160209182601) do
+ActiveRecord::Schema.define(version: 20160215205945) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "admins", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                             default: "", null: false
+    t.string   "encrypted_password",                default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                     default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
     t.string   "first_name"
     t.string   "last_name"
     t.string   "full_name"
     t.string   "company_name"
+    t.string   "username",               limit: 15
   end
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
+  add_index "admins", ["username", "email"], name: "index_admins_on_username_and_email", unique: true, using: :btree
 
   create_table "drivers", force: :cascade do |t|
     t.string   "email",                                  default: "", null: false
@@ -75,8 +77,10 @@ ActiveRecord::Schema.define(version: 20160209182601) do
     t.datetime "vehicle_registration_expiry"
   end
 
+  add_index "drivers", ["email", "username"], name: "index_drivers_on_email_and_username", unique: true, using: :btree
   add_index "drivers", ["email"], name: "index_drivers_on_email", unique: true, using: :btree
   add_index "drivers", ["reset_password_token"], name: "index_drivers_on_reset_password_token", unique: true, using: :btree
+  add_index "drivers", ["username"], name: "index_drivers_on_username", unique: true, using: :btree
 
   create_table "patients", force: :cascade do |t|
     t.string   "email",                              default: "", null: false
@@ -120,8 +124,10 @@ ActiveRecord::Schema.define(version: 20160209182601) do
     t.text     "comments"
   end
 
+  add_index "patients", ["email", "username"], name: "index_patients_on_email_and_username", unique: true, using: :btree
   add_index "patients", ["email"], name: "index_patients_on_email", unique: true, using: :btree
   add_index "patients", ["reset_password_token"], name: "index_patients_on_reset_password_token", unique: true, using: :btree
+  add_index "patients", ["username"], name: "index_patients_on_username", unique: true, using: :btree
 
   create_table "providers", force: :cascade do |t|
     t.string   "email",                             default: "", null: false
@@ -149,8 +155,10 @@ ActiveRecord::Schema.define(version: 20160209182601) do
     t.string   "fax",                    limit: 15
   end
 
+  add_index "providers", ["email", "username"], name: "index_providers_on_email_and_username", unique: true, using: :btree
   add_index "providers", ["email"], name: "index_providers_on_email", unique: true, using: :btree
   add_index "providers", ["reset_password_token"], name: "index_providers_on_reset_password_token", unique: true, using: :btree
+  add_index "providers", ["username"], name: "index_providers_on_username", unique: true, using: :btree
 
   create_table "rides", force: :cascade do |t|
     t.datetime "created_at",                                   null: false
@@ -205,7 +213,9 @@ ActiveRecord::Schema.define(version: 20160209182601) do
     t.string   "fax",                    limit: 15
   end
 
+  add_index "transportations", ["email", "username"], name: "index_transportations_on_email_and_username", unique: true, using: :btree
   add_index "transportations", ["email"], name: "index_transportations_on_email", unique: true, using: :btree
   add_index "transportations", ["reset_password_token"], name: "index_transportations_on_reset_password_token", unique: true, using: :btree
+  add_index "transportations", ["username"], name: "index_transportations_on_username", unique: true, using: :btree
 
 end
