@@ -1,7 +1,17 @@
 Rails.application.routes.draw do
 
+
+  namespace :driver do
+  get 'steps/show'
+  end
+
+  namespace :driver do
+  get 'steps/update'
+  end
+
   post 'sms/voice' => 'sms_messages#voice'
   post 'sms/notify' => 'sms_messages#notify'
+
 
   namespace :patient do
   get 'steps/show'
@@ -9,14 +19,6 @@ Rails.application.routes.draw do
 
   namespace :patient do
   get 'steps/update'
-  end
-
-  namespace :patient do
-  get 'steps_controller/show'
-  end
-
-  namespace :patient do
-  get 'steps_controller/update'
   end
 
   devise_for :drivers
@@ -30,6 +32,9 @@ Rails.application.routes.draw do
   resources :rides
   resources :patients do 
     resources :steps, only: [:show, :update], controller: 'patient/steps'
+  end
+  resources :drivers do 
+    resources :steps, only: [:show, :update], controller: 'driver/steps'
   end
   
   get 'patient' => 'patients#index'

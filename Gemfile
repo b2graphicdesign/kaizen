@@ -28,6 +28,8 @@ gem 'puma'
 gem 'devise'
 gem 'bootstrap-sass'
 gem 'wicked'
+gem 'figaro'
+gem 'ngrok'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
