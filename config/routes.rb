@@ -46,10 +46,4 @@ Rails.application.routes.draw do
   get 'provider' => 'providers#index'
   get 'provider/new' => 'providers#new'
   post 'provider' => 'providers#create'
-
-  
-
-
-  
-
 end
