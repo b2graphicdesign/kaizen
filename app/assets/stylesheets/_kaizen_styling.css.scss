@@ -1,5 +1,10 @@
 body{
   background-color: #FFFFFF;
+  font-family: 'Lato', sans-serif;
+}
+
+.navbar{
+  text-transform: uppercase;
 }
 
 .jumbotron{
@@ -23,6 +28,25 @@ body{
   letter-spacing: 1px;
   text-transform: uppercase;
 }
-.btn-success:hover{
+.btn:hover{
   background-color: #EF424B;
+}
+
+.btn:active{
+  background-color: #FFFFFF;
+}
+
+.jumbotron h1{
+  font-family: 'Montserrat', sans-serif;
+  color: #EF424B;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 50px;
+}
+
+.jumbotron h3{
+  color: #333333;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
 }
