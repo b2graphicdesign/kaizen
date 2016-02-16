@@ -23,7 +23,7 @@ class ProvidersController < ApplicationController
       email: params[:email]
       )
 
-    @provider.save(validate: false)
+    @provider.save(validate: true)
     redirect_to "/"
   end
 
