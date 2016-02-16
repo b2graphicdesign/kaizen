@@ -1,0 +1,28 @@
+body{
+  background-color: #FFFFFF;
+}
+
+.jumbotron{
+  background-color: #EEEEEE;
+}
+
+.brand-image{
+  height: 50px;
+  width: 50px;
+  margin-top: -15px;
+  margin-left: 10px;
+}
+
+.btn{
+  font-family: 'Montserrat', sans-serif;
+  background-color: #FFFFFF;
+  color: #333333;
+  border-color: #333333;
+  border-radius: 3px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.btn-success:hover{
+  background-color: #EF424B;
+}
