@@ -13,7 +13,7 @@ class DriversController < ApplicationController
     @driver = Driver.new(
       email: (0...8).map { (65 + rand(26)).chr }.join + "@test.com"
       )
-    @driver.save(validate: true)
+    @driver.save(validate: false)
     redirect_to driver_step_path(@driver, Driver.form_steps.first)
   end
 

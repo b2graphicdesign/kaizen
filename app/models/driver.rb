@@ -18,8 +18,8 @@ class Driver < ActiveRecord::Base
 
   validates :username, uniqueness: true, format: { with: /\A[a-zA-Z0-9]+\Z/ }, if: -> { required_for_step?(:contact) }
   validates :username, length: { minimum: 6, maximum: 15, message: "must be between 6-15 characters" }, if: -> { required_for_step?(:contact) }
-  validates :email, uniqueness: true, format: { with: /@/ }, if: -> { required_for_step?(:contact) }
-  validates transport_id, presence: { message: "ID can't be blank" }, if: -> { required_for_step?(:contact) }
+  validates :email, uniqueness: true, format: { with: /@/, message: "must contain @" }, if: -> { required_for_step?(:contact) }
+  validates :transport_id, presence: { message: "ID can't be blank" }, if: -> { required_for_step?(:contact) }
   validates :first_name, :last_name, :address_1, :address_2, :city, :state, length: { maximum: 25, message: "must be less than 25 characters" }, if: -> { required_for_step?(:contact) }
   validates :zip, :phone, length: { maximum: 15, message: "must be less than 15 characters" }, if: -> { required_for_step?(:contact) }
   validates :insurance_company, :insurance_account, length: { maximum: 50, message: "must be less than 50 characters" }, if: -> { required_for_step?(:licensing) }
