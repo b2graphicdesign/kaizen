@@ -23,7 +23,7 @@ class TransportationsController < ApplicationController
       phone: params[:phone],
       email: params[:email]
       )
-    if @transportation.save(validate: false)
+    if @transportation.save(validate: true)
       flash[:success] = "Transportation created"
       redirect_to "/"
     else
