@@ -31,15 +31,21 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Providers<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="/providers/sign_in">Log In</a></li>
+          <% if provider_signed_in? %>
             <li><%= link_to "Log Out", "/providers/sign_out", method: :delete %></li>
+          <% else %>
+            <li><a href="/providers/sign_in">Log In</a></li>
+          <% end %>
           </ul>
         </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Transportation<span class="caret"></span></a>
           <ul class="dropdown-menu">
+          <% if transportation_signed_in? %>
+            <li><%= link_to "Log Out", "/transportations/sign_out", method: :delete %>
+          <% else %>
             <li><a href="/transportations/sign_in">Log In</a></li>
-            <li><%= link_to "Log Out", "/transportations/sign_out", method: :delete %></li>
+          <% end %>
           </ul>
         </li>
       </ul>
