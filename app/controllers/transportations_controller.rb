@@ -24,6 +24,14 @@ class TransportationsController < ApplicationController
       email: params[:email]
       )
     if @transportation.save(validate: true)
+      #instantiate a Twilio client
+      client = Twilio::REST::Client.new ENV['twilio_account_sid'], ENV['twilio_auth_token']
+
+      #create and then send an SMS message
+      client.account.sms.messages.create(
+        from: ENV['twilio_phone_num'],
+        to: @transportation.phone,
+        body: "Thanks for signing up! To verify your account, please reply VERIFY to this message.")
       flash[:success] = "Transportation created"
       redirect_to "/"
     else
