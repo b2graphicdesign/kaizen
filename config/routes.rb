@@ -42,6 +42,8 @@ Rails.application.routes.draw do
   get 'transportation' => 'transportations#index'
   get 'transportation/new' => 'transportations#new'
   post 'transportation' => 'transportations#create'
+  get '/transportation/:id/edit' => 'transportations#edit'
+  put '/transportation/:id' => 'transportations#update'
 
   get '/provider' => 'providers#index'
   get '/provider/new' => 'providers#new'
