@@ -52,4 +52,5 @@ Rails.application.routes.draw do
   post '/provider' => 'providers#create'
   get '/provider/:id/edit' => 'providers#edit'
   put '/provider/:id' => 'providers#update'
+  get '/provider/:id' => 'providers#show'
 end
