@@ -38,16 +38,19 @@ Rails.application.routes.draw do
   end
   
   get 'patient' => 'patients#index'
+  get 'patient/:id' => 'patients#show'
 
   get 'transportation' => 'transportations#index'
   get 'transportation/new' => 'transportations#new'
   post 'transportation' => 'transportations#create'
   get '/transportation/:id/edit' => 'transportations#edit'
   put '/transportation/:id' => 'transportations#update'
+  get '/transportation/:id' => 'transportations#show'
 
   get '/provider' => 'providers#index'
   get '/provider/new' => 'providers#new'
   post '/provider' => 'providers#create'
   get '/provider/:id/edit' => 'providers#edit'
   put '/provider/:id' => 'providers#update'
+  get '/provider/:id' => 'providers#show'
 end

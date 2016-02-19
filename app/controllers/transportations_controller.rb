@@ -5,6 +5,7 @@ class TransportationsController < ApplicationController
   end
 
   def show
+    @transportation = Transportation.find_by(id: params[:id])
   end
 
   def new
