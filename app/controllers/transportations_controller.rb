@@ -39,12 +39,12 @@ class TransportationsController < ApplicationController
       email: params[:email]
       )
       #instantiate a Twilio client
-      client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
+      @client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
 
       #create and then send an SMS message
-      client.account.sms.messages.create(
-        from: ENV['TWILIO_PHONE_NUM'],
-        to: @transportation.phone,
+      @client.account.messages.create(
+        from: ENV['TWILIO_PHONE_NUMBER'],
+        to: "+1#{@transportation.phone}",
         body: "Thanks for signing up! To verify your account, please reply VERIFY to this message.")
 
       flash[:success] = "Transportation created"
