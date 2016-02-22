@@ -40,9 +40,9 @@ Rails.application.routes.draw do
   get 'patient' => 'patients#index'
   get 'patient/:id' => 'patients#show'
 
-  get 'transportation' => 'transportations#index'
-  get 'transportation/new' => 'transportations#new'
-  post 'transportation' => 'transportations#create'
+  get '/transportation' => 'transportations#index'
+  get '/transportation/new' => 'transportations#new'
+  post '/transportation' => 'transportations#create'
   get '/transportation/:id/edit' => 'transportations#edit'
   put '/transportation/:id' => 'transportations#update'
   get '/transportation/:id' => 'transportations#show'
@@ -53,4 +53,7 @@ Rails.application.routes.draw do
   get '/provider/:id/edit' => 'providers#edit'
   put '/provider/:id' => 'providers#update'
   get '/provider/:id' => 'providers#show'
+
+  get 'ride/on_demand' => 'rides#new'
+  post 'ride' => 'rides#create'
 end
