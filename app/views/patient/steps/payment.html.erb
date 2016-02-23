@@ -27,7 +27,7 @@
             <%= f.text_field :payer_id, placeholder: "Payer ID" %>
           </div>
           <div>
-            <%= f.text_field :payer_state, placeholder: "Payer State" %>
+            <%= f.select :payer_state, options_for_select(us_states, "IL") %>
           </div>
           <div>
             <%= f.select :transportation_type, "<option>Car</option><option>Van</option><option>Ambulance</option>".html_safe %>
