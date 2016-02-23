@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160215205945) do
+ActiveRecord::Schema.define(version: 20160222014104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -179,6 +179,23 @@ ActiveRecord::Schema.define(version: 20160215205945) do
     t.string   "ride_status"
     t.integer  "feedback_rating"
     t.text     "feedback_comments"
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.integer  "ride_id"
+    t.integer  "patient_id"
+    t.integer  "driver_id"
+    t.integer  "transportation_id"
+    t.integer  "provider_id"
+    t.string   "ride_type"
+    t.datetime "appointment_time"
+    t.datetime "expected_start_time"
+    t.datetime "expected_end_time"
+    t.decimal  "expected_mileage",    precision: 10, scale: 2
+    t.datetime "begin_date"
+    t.datetime "end_date"
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
   end
 
   create_table "sms_messages", force: :cascade do |t|
