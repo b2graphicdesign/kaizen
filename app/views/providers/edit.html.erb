@@ -14,7 +14,7 @@
     padding-bottom: 30px;
   }
 </style>
-
+<legend>New Provider</legend>
 <div class = "jumbotron">
 
   <% if @provider.errors.any? %>
@@ -29,9 +29,6 @@
     </div>
   <% end %>
 
-  <div class="row" id="new_provider_header">
-    <h2>New Provider</h2>
-  </div>
   <div class="row">
    <%= form_tag "/provider/#{@provider.id}", method: :put do %>
     <div class="col-md-4">
@@ -73,8 +70,6 @@
           <%= text_field_tag :email, nil, placeholder: "Email" %>
         </div>
       </div>
-    </div>
-  <div class="row" id="center_submit">
     <div>
         <%= submit_tag "Add Provider", class: "btn btn-default" %>
     </div>
