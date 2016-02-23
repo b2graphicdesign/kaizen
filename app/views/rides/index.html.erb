@@ -1,1 +1,3 @@
-index.html.erb
+<% @rides.each do |ride| %>
+  <p>Ride ID: <%= ride.id %></p>
+<% end %>

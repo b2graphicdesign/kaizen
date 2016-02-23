@@ -54,6 +54,8 @@ Rails.application.routes.draw do
   put '/provider/:id' => 'providers#update'
   get '/provider/:id' => 'providers#show'
 
-  get 'ride/on_demand' => 'rides#new'
-  post 'ride' => 'rides#create'
+  get '/ride' => 'rides#index'
+  get '/patient/:id/schedule' => 'rides#new'
+  post '/ride' => 'rides#create'
+
 end
