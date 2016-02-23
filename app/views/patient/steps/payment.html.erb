@@ -1,3 +1,11 @@
+<style>
+  .fa-credit-card-alt:before{
+    font-size: 250px;
+    color: #EF424B;
+    margin-left: 75px;
+  }
+</style>
+
 <%= form_for @patient, method: :put, url: wizard_path do |f| %>
   <% if f.object.errors.any? %>
     <div class="error_messages">
@@ -10,20 +18,28 @@
   <fieldset>
   <legend><%= @patient.first_name %> <%= @patient.last_name %> - Step 2 of 3</legend>
     <div class="jumbotron"> 
-      <div>
-        <%= f.text_field :payer, placeholder: "Payer" %>
-      </div>
-       <div>
-        <%= f.text_field :payer_id, placeholder: "Payer ID" %>
-      </div>
-      <div>
-        <%= f.text_field :payer_state, placeholder: "Payer State" %>
-      </div>
-      <div>
-        <%= f.select :transportation_type, "<option>Car</option><option>Van</option><option>Ambulance</option>".html_safe %>
-      </div>
-      <div>
-        <%= f.submit 'Next Step', class: "btn btn-default" %>
+      <div class="row">
+        <div class="col-md-6">
+          <div>
+            <%= f.text_field :payer, placeholder: "Payer" %>
+          </div>
+           <div>
+            <%= f.text_field :payer_id, placeholder: "Payer ID" %>
+          </div>
+          <div>
+            <%= f.text_field :payer_state, placeholder: "Payer State" %>
+          </div>
+          <div>
+            <%= f.select :transportation_type, "<option>Car</option><option>Van</option><option>Ambulance</option>".html_safe %>
+          </div>
+          <div>
+            <%= f.submit 'Next Step', class: "btn btn-default" %>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <i class="fa fa-credit-card-alt"></i>
+        </div>
       </div>
     </div>
   </fieldset>
