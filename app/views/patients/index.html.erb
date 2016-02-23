@@ -3,19 +3,11 @@
   <% @patients.each do |patient| %>
     <div class ="row">
       <ul>
-        <li>Username: <%= patient.username %></li>
-        <li>Address: <%= patient.address_1 %> <%= patient.address_2 %></li>
-                     <%= patient.city %>, <%= patient.state %>  
-        <li>Notes: <%= patient.address_notes %></li>
-        <li>Phone: <%= patient.phone %></li>
-        <li>Email: <%= patient.email%></li>
-        <li>Payer: <%= patient.payer%></li>
-        <li>Payer State: <%= patient.payer_state%></li>
-        <li>Payer ID: <%= patient.payer_id%></li>
-        <li>Transportation Type: <%= patient.transportation_type %></li>
-        <li>Assistance Notes: <%= patient.assistance_notes %></li>
-        <li>Comments: <%= patient.comments %></li>
+        <li>Username:<a href = "/patient/<%= patient.id %>" ><%= patient.username %></a></li>
       </ul>
     </div>
   <% end %>
+
+  <%= link_to "Home page", "/" %>
+
 </div>

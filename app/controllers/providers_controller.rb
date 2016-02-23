@@ -5,7 +5,7 @@ class ProvidersController < ApplicationController
   end
 
   def show
-    @provider = Provder.find_by(id: params[:id])
+    @provider = Provider.find_by(id: params[:id])
   end
 
   def new

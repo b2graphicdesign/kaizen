@@ -1,0 +1,17 @@
+<div class = "jumbotron">
+  <h2><%= @provider.username %></h2>
+    <div class ="row">
+      <ul>
+        <li>Facility: <%= @provider.facility_name %></li>
+        <li>Address: <%= @provider.address_1 %> <%= @provider.address_2 %></li>
+                     <%= @provider.city %>, <%= @provider.state %>  
+        <li>Notes: <%= @provider.address_notes %></li>
+        <li>Phone: <%= @provider.phone %></li>
+        <li>Fax: <%= @provider.fax %></li>
+        <li>Email: <%= @provider.email%></li>
+      </ul>
+    </div>
+
+    <%= link_to "Back to list", "/provider" %>
+    
+</div>

@@ -10,7 +10,58 @@
     </ul>
   </div>
 <% end %>
-  <h3>New Ride Form</h3>
+<h3>New Ride Form</h3>
+<br>
+<h4>Schedule a ride for <%= @patient.first_name %> <%= @patient.last_name %>:</h4>
+  <%= form_tag '/ride', method: :post do %>
+  <div class='input-group date' id='datetimepicker1'>
+    <input type='text' class="form-control" name="appointment_time" placeholder="Appointment Time"/>
+    <span class="input-group-addon">
+      <span class="glyphicon glyphicon-calendar"></span>
+    </span>
+  </div>
+  <script type="text/javascript">
+    $(function () {
+      $('#datetimepicker1').datetimepicker();
+    });
+  </script>
+  <div class='input-group date' id='datetimepicker2'>
+    <input type='text' class="form-control" name="expected_start_time" placeholder="Expected Start Time"/>
+    <span class="input-group-addon">
+      <span class="glyphicon glyphicon-calendar"></span>
+    </span>
+  </div>
+  <script type="text/javascript">
+    $(function () {
+      $('#datetimepicker2').datetimepicker();
+    });
+  </script>
+  <div class='input-group date' id='datetimepicker3'>
+    <input type='text' class="form-control" name="expected_end_time" placeholder="Expected Start Time"/>
+    <span class="input-group-addon">
+      <span class="glyphicon glyphicon-calendar"></span>
+    </span>
+  </div>
+  <script type="text/javascript">
+    $(function () {
+      $('#datetimepicker3').datetimepicker();
+    });
+  </script>
+  <div>
+    <%= text_field_tag :expected_mileage, nil, placeholder: "Expected Mileage" %>
+  </div>
+  <div>
+    <%= text_field_tag :ride_type, nil, placeholder: "Ride Type" %>
+  </div>
+  <div>
+    <%= hidden_field_tag :patient_id, @patient.id %>
+  </div>
+  <div>
+    <%= hidden_field_tag :provider_id, @patient.provider_id %>
+  </div>
+  <div>
+      <%= submit_tag "Schedule Ride", class: "btn btn-default" %>
+  </div>
 
-  <p>This is where the ride will be generated.</p>
+  <% end %>
 </div>
