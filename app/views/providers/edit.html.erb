@@ -41,7 +41,7 @@
           <%= text_field_tag :city, nil, placeholder: "City" %>
         </div>
         <div>
-          <%= text_field_tag :state, nil, placeholder: "State" %>
+          <%= select_tag :state, options_for_select(us_states) %>
         </div>
         <div>
           <%= text_field_tag :zip, nil, placeholder: "Zip" %>
