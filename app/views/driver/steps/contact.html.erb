@@ -1,3 +1,11 @@
+<style>
+  .fa-phone-square:before{
+    font-size: 350px;
+    color: #EF424B;
+    margin-left: 110px;
+  }
+</style>
+
 <%= form_for @driver, method: :put, url: wizard_path do |f| %>
   <% if f.object.errors.any? %>
     <div class="error_messages">
@@ -10,41 +18,49 @@
 <fieldset>
     <legend>New Driver - Step 1 of 3</legend>
       <div class="jumbotron">
-        <div>
-          <%= f.text_field :transport_id, placeholder: "Transportation ID" %>
-        </div>
-        <div>
-          <%= f.text_field :username, placeholder: "Username" %>
-        </div>
-        <div>
-          <%= f.text_field :first_name, placeholder: "First name" %>
-        </div>
-        <div>
-          <%= f.text_field :last_name, placeholder: "Last name" %>
-        </div>
-        <div>
-          <%= f.text_field :address_1, placeholder: "Address 1" %>
-        </div>
-        <div>
-          <%= f.text_field :address_2, placeholder: "Address 2" %>
-        </div>
-        <div>
-          <%= f.text_field :city, placeholder: "City" %>
-        </div>
-        <div>
-          <%= f.text_field :state, placeholder: "State" %>
-        </div>
-        <div>
-          <%= f.text_field :zip, placeholder: "Zip Code" %>
-        </div>
-        <div>
-          <%= f.text_field :phone, placeholder: "Phone Number" %>
-        </div>
-        <div>
-          <%= f.text_field :email, placeholder: "Email" %>
-        </div>
-        <div>
-          <%= f.submit 'Next Step', class: "btn btn-default" %>
+        <div class="row">
+          <div class="col-md-6">
+            <div>
+              <%= f.text_field :transport_id, placeholder: "Transportation ID" %>
+            </div>
+            <div>
+              <%= f.text_field :username, placeholder: "Username" %>
+            </div>
+            <div>
+              <%= f.text_field :first_name, placeholder: "First name" %>
+            </div>
+            <div>
+              <%= f.text_field :last_name, placeholder: "Last name" %>
+            </div>
+            <div>
+              <%= f.text_field :address_1, placeholder: "Address 1" %>
+            </div>
+            <div>
+              <%= f.text_field :address_2, placeholder: "Address 2" %>
+            </div>
+            <div>
+              <%= f.text_field :city, placeholder: "City" %>
+            </div>
+            <div>
+              <%= f.text_field :state, placeholder: "State" %>
+            </div>
+            <div>
+              <%= f.text_field :zip, placeholder: "Zip Code" %>
+            </div>
+            <div>
+              <%= f.text_field :phone, placeholder: "Phone Number" %>
+            </div>
+            <div>
+              <%= f.text_field :email, placeholder: "Email" %>
+            </div>
+            <div>
+              <%= f.submit 'Next Step', class: "btn btn-default" %>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <i class="fa fa-phone-square"></i>
+          </div>
         </div>
       </div>
   </fieldset>
