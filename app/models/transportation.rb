@@ -1,8 +1,6 @@
 class Transportation < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  attr_accessor :email, :phone, :company_name
-
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
