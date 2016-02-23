@@ -1,19 +1,11 @@
 <style>
-  #center_submit{
-    text-align: center;
-    margin-top: 30px;
-  }
-  .add_padding{
-    text-align: center;
-  }
-  .select_padding{
-    padding: 10px;
-  }
-  #new_provider_header{
-    text-align: center;
-    padding-bottom: 30px;
+  .fa-user-md:before{
+    font-size: 350px;
+    color: #EF424B;
+    margin-left: 110px;
   }
 </style>
+
 <legend>New Provider</legend>
 <div class = "jumbotron">
 
@@ -31,7 +23,7 @@
 
   <div class="row">
    <%= form_tag "/provider/#{@provider.id}", method: :put do %>
-    <div class="col-md-4">
+    <div class="col-md-6">
       <div class="add_padding">
         <div>
           <%= text_field_tag :username, nil, placeholder: "Username" %>
@@ -70,8 +62,12 @@
           <%= text_field_tag :email, nil, placeholder: "Email" %>
         </div>
       </div>
-    <div>
-        <%= submit_tag "Add Provider", class: "btn btn-default" %>
+      <div>
+          <%= submit_tag "Add Provider", class: "btn btn-default" %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <i class="fa fa-user-md"></i>
     </div>
   </div>
   <% end %>
