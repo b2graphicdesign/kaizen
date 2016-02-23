@@ -1,3 +1,12 @@
+<style>
+  .fa-ambulance:before{
+    font-size: 350px;
+    color: #EF424B;
+    margin-left: 50px;
+  }
+</style>
+
+<legend>New Transportation Provider</legend>
 <div class="jumbotron">
   <% if @transportation.errors.any? %>
     <div id="error_explanation">
@@ -11,41 +20,47 @@
     </div>
   <% end %>
 
-  <h3>New Transportation Provider</h3>
-
   <%= form_tag "/transportation/#{@transportation.id}", method: :put do %>
-    <div>
-      <%= text_field_tag :company_name, nil, placeholder: "Company Name" %>
-    </div>
-    <div>
-      <%= text_field_tag :username, nil, placeholder: "Username" %>
-    </div>
-    <div>
-      <%= text_field_tag :address_1, nil, placeholder: "Address 1" %>
-    </div>
-    <div>
-      <%= text_field_tag :address_2, nil, placeholder: "Address 2" %>
-    </div>
-    <div>
-      <%= text_field_tag :city, nil, placeholder: "City" %>
-    </div>
-    <div>
-      <%= text_field_tag :state, nil, placeholder: "State" %>
-    </div>
-    <div>
-      <%= text_field_tag :zip, nil, placeholder: "Zip" %>
-    </div>
-    <div>
-      <%= text_field_tag :phone, nil, placeholder: "Phone Number" %>
-    </div>
-    <div>
-      <%= text_field_tag :fax, nil, placeholder: "Fax Number" %>
-    </div>
-    <div>
-      <%= text_field_tag :email, nil, placeholder: "Email" %>
-    </div>
-    <div>
-        <%= submit_tag "Add Transportation", class: "btn btn-default" %>
+    <div class="row">
+      <div class="col-md-6">
+       <div>
+          <%= text_field_tag :company_name, nil, placeholder: "Company Name" %>
+        </div>
+        <div>
+          <%= text_field_tag :username, nil, placeholder: "Username" %>
+        </div>
+        <div>
+          <%= text_field_tag :address_1, nil, placeholder: "Address 1" %>
+        </div>
+        <div>
+          <%= text_field_tag :address_2, nil, placeholder: "Address 2" %>
+        </div>
+        <div>
+          <%= text_field_tag :city, nil, placeholder: "City" %>
+        </div>
+        <div>
+          <%= text_field_tag :state, nil, placeholder: "State" %>
+        </div>
+        <div>
+          <%= text_field_tag :zip, nil, placeholder: "Zip" %>
+        </div>
+        <div>
+          <%= text_field_tag :phone, nil, placeholder: "Phone Number" %>
+        </div>
+        <div>
+          <%= text_field_tag :fax, nil, placeholder: "Fax Number" %>
+        </div>
+        <div>
+          <%= text_field_tag :email, nil, placeholder: "Email" %>
+        </div>
+        <div>
+            <%= submit_tag "Add Transportation", class: "btn btn-default" %>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <i class="fa fa-ambulance"></i>
+      </div>
     </div>
   <% end %>
 </div>

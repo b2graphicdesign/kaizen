@@ -1,3 +1,11 @@
+<style>
+  .fa-car:before{
+    font-size: 350px;
+    color: #EF424B;
+    margin-left: 65px;
+  }
+</style>
+
 <%= form_for @driver, method: :put, url: wizard_path do |f| %>
   <% if f.object.errors.any? %>
     <div class="error_messages">
@@ -11,29 +19,37 @@
 <fieldset>
     <legend>New Driver - Step 3 of 3</legend>
       <div class="jumbotron">
-        <div>
-          <%= f.text_field :vehicle_year, placeholder: "Vehicle Year" %>
-        </div>
-        <div>
-          <%= f.text_field :vehicle_make, placeholder: "Vehicle Make" %>
-        </div>
-        <div>
-          <%= f.text_field :vehicle_model, placeholder: "Vehicle Model" %>
-        </div>
-        <div>
-          <%= f.text_field :vehicle_type, placeholder: "Vehicle Type" %>
-        </div>
-        <div>
-          <%= f.text_field :vehicle_color, placeholder: "Vehicle Color" %>
-        </div>
-        <div>
-          <%= f.text_field :vehicle_license_plate, placeholder: "Vehicle License Plate" %>
-        </div>
-        <div>
-          <%= f.text_field :vehicle_license_expiry, placeholder: "Vehicle License Expiry" %>
-        </div>
-        <div>
-          <%= f.submit 'Add Driver', class: "btn btn-default" %>
+        <div class="row">
+          <div class="col-md-6">
+            <div>
+              <%= f.text_field :vehicle_year, placeholder: "Vehicle Year" %>
+            </div>
+            <div>
+              <%= f.text_field :vehicle_make, placeholder: "Vehicle Make" %>
+            </div>
+            <div>
+              <%= f.text_field :vehicle_model, placeholder: "Vehicle Model" %>
+            </div>
+            <div>
+              <%= f.text_field :vehicle_type, placeholder: "Vehicle Type" %>
+            </div>
+            <div>
+              <%= f.text_field :vehicle_color, placeholder: "Vehicle Color" %>
+            </div>
+            <div>
+              <%= f.text_field :vehicle_license_plate, placeholder: "Vehicle License Plate" %>
+            </div>
+            <div>
+              <%= f.text_field :vehicle_registration_expiry, placeholder: "Vehicle Registration Expiry" %>
+            </div>
+            <div>
+              <%= f.submit 'Add Driver', class: "btn btn-default" %>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <i class="fa fa-car"></i>
+          </div>
         </div>
       </div>
   </fieldset>

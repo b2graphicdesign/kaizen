@@ -1,3 +1,11 @@
+<style>
+  .fa-road:before{
+    font-size: 350px;
+    color: #EF424B;
+    margin-left: 65px;
+  }
+</style>
+
 <%= form_for @driver, method: :put, url: wizard_path do |f| %>
   <% if f.object.errors.any? %>
     <div class="error_messages">
@@ -10,23 +18,31 @@
 <fieldset>
     <legend>New Driver - Step 2 of 3</legend>
       <div class="jumbotron">
-        <div>
-          <%= f.text_field :insurance_company, placeholder: "Insurance Company" %>
-        </div>
-        <div>
-          <%= f.text_field :insurance_account, placeholder: "Insurance Account #" %>
-        </div>
-        <div>
-          <%= f.text_field :drivers_license_state, placeholder: "Drivers License State" %>
-        </div>
-        <div>
-          <%= f.text_field :drivers_license_no, placeholder: "Drivers License #" %>
-        </div>
-        <div>
-          <%= f.text_field :drivers_license_expiry, placeholder: "Drivers License Exp. Date" %>
-        </div>
-        <div>
-          <%= f.submit 'Next Step', class: "btn btn-default" %>
+        <div class="row">
+          <div class="col-md-6">
+            <div>
+              <%= f.text_field :insurance_company, placeholder: "Insurance Company" %>
+            </div>
+            <div>
+              <%= f.text_field :insurance_account, placeholder: "Insurance Account #" %>
+            </div>
+            <div>
+              <%= f.text_field :drivers_license_state, placeholder: "Drivers License State" %>
+            </div>
+            <div>
+              <%= f.text_field :drivers_license_no, placeholder: "Drivers License #" %>
+            </div>
+            <div>
+              <%= f.text_field :drivers_license_expiry, placeholder: "Drivers License Exp. Date" %>
+            </div>
+            <div>
+              <%= f.submit 'Next Step', class: "btn btn-default" %>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <i class="fa fa-road"></i>
+          </div>
         </div>
       </div>
   </fieldset>
