@@ -34,4 +34,8 @@ class Patient < ActiveRecord::Base
     return true if self.form_steps.index(step.to_s) <= self.form_steps.index(form_step)
   end
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
 end
