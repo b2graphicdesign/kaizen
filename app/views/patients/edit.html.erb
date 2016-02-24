@@ -13,28 +13,40 @@
 
 <legend>Edit Patient: <%= @patient.first_name %> <%=@patient.last_name %></legend>
 
+<% if @patient.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@patient.errors.count, "error") %> prohibited this patient from being saved:</h2>
+ 
+    <ul>
+    <% @patient.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <div class="jumbotron">
   <%= form_tag "/patients/#{@patient.id}", method: :patch do %>
     <h3>Basic Information</h3>
     <div>
       <%= label_tag :email %>
-      <%= text_field_tag :email, @patient.email %>
+      <%= text_field_tag :email, @patient.email if present?%>
     </div>
     <div>
       <%= label_tag :username %>
-      <%= text_field_tag :username, @patient.username %>
+      <%= text_field_tag :username, @patient.username if present?%>
     </div>
     <div>
       <%= label_tag :first_name %>
-      <%= text_field_tag :first_name, @patient.first_name %>
+      <%= text_field_tag :first_name, @patient.first_name if present? %>
     </div>
     <div>
       <%= label_tag :last_name %>
-      <%= text_field_tag :last_name, @patient.last_name %>
+      <%= text_field_tag :last_name, @patient.last_name if present?%>
     </div>
     <div>
       <%= label_tag :address_1 %>
-      <%= text_field_tag :address_1, @patient.address_1 %>
+      <%= text_field_tag :address_1, @patient.address_1 if present?%>
     </div>
     <div>
       <%= label_tag :address_2 %>
@@ -42,79 +54,79 @@
     </div>
     <div>
       <%= label_tag :city %>
-      <%= text_field_tag :city, @patient.city %>
+      <%= text_field_tag :city, @patient.city if present?%>
     </div>
     <div>
       <%= label_tag :state %>
-      <%= select_tag :state, options_for_select(us_states, @patient.state) %>
+      <%= select_tag :state, options_for_select(us_states, @patient.state) if present? %>
     </div>
     <div>
       <%= label_tag :zip %>
-      <%= text_field_tag :zip, @patient.zip %>
+      <%= text_field_tag :zip, @patient.zip if present? %>
     </div>
     <div>
       <%= label_tag :county %>
-      <%= text_field_tag :county, @patient.county %>
+      <%= text_field_tag :county, @patient.county if present? %>
     </div>
     <hr>
     <h3>Payment Information</h3>
     <div>
       <%= label_tag :payer %>
-      <%= text_field_tag :payer, @patient.payer %>
+      <%= text_field_tag :payer, @patient.payer if present? %>
     </div>
     <div>
       <%= label_tag "Payer Identification" %>
-      <%= text_field_tag :payer_id, @patient.payer_id %>
+      <%= text_field_tag :payer_id, @patient.payer_id if present? %>
     </div>
     <div>
       <%= label_tag :payer_state %>
-      <%= select_tag :payer_state, options_for_select(us_states, @patient.payer_state) %>
+      <%= select_tag :payer_state, options_for_select(us_states, @patient.payer_state) if present? %>
     </div>
     <div>
       <%= label_tag :transportation_type %>
-      <%= select_tag :transportation_type, options_for_select(["Car", "Van", "Ambulance"], @patient.transportation_type) %>
+      <%= select_tag :transportation_type, options_for_select(["Car", "Van", "Ambulance"], @patient.transportation_type) if present? %>
     </div>
     <hr>
     <h3>Contact Information</h3>
     <div>
       <%= label_tag :phone %>
-      <%= text_field_tag :phone, @patient.phone %>
+      <%= text_field_tag :phone, @patient.phone if present? %>
     </div>
     <div>
       <%= label_tag "Check box to enable phone call alerts" %>
-      <%= check_box_tag :alert_call, @patient.alert_call %>
+      <%= check_box_tag :alert_call, @patient.alert_call if present? %>
     </div>
     <div>
       <%= label_tag "Check box to enable sms alerts" %>
-      <%= check_box_tag :alert_sms, @patient.alert_sms %>
+      <%= check_box_tag :alert_sms, @patient.alert_sms if present? %>
     </div>
     <div>
       <%= label_tag "Check box to enable email alerts" %>
-      <%= check_box_tag :alert_sms, @patient.alert_email %>
+      <%= check_box_tag :alert_email, @patient.alert_email if present? %>
     </div>
     <div>
       <%= label_tag :alternate_contact_name %>
-      <%= text_field_tag :alternate_contact_name, @patient.alternate_contact_name %>
+      <%= text_field_tag :alternate_contact_name, @patient.alternate_contact_name if present? %>
     </div>
     <div>
       <%= label_tag :alternate_contact_phone %>
-      <%= text_field_tag :alternate_contact_phone, @patient.alternate_contact_phone %>
+      <%= text_field_tag :alternate_contact_phone, @patient.alternate_contact_phone if present? %>
     </div>
     <div>
       <%= label_tag :alternate_contact_email %>
-      <%= text_field_tag :alternate_contact_email, @patient.alternate_contact_email %>
+      <%= text_field_tag :alternate_contact_email, @patient.alternate_contact_email if present? %>
     </div>
     <div>
       <%= label_tag "Check box to enable alternate contact phone call alerts:" %>
-      <%= check_box_tag :alert_alternate_call, @patient.alert_alternate_call %>
+      <%= check_box_tag :alert_alternate_call, @patient.alert_alternate_call if present? %>
     </div>
     <div>
       <%= label_tag "Check box to enable alternate contact sms alerts:" %>
-      <%= check_box_tag :alert_alternate_sms, @patient.alert_alternate_sms %>
+      <%= check_box_tag :alert_alternate_sms, @patient.alert_alternate_sms if present? %>
     </div>
     <div>
       <%= label_tag "Check box to enable alternate contact email alerts:" %>
-      <%= check_box_tag :alert_alternate_email, @patient.alert_alternate_email %>
+      <%= check_box_tag :alert_alternate_email, @patient.alert_alternate_email if present? %>
     </div>
     <hr>
     <%= submit_tag "Update Patient", class: "btn btn-default" %>
