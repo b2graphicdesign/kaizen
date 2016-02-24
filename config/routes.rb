@@ -37,8 +37,12 @@ Rails.application.routes.draw do
     resources :steps, only: [:show, :update], controller: 'driver/steps'
   end
   
-  get 'patient' => 'patients#index'
-  get 'patient/:id' => 'patients#show'
+  get '/driver/:id' => 'drivers#show'
+  
+
+  get '/patient' => 'patients#index'
+  get '/patient/:id' => 'patients#show'
+  
 
   get '/transportation' => 'transportations#index'
   get '/transportation/new' => 'transportations#new'
@@ -46,6 +50,8 @@ Rails.application.routes.draw do
   get '/transportation/:id/edit' => 'transportations#edit'
   put '/transportation/:id' => 'transportations#update'
   get '/transportation/:id' => 'transportations#show'
+  get '/transportation/:id/edit_transportation' => 'transportations#edit_transportation'
+  patch '/transportation/:id' => 'transportations#update_transportation'
 
   get '/provider' => 'providers#index'
   get '/provider/new' => 'providers#new'
@@ -53,6 +59,8 @@ Rails.application.routes.draw do
   get '/provider/:id/edit' => 'providers#edit'
   put '/provider/:id' => 'providers#update'
   get '/provider/:id' => 'providers#show'
+  get '/provider/:id/edit_provider' => 'providers#edit_provider'
+  patch '/provider/:id' => 'providers#update_provider'
 
   get '/ride' => 'rides#index'
   get '/patient/:id/schedule' => 'rides#new'

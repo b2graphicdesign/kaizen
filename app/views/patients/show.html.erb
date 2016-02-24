@@ -16,7 +16,8 @@
         <li>Comments: <%= @patient.comments %></li>
       </ul>
     </div>
-
-    <%= link_to "Back to list", "/patient" %>
+    
+    <%= link_to "Back to list", "/patient", class: "btn btn-default" %>
+    <%= link_to "Edit Patient", "/patients/#{@patient.id}/edit", class: "btn btn-default" %>
    
 </div>

@@ -54,6 +54,31 @@ class TransportationsController < ApplicationController
     end
   end
 
+  def edit_transportation
+    @transportation = Transportation.find_by(id: params[:id])
+  end
+
+  def update_transportation
+    @transportation = Transportation.find_by(id: params[:id])
+    if @transportation.update(
+      company_name: params[:company_name],
+      username: params[:username],
+      address_1: params[:address_1],
+      address_2: params[:address_2],
+      city: params[:city],
+      state: params[:state],
+      zip: params[:zip],
+      phone: params[:phone],
+      fax: params[:fax],
+      email: params[:email]
+      )
+      flash[:success] = "Transportation updated"
+      redirect_to "/transportation/#{@transportation.id}"
+    else
+      render :edit_transportation
+    end
+  end
+
   def destroy
   end
 end
