@@ -21,6 +21,7 @@ class PatientsController < ApplicationController
   end
 
   def edit
+    @patient = Patient.find_by(id: params[:id])
   end
 
   def update
