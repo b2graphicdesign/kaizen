@@ -1,0 +1,74 @@
+<style>
+  input{
+    padding: 1px;
+    width: 250px
+  }
+  select{
+    width: 250px;
+  }
+  .btn{
+    width: 425px;
+  }
+</style>
+
+
+<legend>Update Transportation Provider</legend>
+<div class="jumbotron">
+  <% if @transportation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@transportation.errors.count, "error") %> prohibited this transportation from being saved:</h2>
+   
+      <ul>
+      <% @transportation.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<%= form_tag "/transportation/#{@transportation.id}", method: :patch do %>
+   <div>
+      <%= label_tag :company_name %>
+      <%= text_field_tag :company_name, @transportation.company_name if present? %>
+    </div>
+    <div>
+      <%= label_tag :username %>
+      <%= text_field_tag :username, @transportation.username if present? %>
+    </div>
+    <div>
+      <%= label_tag :address_1 %>
+      <%= text_field_tag :address_1, @transportation.address_1 if present? %>
+    </div>
+    <div>
+      <%= label_tag :address_2 %>
+      <%= text_field_tag :address_2, @transportation.address_2 if present? %>
+    </div>
+    <div>
+      <%= label_tag :city %>
+      <%= text_field_tag :city, @transportation.city if present? %>
+    </div>
+    <div>
+      <%= label_tag :state %>
+      <%= select_tag :state, options_for_select(us_states, @transportation.state) %>
+    </div>
+    <div>
+      <%= label_tag :zip %>
+      <%= text_field_tag :zip, @transportation.zip if present? %>
+    </div>
+    <div>
+      <%= label_tag :phone %>
+      <%= text_field_tag :phone, @transportation.phone if present? %>
+    </div>
+    <div>
+      <%= label_tag :fax %>
+      <%= text_field_tag :fax, @transportation.fax if present? %>
+    </div>
+    <div>
+      <%= label_tag :email %>
+      <%= text_field_tag :email, @transportation.email if present? %>
+    </div>
+    <div>
+        <%= submit_tag "Update Transportation", class: "btn btn-default" %>
+    </div>
+<% end %>
+</div>

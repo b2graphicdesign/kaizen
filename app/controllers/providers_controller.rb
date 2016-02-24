@@ -41,8 +41,8 @@ class ProvidersController < ApplicationController
       fax: params[:fax],
       email: params[:email]
       )
-      flash[:success] = "Provider success"
-      redirect_to "/provider/#{@provider.id}"
+      flash[:success] = "Provider created"
+      redirect_to "/"
     else
       render :edit
     end
@@ -71,7 +71,7 @@ class ProvidersController < ApplicationController
       flash[:success] = "Provider updated."
       redirect_to "/provider/#{@provider.id}"
     else
-      render :edit
+      render :edit_provider
     end
   end
 

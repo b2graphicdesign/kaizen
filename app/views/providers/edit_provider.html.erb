@@ -27,7 +27,7 @@
     </div>
   <% end %>
 
- <%= form_tag "/provider/#{@provider.id}", method: :put do %>
+ <%= form_tag "/provider/#{@provider.id}", method: :patch do %>
     <div>
       <%= label_tag :username %>
       <%= text_field_tag :username, @provider.username if present? %>
