@@ -41,10 +41,38 @@ class ProvidersController < ApplicationController
       fax: params[:fax],
       email: params[:email]
       )
-      flash[:success] = "Provider created."
-      redirect_to "/"
+      flash[:success] = "Provider success"
+      redirect_to "/provider/#{@provider.id}"
     else
       render :edit
     end
   end
+
+  def edit_provider
+    @provider = Provider.find_by(id: params[:id])
+  end
+
+  def update_provider
+    @provider = Provider.find_by(id: params[:id])
+    if @provider.update(
+      username: params[:username],
+      facility_name: params[:facility_name],
+      address_1: params[:address_1],
+      address_2: params[:address_2],
+      city: params[:city],
+      state: params[:state],
+      zip: params[:zip],
+      county: params[:county],
+      address_notes: params[:address_notes],
+      phone: params[:phone],
+      fax: params[:fax],
+      email: params[:email]
+      )
+      flash[:success] = "Provider updated."
+      redirect_to "/provider/#{@provider.id}"
+    else
+      render :edit
+    end
+  end
+
 end

@@ -1,0 +1,83 @@
+<style>
+  input{
+    padding: 1px;
+    width: 250px
+  }
+  select{
+    width: 250px;
+  }
+  .btn{
+    width: 425px;
+  }
+</style>
+
+
+<legend>Update Provider</legend>
+<div class = "jumbotron">
+
+  <% if @provider.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@provider.errors.count, "error") %> prohibited this patient from being saved:</h2>
+   
+      <ul>
+      <% @provider.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ <%= form_tag "/provider/#{@provider.id}", method: :put do %>
+    <div>
+      <%= label_tag :username %>
+      <%= text_field_tag :username, @provider.username if present? %>
+    </div>
+    <div>
+      <%= label_tag :facility_name %>
+      <%= text_field_tag :facility_name, @provider.facility_name if present? %>
+    </div>
+    <div>
+      <%= label_tag :address_1 %>
+      <%= text_field_tag :address_1, @provider.address_1 if present? %>
+    </div>
+    <div>
+      <%= label_tag :address_2 %>
+      <%= text_field_tag :address_2, @provider.address_2 if present? %>
+    </div>
+    <div>
+      <%= label_tag :city %>
+      <%= text_field_tag :city, @provider.city if present? %>
+    </div>
+    <div>
+      <%= label_tag :state %>
+      <%= select_tag :state, options_for_select(us_states, @provider.state ) %>
+    </div>
+    <div>
+      <%= label_tag :zip %>
+      <%= text_field_tag :zip, @provider.zip if present? %>
+    </div>
+    <div>
+      <%= label_tag :county %>
+      <%= text_field_tag :county, @provider.county if present? %>
+    </div>
+    <div>
+      <%= label_tag :address_notes %>
+      <%= text_field_tag :address_notes, @provider.address_notes if present? %>
+    </div>
+    <div>
+      <%= label_tag :phone %>
+      <%= text_field_tag :phone, @provider.phone if present? %>
+    </div>
+    <div>
+      <%= label_tag :fax %>
+      <%= text_field_tag :fax, @provider.fax if present? %>
+    </div>
+    <div>
+      <%= label_tag :email %>
+      <%= text_field_tag :email, @provider.email if present? %>
+    </div>
+    <div>
+        <%= submit_tag "Update Provider", class: "btn btn-default" %>
+    </div>
+  <% end %>
+</div>
