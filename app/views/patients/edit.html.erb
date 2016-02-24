@@ -94,15 +94,18 @@
     </div>
     <div>
       <%= label_tag "Check box to enable phone call alerts" %>
-      <%= check_box_tag :alert_call, @patient.alert_call if present? %>
+      <%= hidden_field_tag :alert_call, false %>
+      <%= check_box_tag :alert_call, checked = true %>
     </div>
     <div>
       <%= label_tag "Check box to enable sms alerts" %>
-      <%= check_box_tag :alert_sms, @patient.alert_sms if present? %>
+      <%= hidden_field_tag :alert_sms, false %>
+      <%= check_box_tag :alert_sms, checked = true %>
     </div>
     <div>
       <%= label_tag "Check box to enable email alerts" %>
-      <%= check_box_tag :alert_email, @patient.alert_email if present? %>
+      <%= hidden_field_tag :alert_email, false %>
+      <%= check_box_tag :alert_email, checked = true %>
     </div>
     <div>
       <%= label_tag :alternate_contact_name %>
@@ -118,15 +121,18 @@
     </div>
     <div>
       <%= label_tag "Check box to enable alternate contact phone call alerts:" %>
-      <%= check_box_tag :alert_alternate_call, @patient.alert_alternate_call if present? %>
+      <%= hidden_field_tag :alert_alternate_call, false %>
+      <%= check_box_tag :alert_alternate_call, checked = true %>
     </div>
     <div>
       <%= label_tag "Check box to enable alternate contact sms alerts:" %>
-      <%= check_box_tag :alert_alternate_sms, @patient.alert_alternate_sms if present? %>
+      <%= hidden_field_tag :alert_alternate_sms, false %>
+      <%= check_box_tag :alert_alternate_sms, checked = true %>
     </div>
     <div>
       <%= label_tag "Check box to enable alternate contact email alerts:" %>
-      <%= check_box_tag :alert_alternate_email, @patient.alert_alternate_email if present? %>
+      <%= hidden_field_tag :alert_alternate_email, false %>
+      <%= check_box_tag :alert_alternate_email, checked = true %>
     </div>
     <hr>
     <%= submit_tag "Update Patient", class: "btn btn-default" %>
