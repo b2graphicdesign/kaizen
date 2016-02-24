@@ -93,19 +93,16 @@
       <%= text_field_tag :phone, @patient.phone if present? %>
     </div>
     <div>
-      <%= label_tag "Check box to enable phone call alerts" %>
-      <%= hidden_field_tag :alert_call, false %>
-      <%= check_box_tag :alert_call, checked = true %>
+      <%= label_tag "Enable phone call alerts?" %>
+      <%= select_tag :alert_call, options_for_select([["Yes", true], ["No", false]], @patient.alert_call) %>
     </div>
     <div>
-      <%= label_tag "Check box to enable sms alerts" %>
-      <%= hidden_field_tag :alert_sms, false %>
-      <%= check_box_tag :alert_sms, checked = true %>
+      <%= label_tag "Enable sms alerts?" %>
+      <%= select_tag :alert_sms, options_for_select([["Yes", true], ["No", false]], @patient.alert_sms) %>
     </div>
     <div>
-      <%= label_tag "Check box to enable email alerts" %>
-      <%= hidden_field_tag :alert_email, false %>
-      <%= check_box_tag :alert_email, checked = true %>
+      <%= label_tag "Enable email alerts?" %>
+      <%= select_tag :alert_email, options_for_select([["Yes", true], ["No", false]], @patient.alert_email) %>
     </div>
     <div>
       <%= label_tag :alternate_contact_name %>
@@ -120,19 +117,16 @@
       <%= text_field_tag :alternate_contact_email, @patient.alternate_contact_email if present? %>
     </div>
     <div>
-      <%= label_tag "Check box to enable alternate contact phone call alerts:" %>
-      <%= hidden_field_tag :alert_alternate_call, false %>
-      <%= check_box_tag :alert_alternate_call, checked = true %>
+      <%= label_tag "Enable alternate contact phone call alerts?" %>
+      <%= select_tag :alert_alternate_call, options_for_select([["Yes", true], ["No", false]], @patient.alert_alternate_call) %>
     </div>
     <div>
-      <%= label_tag "Check box to enable alternate contact sms alerts:" %>
-      <%= hidden_field_tag :alert_alternate_sms, false %>
-      <%= check_box_tag :alert_alternate_sms, checked = true %>
+      <%= label_tag "Enable alternate contact sms alerts?" %>
+      <%= select_tag :alert_alternate_sms, options_for_select([["Yes", true], ["No", false]], @patient.alert_alternate_sms) %>
     </div>
     <div>
-      <%= label_tag "Check box to enable alternate contact email alerts:" %>
-      <%= hidden_field_tag :alert_alternate_email, false %>
-      <%= check_box_tag :alert_alternate_email, checked = true %>
+      <%= label_tag "Enable alternate contact email alerts?" %>
+      <%= select_tag :alert_alternate_email, options_for_select([["Yes", true], ["No", false]], @patient.alert_alternate_email) %>
     </div>
     <hr>
     <%= submit_tag "Update Patient", class: "btn btn-default" %>
