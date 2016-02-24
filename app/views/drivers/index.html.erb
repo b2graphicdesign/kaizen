@@ -1,0 +1,14 @@
+<div class = "jumbotron">
+  <h1>List of Drivers</h1>
+  <% @drivers.each do |driver| %>
+    <div class ="row">
+      <ul>
+        <li>Username: <a href = "/driver/<%= driver.id %>" ><%= driver.username %></a></li>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= link_to "Home page", "/", class: "btn btn-default" %>
+
+
+</div>

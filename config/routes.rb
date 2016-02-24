@@ -37,9 +37,12 @@ Rails.application.routes.draw do
     resources :steps, only: [:show, :update], controller: 'driver/steps'
   end
   
+  get '/driver/:id' => 'drivers#show'
+  
+
   get '/patient' => 'patients#index'
   get '/patient/:id' => 'patients#show'
-  get '/patient/:id/edit' => 'patients#edit_patients'
+  
 
   get '/transportation' => 'transportations#index'
   get '/transportation/new' => 'transportations#new'

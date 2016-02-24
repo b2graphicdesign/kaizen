@@ -1,0 +1,130 @@
+<style>
+  input{
+    padding: 1px;
+    width: 250px
+  }
+  select{
+    width: 250px;
+  }
+  .btn{
+    width: 425px;
+  }
+</style>
+
+<legend>Edit Driver: <%= @driver.first_name %> <%=@driver.last_name %></legend>
+
+<% if @driver.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@driver.errors.count, "error") %> prohibited this driver from being saved:</h2>
+ 
+    <ul>
+    <% @driver.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="jumbotron">
+  <%= form_tag "/drivers/#{@driver.id}", method: :patch do %>
+    <h3>Contact Information</h3>
+    <div>
+      <%= label_tag :transport_id %>
+      <%= text_field_tag :transport_id, @driver.transport_id if present?%>
+    </div>
+    <div>
+      <%= label_tag :username %>
+      <%= text_field_tag :username, @driver.username if present?%>
+    </div>
+    <div>
+      <%= label_tag :first_name %>
+      <%= text_field_tag :first_name, @driver.first_name if present? %>
+    </div>
+    <div>
+      <%= label_tag :last_name %>
+      <%= text_field_tag :last_name, @driver.last_name if present?%>
+    </div>
+    <div>
+      <%= label_tag :address_1 %>
+      <%= text_field_tag :address_1, @driver.address_1 if present?%>
+    </div>
+    <div>
+      <%= label_tag :address_2 %>
+      <%= text_field_tag :address_2, @driver.address_2 if present? %>
+    </div>
+    <div>
+      <%= label_tag :city %>
+      <%= text_field_tag :city, @driver.city if present?%>
+    </div>
+    <div>
+      <%= label_tag :state %>
+      <%= select_tag :state, options_for_select(us_states, @driver.state) %>
+    </div>
+    <div>
+      <%= label_tag :zip %>
+      <%= text_field_tag :zip, @driver.zip if present? %>
+    </div>
+    <div>
+      <%= label_tag :phone %>
+      <%= text_field_tag :phone, @driver.phone if present? %>
+    </div>
+    <div>
+      <%= label_tag :email %>
+      <%= text_field_tag :email, @driver.email if present? %>
+    </div>
+    <hr>
+    <h3>Licensing</h3>
+    <div>
+      <%= label_tag :insurance_company %>
+      <%= text_field_tag :insurance_company, @driver.insurance_company if present? %>
+    </div>
+    <div>
+      <%= label_tag :insurance_account %>
+      <%= text_field_tag :insurance_account, @driver.insurance_account if present? %>
+    </div>
+    <div>
+      <%= label_tag :drivers_license_state %>
+      <%= select_tag :drivers_license_state, options_for_select(us_states, @driver.drivers_license_state) %>
+    </div>
+    <div>
+      <%= label_tag :drivers_license_no %>
+      <%= text_field_tag :drivers_license_no, @driver.drivers_license_no if present? %>
+    </div>
+    <div>
+      <%= label_tag :drivers_license_expiry %>
+      <%= text_field_tag :drivers_license_expiry, @driver.drivers_license_expiry if present? %>
+    </div>
+    <hr>
+    <h3>Vehicle Information</h3>
+    <div>
+      <%= label_tag :vehicle_year %>
+      <%= text_field_tag :vehicle_year, @driver.vehicle_year if present? %>
+    </div>
+    <div>
+      <%= label_tag :vehicle_make %>
+      <%= text_field_tag :vehicle_make, @driver.vehicle_make if present? %>
+    </div>
+    <div>
+      <%= label_tag :vehicle_model %>
+      <%= text_field_tag :vehicle_model, @driver.vehicle_model if present? %>
+    </div>
+    <div>
+      <%= label_tag :vehicle_type %>
+      <%= text_field_tag :vehicle_type, @driver.vehicle_type if present? %>
+    </div>
+    <div>
+      <%= label_tag :vehicle_color %>
+      <%= text_field_tag :vehicle_color, @driver.vehicle_color if present? %>
+    </div>
+    <div>
+      <%= label_tag :vehicle_license_plate %>
+      <%= text_field_tag :vehicle_license_plate, @driver.vehicle_license_plate if present? %>
+    </div>
+    <div>
+      <%= label_tag :vehicle_registration_expiry %>
+      <%= text_field_tag :vehicle_registration_expiry, @driver.vehicle_registration_expiry if present? %>
+    </div>
+    <hr>
+    <%= submit_tag "Update driver", class: "btn btn-default" %>
+  <% end %>
+</div>
