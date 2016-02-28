@@ -38,4 +38,8 @@ class Patient < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  def self.search(search)
+    where("lower(first_name) LIKE ? OR lower(last_name) LIKE ? OR lower(concat(first_name, ' ', last_name)) LIKE ?", "%#{search.downcase}", "%#{search.downcase}", "#{search.downcase}")
+  end
+
 end
