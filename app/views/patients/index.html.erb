@@ -1,4 +1,8 @@
 <div class = "jumbotron">
+  <%= form_tag "/patient", method: :get, id: "search-form" do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search Patients by Name" %>
+    <%= submit_tag "Search" %>
+  <% end %>
   <h1>List of Patients</h1>
   <% @patients.each do |patient| %>
     <div class ="row">
