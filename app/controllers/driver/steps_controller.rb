@@ -11,6 +11,9 @@ class Driver::StepsController < ApplicationController
     @driver = Driver.find(params[:driver_id])
     @driver.update(driver_params(step))
     render_wizard @driver
+    if @driver.send_password_email == true
+      @driver.send_reset_password_instructions
+    end
   end
 
   private
@@ -23,7 +26,7 @@ class Driver::StepsController < ApplicationController
       when "licensing"
         [:insurance_company, :insurance_account, :drivers_license_state, :drivers_license_no, :drivers_license_expiry]
       when "vehicle"
-        [:vehicle_year, :vehicle_make, :vehicle_model, :vehicle_type, :vehicle_color, :vehicle_license_plate, :vehicle_registration_expiry]
+        [:vehicle_year, :vehicle_make, :vehicle_model, :vehicle_type, :vehicle_color, :vehicle_license_plate, :vehicle_registration_expiry, :send_password_email]
       end
 
     params.require(:driver).permit(permitted_attributes).merge(form_step: step)

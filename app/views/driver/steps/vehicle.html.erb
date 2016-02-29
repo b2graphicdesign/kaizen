@@ -42,6 +42,7 @@
             <div>
               <%= f.text_field :vehicle_registration_expiry, placeholder: "Vehicle Registration Expiry" %>
             </div>
+            <%= f.hidden_field :send_password_email, value: true %>
             <div>
               <%= f.submit 'Add Driver', class: "btn btn-default" %>
             </div>

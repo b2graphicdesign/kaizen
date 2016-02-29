@@ -55,8 +55,10 @@ class PatientsController < ApplicationController
       alternate_contact_email: params[:alternate_contact_email],
       alert_alternate_call: params[:alert_alternate_call],
       alert_alternate_sms: params[:alert_alternate_sms],
-      alert_alternate_email: params[:alert_alternate_email]
-    )
+      alert_alternate_email: params[:alert_alternate_email],
+      send_password_email: params[:send_password_email]
+      )
+      
       flash[:success] = "Patient Updated!"
       redirect_to "/patients/#{@patient.id}"
     else

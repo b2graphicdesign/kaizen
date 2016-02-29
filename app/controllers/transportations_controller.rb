@@ -36,8 +36,13 @@ class TransportationsController < ApplicationController
       zip: params[:zip],
       phone: params[:phone],
       fax: params[:fax],
-      email: params[:email]
+      email: params[:email],
+      send_password_email: params[:send_password_email]
       )
+      if @transportation.send_password_email == true
+        @transportation.send_reset_password_instructions
+      end
+  
       #instantiate a Twilio client
       @client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
 
