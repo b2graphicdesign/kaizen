@@ -2,6 +2,11 @@ class PatientsController < ApplicationController
 
   def index
     @patients = Patient.all
+    if params[:search]
+      @patients = Patient.search(params[:search]).order("last_name ASC")
+    else
+      @patients = Patient.all.order("last_name ASC")
+    end
   end
 
   def new
