@@ -59,6 +59,7 @@
               <%= f.label "Check box to enable alternate contact email alerts: " %>
               <%= f.check_box :alert_alternate_email %>
             </div>
+            <%= f.hidden_field :send_password_email, value: true %>
             <div>
               <%= f.submit 'Submit', class: "btn btn-default" %>
             </div>

@@ -53,6 +53,7 @@
         <div>
           <%= text_field_tag :email, nil, placeholder: "Email" %>
         </div>
+         <%= hidden_field_tag :send_password_email, true %>
         <div>
             <%= submit_tag "Add Transportation", class: "btn btn-default" %>
         </div>

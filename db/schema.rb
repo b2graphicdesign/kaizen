@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160222014104) do
+ActiveRecord::Schema.define(version: 20160228160918) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 20160222014104) do
     t.string   "vehicle_color",               limit: 25
     t.string   "vehicle_license_plate",       limit: 10
     t.datetime "vehicle_registration_expiry"
+    t.boolean  "send_password_email"
   end
 
   add_index "drivers", ["email", "username"], name: "index_drivers_on_email_and_username", unique: true, using: :btree
@@ -122,6 +123,7 @@ ActiveRecord::Schema.define(version: 20160222014104) do
     t.string   "transportation_type"
     t.text     "assistance_notes"
     t.text     "comments"
+    t.boolean  "send_password_email"
   end
 
   add_index "patients", ["email", "username"], name: "index_patients_on_email_and_username", unique: true, using: :btree
@@ -153,6 +155,7 @@ ActiveRecord::Schema.define(version: 20160222014104) do
     t.text     "address_notes"
     t.string   "phone",                  limit: 15
     t.string   "fax",                    limit: 15
+    t.boolean  "send_password_email"
   end
 
   add_index "providers", ["email", "username"], name: "index_providers_on_email_and_username", unique: true, using: :btree
@@ -228,6 +231,7 @@ ActiveRecord::Schema.define(version: 20160222014104) do
     t.string   "zip",                    limit: 15
     t.string   "phone",                  limit: 15
     t.string   "fax",                    limit: 15
+    t.boolean  "send_password_email"
   end
 
   add_index "transportations", ["email", "username"], name: "index_transportations_on_email_and_username", unique: true, using: :btree

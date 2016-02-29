@@ -39,8 +39,12 @@ class ProvidersController < ApplicationController
       address_notes: params[:address_notes],
       phone: params[:phone],
       fax: params[:fax],
-      email: params[:email]
+      email: params[:email],
+      send_password_email: params[:send_password_email]
       )
+      if @provider.send_password_email == true
+        @provider.send_reset_password_instructions
+      end
       flash[:success] = "Provider created"
       redirect_to "/"
     else
