@@ -4,7 +4,7 @@ class Patient < ActiveRecord::Base
   # removed :registerable -SM
 
   devise :database_authenticatable, 
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:username]
 
   belongs_to :provider
   has_many :rides
@@ -43,6 +43,15 @@ class Patient < ActiveRecord::Base
 
   def self.search(search)
     where("lower(first_name) LIKE ? OR lower(last_name) LIKE ? OR lower(concat(first_name, ' ', last_name)) LIKE ?", "%#{search.downcase}", "%#{search.downcase}", "#{search.downcase}")
+  end
+
+  def self.find_for_database_authentication(warden_conditions)
+  conditions = warden_conditions.dup
+    if login = conditions.delete(:username)
+      where(conditions.to_hash).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+    elsif conditions.has_key?(:username) || conditions.has_key?(:email)
+      where(conditions.to_hash).first
+    end
   end
 
 end

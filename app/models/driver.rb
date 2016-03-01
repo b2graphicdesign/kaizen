@@ -4,7 +4,7 @@ class Driver < ActiveRecord::Base
   # Removed :registerable from devise to make new patient creation possible -SM
 
   devise :database_authenticatable, 
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:username]
 
   belongs_to :transportation
   has_many :rides
@@ -36,4 +36,14 @@ class Driver < ActiveRecord::Base
     return true if form_step.nil?
     return true if self.form_steps.index(step.to_s) <= self.form_steps.index(form_step)
   end
+
+  def self.find_for_database_authentication(warden_conditions)
+  conditions = warden_conditions.dup
+    if login = conditions.delete(:username)
+      where(conditions.to_hash).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+    elsif conditions.has_key?(:username) || conditions.has_key?(:email)
+      where(conditions.to_hash).first
+    end
+  end
+
 end

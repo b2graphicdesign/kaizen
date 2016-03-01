@@ -2,7 +2,7 @@ class Transportation < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:username]
 
   has_many :drivers
   has_many :rides
@@ -14,4 +14,14 @@ class Transportation < ActiveRecord::Base
   validates :address_1, :address_2, :city, :state, length: { maximum: 25, message: "must be less than 25 characters" }
   validates :company_name, length: { maximum: 50, message: "must be less than 50 characters" }
   validates :zip, :phone, length: { maximum: 15, message: "must be less than 15 characters" }
+
+  def self.find_for_database_authentication(warden_conditions)
+  conditions = warden_conditions.dup
+    if login = conditions.delete(:username)
+      where(conditions.to_hash).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+    elsif conditions.has_key?(:username) || conditions.has_key?(:email)
+      where(conditions.to_hash).first
+    end
+  end
+
 end
