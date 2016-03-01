@@ -1,6 +1,5 @@
 <div class = "jumbotron">
   <h2><%= @patient.full_name %></h2>
-  <%= link_to "Schedule a Ride", "/patient/#{@patient.id}/schedule", class: "btn btn-default" %>
     <div class ="row">
       <ul>
         <li>Username: <%= @patient.username %></li>
@@ -17,7 +16,10 @@
         <li>Comments: <%= @patient.comments %></li>
       </ul>
     </div>
-    
+    <%= link_to "Schedule a Ride", "/patient/#{@patient.id}/schedule", class: "btn btn-default" %>
+    <%= link_to "See All Rides", "/ride", class: "btn btn-default" %>
+    <br>
+    <br>
     <%= link_to "Back to list", "/patient", class: "btn btn-default" %>
     <%= link_to "Edit Patient", "/patients/#{@patient.id}/edit", class: "btn btn-default" %>
    
