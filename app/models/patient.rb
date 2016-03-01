@@ -6,6 +6,9 @@ class Patient < ActiveRecord::Base
   devise :database_authenticatable, 
          :recoverable, :rememberable, :trackable, :validatable
 
+  belongs_to :provider
+  has_many :rides
+
   cattr_accessor :form_steps do 
     %w(basic payment contact)
   end

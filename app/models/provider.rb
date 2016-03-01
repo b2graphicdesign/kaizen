@@ -4,6 +4,9 @@ class Provider < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :patients
+  has_many :rides
+
   validates :username, :city, :state, :zip, :facility_name, :address_1, :county, :address_notes, :phone, :fax, presence: true
   validates :email, format: { with: /@/, message: "must contain @" }
   validates :username, length: { minimum: 6, maximum: 15, message: "must be between 6 and 15 characters" }

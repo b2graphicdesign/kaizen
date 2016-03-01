@@ -6,6 +6,9 @@ class Driver < ActiveRecord::Base
   devise :database_authenticatable, 
          :recoverable, :rememberable, :trackable, :validatable
 
+  belongs_to :transportation
+  has_many :rides
+
   cattr_accessor :form_steps do
     %w(contact licensing vehicle)
   end

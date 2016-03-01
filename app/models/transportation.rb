@@ -4,6 +4,9 @@ class Transportation < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :drivers
+  has_many :rides
+
   validates :username, :company_name, :address_1, :city, :state, :zip, :phone, presence: true
   validates :email, format: { with: /@/, message: "must contain @" }
   validates :username, uniqueness: true, format: { with: /\A[a-zA-Z0-9]+\Z/ }
