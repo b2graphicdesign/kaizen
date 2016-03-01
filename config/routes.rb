@@ -61,5 +61,6 @@ Rails.application.routes.draw do
   get '/ride' => 'rides#index'
   get '/patient/:id/schedule' => 'rides#new'
   post '/ride' => 'rides#create'
+  get '/ride/:id' => 'rides#show'
 
 end
