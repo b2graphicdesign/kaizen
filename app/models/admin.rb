@@ -4,8 +4,6 @@ class Admin < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:username]
 
-  attr_accessor :username
-
   validates :email, presence: true, uniqueness: true, format: { with: /@/, message: "must contain @" }
   validates :username, presence: true, uniqueness: {case_sensitve: false}, format: { with: /\A[a-zA-Z0-9]+\Z/ }
   validates :username, length: { minimum: 6, maximum: 15, message: "must be 6-15 characters" }
