@@ -52,7 +52,6 @@ class DriversController < ApplicationController
   end
 
   def update
-    driver = Driver.find(params:id)
     if admin_signed_in? || driver_signed_in? && (current_driver.id == params[:id])
       @driver = Driver.find(params[:id])
       if @driver.update(
@@ -121,6 +120,19 @@ class DriversController < ApplicationController
   end
 
   def destroy
+    if admin_signed_in? || driver_signed_in? && (current_driver.id == params[:id])
+      @driver = Driver.find(params[:id])
+      @driver.destroy
+      flash[:warning] = "Driver deleted"
+      redirect_to "/"
+    elsif transportation_signed_in? && (current_transportation.id == driver.transport_id)
+      @driver = Driver.find(params[:id])
+      @driver.destroy
+      flash[:warning] = "Driver deleted"
+      redirect_to "/"
+    else
+      redirect_to :back, alert: "Access denied."
+    end
   end
 
 end

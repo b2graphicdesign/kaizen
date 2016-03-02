@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   end
 
   get '/driver/:id' => 'drivers#show'
+  delete '/driver/:id' => 'drivers#destroy'
 
   get '/patient' => 'patients#index'
   get '/patient/:id' => 'patients#show'
