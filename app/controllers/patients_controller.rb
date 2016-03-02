@@ -46,18 +46,17 @@ class PatientsController < ApplicationController
     end
   end
 
-  def edit
-    patient = Patient.find(params[:id])
+  def edit_patient
     if admin_signed_in? || patient_signed_in? && (current_patient.id == params[:id])
-      @patient.find(params[:id])
+      @patient = Patient.find(params[:id])
     elsif provider_signed_in? && (current_provider.id == patient.provider_id)
-      @patient.find(params[:id])
+      @patient = Patient.find(params[:id])
     else
       redirect_to :back, alert: "Access denied."
     end
   end
 
-  def update
+  def update_patient
     patient = Patient.find(params[:id])
     if admin_signed_in? || patient_signed_in? && (current_patient.id == params[:id])
       @patient = Patient.find(params[:id])
@@ -90,7 +89,7 @@ class PatientsController < ApplicationController
         )
         
         flash[:success] = "Patient Updated!"
-        redirect_to "/patients/#{@patient.id}"
+        redirect_to "/patient/#{@patient.id}"
       else
         render :edit
       end
@@ -125,7 +124,7 @@ class PatientsController < ApplicationController
         )
         
         flash[:success] = "Patient Updated!"
-        redirect_to "/patients/#{@patient.id}"
+        redirect_to "/patient/#{@patient.id}"
       else
         render :edit
       end

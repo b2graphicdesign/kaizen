@@ -39,6 +39,9 @@ Rails.application.routes.draw do
 
   get '/patient' => 'patients#index'
   get '/patient/:id' => 'patients#show'
+  get '/patient/:id/edit_patient' => 'patients#edit_patient'
+  patch '/patient/:id' => 'patients#update_patient'
+  delete '/patient/:id' => 'patients#destroy'
 
   get '/transportation' => 'transportations#index'
   get '/transportation/new' => 'transportations#new'
