@@ -6,4 +6,7 @@
 <br>
 <%= link_to "See All Rides", "/ride", class: "btn btn-default" %>
 <%= link_to "Patient Information", "/patient/#{@ride.patient_id}", class: "btn btn-default" %>
+<% if admin_signed_in? || provider_signed_in? && (current_provider.id == params[:id]) %>
+  <%= link_to "Delete Ride", "/ride/#{@ride.id}", {method: :delete, class: "btn btn-default"} %>
+<% end %>
 </div>
