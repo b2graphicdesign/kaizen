@@ -68,5 +68,6 @@ Rails.application.routes.draw do
   get '/patient/:id/schedule' => 'rides#new'
   post '/ride' => 'rides#create'
   get '/ride/:id' => 'rides#show'
+  
 
 end
