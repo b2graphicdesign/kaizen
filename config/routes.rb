@@ -57,6 +57,7 @@ Rails.application.routes.draw do
   put '/provider/:id' => 'providers#update' 
   get '/provider/:id/edit_provider' => 'providers#edit_provider'
   patch '/provider/:id' => 'providers#update_provider'
+  delete '/provider/:id' => 'providers#destroy'
 
   get '/ride' => 'rides#index'
   get '/patient/:id/schedule' => 'rides#new'
