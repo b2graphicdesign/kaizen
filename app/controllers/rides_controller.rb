@@ -16,7 +16,6 @@ class RidesController < ApplicationController
   end
 
   def new
-    patient = Patient.find(params[:id])
     if admin_signed_in? || provider_signed_in? && (current_provider.id == patient.provider_id)
       @ride = Ride.new
       @patient = Patient.find(params[:id])
@@ -26,7 +25,6 @@ class RidesController < ApplicationController
   end
 
   def create
-    patient = Patient.find(params[:id])
     if admin_signed_in? || provider_signed_in? && (current_provider.id == patient.provider_id)
       appointment_time = DateTime.strptime(params[:appointment_time], "%m/%d/%Y %H:%M %P").to_time
       expected_start_time = DateTime.strptime(params[:expected_start_time], "%m/%d/%Y %H:%M %P").to_time    

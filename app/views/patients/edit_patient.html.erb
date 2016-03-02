@@ -26,7 +26,7 @@
 <% end %>
 
 <div class="jumbotron">
-  <%= form_tag "/patients/#{@patient.id}", method: :patch do %>
+  <%= form_tag "/patient/#{@patient.id}", method: :patch do %>
     <h3>Basic Information</h3>
     <div>
       <%= label_tag :email %>
