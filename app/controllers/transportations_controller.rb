@@ -107,5 +107,13 @@ class TransportationsController < ApplicationController
   end
 
   def destroy
+    if admin_signed_in? || transportation_signed_in? && (current_transportation.id == params[:id])
+      @transportation = Transportation.find_by(id: params[:id])
+      @transportation.destroy
+      flash[:warning] = "Tranportation Provider deleted."
+      redirect_to "/"
+    else
+      redirect_to :back, alert: "Access denied."
+    end
   end
 end

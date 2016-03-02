@@ -51,6 +51,7 @@ Rails.application.routes.draw do
   put '/transportation/:id' => 'transportations#update' 
   get '/transportation/:id/edit_transportation' => 'transportations#edit_transportation'
   patch '/transportation/:id' => 'transportations#update_transportation'
+  delete '/transportation/:id' => 'transportations#destroy'
 
   get '/provider' => 'providers#index'
   get '/provider/new' => 'providers#new'

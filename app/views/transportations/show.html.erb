@@ -12,5 +12,8 @@
 
     <%= link_to "Back to list", "/transportation", class: "btn btn-default" %> 
     <%= link_to "Update Transportation", "/transportation/#{@transportation.id}/edit_transportation", class: "btn btn-default" %> 
+    <% if admin_signed_in? || transportation_signed_in? && (current_transportation.id == params[:id]) %>
+      <%= link_to "Delete Transportation", "/transportation/#{@transportation.id}", {method: :delete, class: "btn btn-default"} %>
+    <% end %>
      
 </div>
