@@ -52,7 +52,7 @@ class DriversController < ApplicationController
   end
 
   def update
-    driver = Ddriver.find(params:id)
+    driver = Driver.find(params:id)
     if admin_signed_in? || driver_signed_in? && (current_driver.id == params[:id])
       @driver = Driver.find(params[:id])
       if @driver.update(

@@ -98,4 +98,14 @@ class ProvidersController < ApplicationController
     end
   end
 
+  def destroy
+    if admin_signed_in? || provider_signed_in? && (current_provider.id == params[:id])
+      @provider = Provider.find(params[:id])
+      @provider.destroy
+      flash[:warning] = "Provider deleted."
+      redirect_to "/"
+    else
+      redirect_to :back, alert: "Access denied."
+    end
+  end
 end
