@@ -1,5 +1,5 @@
+<legend><h3>List of Providers</h3></legend>
 <div class = "jumbotron">
-  <h1>List of Providers</h1>
   <% @providers.each do |provider| %>
     <div class ="row">
       <ul>
@@ -8,7 +8,7 @@
     </div>
   <% end %>
 
-  <%= link_to "Home page", "/" %>
+  <%= link_to "Home page", "/", class: "btn btn-default" %>
 
 
 </div>

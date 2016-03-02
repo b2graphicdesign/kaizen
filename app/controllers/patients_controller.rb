@@ -135,6 +135,13 @@ class PatientsController < ApplicationController
   end
 
   def destory
-  end
-  
+    if admin_signed_in? || patient_signed_in? && (current_patient.id == params[:id])
+      @patient.find(params[:id])
+      @patient.destory
+      flash[:warning] = "Patient deleted."
+      redirect_to "/"
+    else
+      redirect_to :back, alert: "Access denied."
+    end
+  end 
 end
