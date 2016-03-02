@@ -22,5 +22,8 @@
     <br>
     <%= link_to "Back to list", "/patient", class: "btn btn-default" %>
     <%= link_to "Edit Patient", "/patient/#{@patient.id}/edit_patient", class: "btn btn-default" %>
+    <% if admin_signed_in? || patient_signed_in? && (current_patient.id == params[:id]) %>
+      <%= link_to "Delete Patient", "/patient/#{@patient.id}", {method: :delete, class: "btn btn-default"} %>
+    <% end %>
    
 </div>
