@@ -14,5 +14,8 @@
 
     <%= link_to "Back to list", "/provider", class: "btn btn-default" %>
     <%= link_to "Edit Provider", "/provider/#{@provider.id}/edit_provider", class: "btn btn-default" %>
+    <% if admin_signed_in? || provider_signed_in? && (current_provider.id == params[:id]) %>
+      <%= link_to "Delete Provider", "/provider/#{@provider.id}", {method: :delete, class: "btn btn-default" %>
+    <% end %>
     
 </div>
