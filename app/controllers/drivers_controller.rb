@@ -41,22 +41,24 @@ class DriversController < ApplicationController
     end
   end
 
-  def edit
+  def edit_driver
     if admin_signed_in? || driver_signed_in? && (current_driver.id == params[:id])
-      @driver = Driver.find(params[:id])
+      @driver = Driver.find_by(id: params[:id])
     elsif transportation_signed_in? && (current_transportation.id == driver.transport_id)
-      @driver = Driver.find(params[:id])
+      @driver = Driver.find_by(id: params[:id])
     else
       redirect_to :back, alert: "Access denied."
     end
   end
 
-  def update
+  def update_driver
     if admin_signed_in? || driver_signed_in? && (current_driver.id == params[:id])
-      @driver = Driver.find(params[:id])
+      @driver = Driver.find_by(id: params[:id])
       if @driver.update(
         transport_id: params[:transport_id],
         username: params[:username],
+        first_name: params[:first_name],
+        last_name: params[:last_name],
         address_1: params[:address_1],
         address_2: params[:address_2],
         city: params[:city],
@@ -79,12 +81,12 @@ class DriversController < ApplicationController
         send_password_email: params[:send_password_email]
       )
         flash[:success] = "Driver updated"
-        redirect_to "/drivers/#{@driver.id}"
+        redirect_to "/driver/#{@driver.id}"
       else
         render :edit
       end
     elsif transportation_signed_in? && (current_transportation.id == driver.transport_id)
-      @driver = Driver.find(params[:id])
+      @driver = Driver.find_by(id: params[:id])
       if @driver.update(
         transport_id: params[:transport_id],
         username: params[:username],
@@ -110,7 +112,7 @@ class DriversController < ApplicationController
         send_password_email: params[:send_password_email]
       )
         flash[:success] = "Driver updated"
-        redirect_to "/drivers/#{@driver.id}"
+        redirect_to "/driver/#{@driver.id}"
       else
         render :edit
       end

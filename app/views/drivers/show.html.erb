@@ -10,7 +10,7 @@
     </div>
 
     <%= link_to "Back to list", "/drivers", class: "btn btn-default" %>
-    <%= link_to "Edit driver", "/drivers/#{@driver.id}/edit", class: "btn btn-default" %>
+    <%= link_to "Edit driver", "/driver/#{@driver.id}/edit_driver", class: "btn btn-default" %>
     <% if admin_signed_in? || driver_signed_in? && (current_driver.id == params[:id]) %>
       <%= link_to "Delete Driver", "/driver/#{@driver.id}", {method: :delete, class: "btn btn-default"} %>
     <% end %>

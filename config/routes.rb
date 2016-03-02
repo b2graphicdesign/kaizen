@@ -36,6 +36,8 @@ Rails.application.routes.draw do
   end
 
   get '/driver/:id' => 'drivers#show'
+  get '/driver/:id/edit_driver' => 'drivers#edit_driver'
+  patch '/driver/:id' => 'drivers#update_driver'
   delete '/driver/:id' => 'drivers#destroy'
 
   get '/patient' => 'patients#index'
