@@ -7,7 +7,7 @@ class Patient < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:username]
 
   belongs_to :provider
-  has_many :rides
+  has_many :rides, dependent: :destroy
 
   cattr_accessor :form_steps do 
     %w(basic payment contact)

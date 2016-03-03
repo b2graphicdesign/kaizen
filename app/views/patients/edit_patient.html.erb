@@ -70,7 +70,7 @@
     </div>
     <div>
       <%= label_tag :provider_id %>
-      <%= select_tag :provider_id, options_for_select(all_providers, @patient.provider.facility_name) if present? %>
+      <%= select_tag :provider_id, options_for_select(all_providers, selected: @patient.provider.id) if present? %>
     </div>
     <hr>
     <h3>Payment Information</h3>
