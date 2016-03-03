@@ -1,8 +1,9 @@
 <legend><h3>All Rides</h3></legend>
 <div class="jumbotron">
 <% @rides.each do |ride| %>
-  <h4>Patient: <a href="/ride/<%= ride.id %>"><%= ride.patient.first_name %> <%= ride.patient.last_name %></a></h4>
-  <p>Appointment: <%= ride.appointment_time %></p>
+  <h3><a href="/ride/<%= ride.id %>">Ride ID: <%= ride.id %></a></h3>
+  <p>Patient: <%= ride.patient.first_name %> <%= ride.patient.last_name %></p>
+  <p>Appointment: <%= ride.appointment_time.strftime("%m/%d/%Y at %I:%M%p") %></p>
 <% end %>
 
 <%= link_to "Home page", "/", class: "btn btn-default" %>

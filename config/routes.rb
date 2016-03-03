@@ -70,6 +70,8 @@ Rails.application.routes.draw do
   get '/patient/:id/schedule' => 'rides#new'
   post '/ride' => 'rides#create'
   get '/ride/:id' => 'rides#show'
+  get 'ride/:id/edit' => 'rides#edit'
+  patch '/ride/:id' => 'rides#update'
   delete '/ride/:id' => 'rides#destroy'
 
 end
