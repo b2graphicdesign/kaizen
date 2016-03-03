@@ -1,5 +1,5 @@
+<legend><h3><%= @patient.full_name %></h3></legend>
 <div class = "jumbotron">
-  <h2><%= @patient.full_name %></h2>
     <div class ="row">
       <ul>
         <li>Username: <%= @patient.username %></li>
@@ -8,6 +8,7 @@
         <li>Notes: <%= @patient.address_notes %></li>
         <li>Phone: <%= @patient.phone %></li>
         <li>Email: <%= @patient.email%></li>
+        <li>Provider: <%= @patient.provider.facility_name %></li>
         <li>Payer: <%= @patient.payer%></li>
         <li>Payer State: <%= @patient.payer_state%></li>
         <li>Payer ID: <%= @patient.payer_id%></li>
@@ -21,6 +22,9 @@
     <br>
     <br>
     <%= link_to "Back to list", "/patient", class: "btn btn-default" %>
-    <%= link_to "Edit Patient", "/patients/#{@patient.id}/edit", class: "btn btn-default" %>
+    <%= link_to "Edit Patient", "/patient/#{@patient.id}/edit_patient", class: "btn btn-default" %>
+    <% if admin_signed_in? || patient_signed_in? && (current_patient.id == params[:id]) %>
+      <%= link_to "Delete Patient", "/patient/#{@patient.id}", {method: :delete, class: "btn btn-default"} %>
+    <% end %>
    
 </div>

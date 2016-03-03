@@ -36,9 +36,15 @@ Rails.application.routes.draw do
   end
 
   get '/driver/:id' => 'drivers#show'
+  get '/driver/:id/edit_driver' => 'drivers#edit_driver'
+  patch '/driver/:id' => 'drivers#update_driver'
+  delete '/driver/:id' => 'drivers#destroy'
 
   get '/patient' => 'patients#index'
   get '/patient/:id' => 'patients#show'
+  get '/patient/:id/edit_patient' => 'patients#edit_patient'
+  patch '/patient/:id' => 'patients#update_patient'
+  delete '/patient/:id' => 'patients#destroy'
 
   get '/transportation' => 'transportations#index'
   get '/transportation/new' => 'transportations#new'
@@ -48,6 +54,7 @@ Rails.application.routes.draw do
   put '/transportation/:id' => 'transportations#update' 
   get '/transportation/:id/edit_transportation' => 'transportations#edit_transportation'
   patch '/transportation/:id' => 'transportations#update_transportation'
+  delete '/transportation/:id' => 'transportations#destroy'
 
   get '/provider' => 'providers#index'
   get '/provider/new' => 'providers#new'
@@ -57,10 +64,14 @@ Rails.application.routes.draw do
   put '/provider/:id' => 'providers#update' 
   get '/provider/:id/edit_provider' => 'providers#edit_provider'
   patch '/provider/:id' => 'providers#update_provider'
+  delete '/provider/:id' => 'providers#destroy'
 
   get '/ride' => 'rides#index'
   get '/patient/:id/schedule' => 'rides#new'
   post '/ride' => 'rides#create'
   get '/ride/:id' => 'rides#show'
+  get 'ride/:id/edit' => 'rides#edit'
+  patch '/ride/:id' => 'rides#update'
+  delete '/ride/:id' => 'rides#destroy'
 
 end

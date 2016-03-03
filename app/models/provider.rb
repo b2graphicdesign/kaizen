@@ -5,7 +5,7 @@ class Provider < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:username]
 
   has_many :patients
-  has_many :rides
+  has_many :rides, dependent: :destroy
 
   validates :username, :city, :state, :zip, :facility_name, :address_1, :county, :address_notes, :phone, :fax, presence: true
   validates :email, format: { with: /@/, message: "must contain @" }

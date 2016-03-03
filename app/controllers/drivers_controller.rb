@@ -41,23 +41,24 @@ class DriversController < ApplicationController
     end
   end
 
-  def edit
+  def edit_driver
     if admin_signed_in? || driver_signed_in? && (current_driver.id == params[:id])
-      @driver = Driver.find(params[:id])
+      @driver = Driver.find_by(id: params[:id])
     elsif transportation_signed_in? && (current_transportation.id == driver.transport_id)
-      @driver = Driver.find(params[:id])
+      @driver = Driver.find_by(id: params[:id])
     else
       redirect_to :back, alert: "Access denied."
     end
   end
 
-  def update
-    driver = Ddriver.find(params:id)
+  def update_driver
     if admin_signed_in? || driver_signed_in? && (current_driver.id == params[:id])
-      @driver = Driver.find(params[:id])
+      @driver = Driver.find_by(id: params[:id])
       if @driver.update(
         transport_id: params[:transport_id],
         username: params[:username],
+        first_name: params[:first_name],
+        last_name: params[:last_name],
         address_1: params[:address_1],
         address_2: params[:address_2],
         city: params[:city],
@@ -77,15 +78,14 @@ class DriversController < ApplicationController
         vehicle_color: params[:vehicle_color],
         vehicle_license_plate: params[:vehicle_license_plate],
         vehicle_registration_expiry: params[:vehicle_registration_expiry],
-        send_password_email: params[:send_password_email]
       )
         flash[:success] = "Driver updated"
-        redirect_to "/drivers/#{@driver.id}"
+        redirect_to "/driver/#{@driver.id}"
       else
         render :edit
       end
     elsif transportation_signed_in? && (current_transportation.id == driver.transport_id)
-      @driver = Driver.find(params[:id])
+      @driver = Driver.find_by(id: params[:id])
       if @driver.update(
         transport_id: params[:transport_id],
         username: params[:username],
@@ -108,10 +108,9 @@ class DriversController < ApplicationController
         vehicle_color: params[:vehicle_color],
         vehicle_license_plate: params[:vehicle_license_plate],
         vehicle_registration_expiry: params[:vehicle_registration_expiry],
-        send_password_email: params[:send_password_email]
       )
         flash[:success] = "Driver updated"
-        redirect_to "/drivers/#{@driver.id}"
+        redirect_to "/driver/#{@driver.id}"
       else
         render :edit
       end
@@ -121,6 +120,19 @@ class DriversController < ApplicationController
   end
 
   def destroy
+    if admin_signed_in? || driver_signed_in? && (current_driver.id == params[:id])
+      @driver = Driver.find(params[:id])
+      @driver.destroy
+      flash[:warning] = "Driver deleted"
+      redirect_to "/"
+    elsif transportation_signed_in? && (current_transportation.id == driver.transport_id)
+      @driver = Driver.find(params[:id])
+      @driver.destroy
+      flash[:warning] = "Driver deleted"
+      redirect_to "/"
+    else
+      redirect_to :back, alert: "Access denied."
+    end
   end
 
 end

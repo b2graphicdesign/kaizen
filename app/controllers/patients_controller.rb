@@ -46,18 +46,17 @@ class PatientsController < ApplicationController
     end
   end
 
-  def edit
-    patient = Patient.find(params[:id])
+  def edit_patient
     if admin_signed_in? || patient_signed_in? && (current_patient.id == params[:id])
-      @patient.find(params[:id])
+      @patient = Patient.find(params[:id])
     elsif provider_signed_in? && (current_provider.id == patient.provider_id)
-      @patient.find(params[:id])
+      @patient = Patient.find(params[:id])
     else
       redirect_to :back, alert: "Access denied."
     end
   end
 
-  def update
+  def update_patient
     patient = Patient.find(params[:id])
     if admin_signed_in? || patient_signed_in? && (current_patient.id == params[:id])
       @patient = Patient.find(params[:id])
@@ -86,11 +85,11 @@ class PatientsController < ApplicationController
         alert_alternate_call: params[:alert_alternate_call],
         alert_alternate_sms: params[:alert_alternate_sms],
         alert_alternate_email: params[:alert_alternate_email],
-        send_password_email: params[:send_password_email]
+        provider_id: params[:provider_id]
         )
         
         flash[:success] = "Patient Updated!"
-        redirect_to "/patients/#{@patient.id}"
+        redirect_to "/patient/#{@patient.id}"
       else
         render :edit
       end
@@ -121,11 +120,11 @@ class PatientsController < ApplicationController
         alert_alternate_call: params[:alert_alternate_call],
         alert_alternate_sms: params[:alert_alternate_sms],
         alert_alternate_email: params[:alert_alternate_email],
-        send_password_email: params[:send_password_email]
+        provider_id: params[:provider_id]
         )
         
         flash[:success] = "Patient Updated!"
-        redirect_to "/patients/#{@patient.id}"
+        redirect_to "/patient/#{@patient.id}"
       else
         render :edit
       end
@@ -134,7 +133,14 @@ class PatientsController < ApplicationController
     end
   end
 
-  def destory
-  end
-  
+  def destroy
+    if admin_signed_in? || patient_signed_in? && (current_patient.id == params[:id])
+      @patient = Patient.find_by(id: params[:id])
+      @patient.destroy
+      flash[:warning] = "Patient deleted."
+      redirect_to "/"
+    else
+      redirect_to :back, alert: "Access denied."
+    end
+  end 
 end

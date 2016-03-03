@@ -26,7 +26,7 @@
 <% end %>
 
 <div class="jumbotron">
-  <%= form_tag "/patients/#{@patient.id}", method: :patch do %>
+  <%= form_tag "/patient/#{@patient.id}", method: :patch do %>
     <h3>Basic Information</h3>
     <div>
       <%= label_tag :email %>
@@ -67,6 +67,10 @@
     <div>
       <%= label_tag :county %>
       <%= text_field_tag :county, @patient.county if present? %>
+    </div>
+    <div>
+      <%= label_tag :provider_id %>
+      <%= select_tag :provider_id, options_for_select(all_providers, selected: @patient.provider.id) if present? %>
     </div>
     <hr>
     <h3>Payment Information</h3>

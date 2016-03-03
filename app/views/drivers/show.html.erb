@@ -1,5 +1,5 @@
+<legend><h3><%= @driver.username %></h3></legend>
 <div class = "jumbotron">
-  <h2><%= @driver.username %></h2>
     <div class ="row">
       <ul>
         <li>Address: <%= @driver.address_1 %> <%= @driver.address_2 %></li>
@@ -10,6 +10,9 @@
     </div>
 
     <%= link_to "Back to list", "/drivers", class: "btn btn-default" %>
-    <%= link_to "Edit driver", "/drivers/#{@driver.id}/edit", class: "btn btn-default" %>
+    <%= link_to "Edit driver", "/driver/#{@driver.id}/edit_driver", class: "btn btn-default" %>
+    <% if admin_signed_in? || driver_signed_in? && (current_driver.id == params[:id]) %>
+      <%= link_to "Delete Driver", "/driver/#{@driver.id}", {method: :delete, class: "btn btn-default"} %>
+    <% end %>
     
 </div>

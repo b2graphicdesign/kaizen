@@ -1,5 +1,5 @@
+<legend><h3><%= @transportation.company_name %></h3></legend>
 <div class = "jumbotron">
-  <h2><%= @transportation.company_name %></h2> 
     <div class ="row">
       <ul>
         <li>Username: <%= @transportation.username %></li>
@@ -12,5 +12,8 @@
 
     <%= link_to "Back to list", "/transportation", class: "btn btn-default" %> 
     <%= link_to "Update Transportation", "/transportation/#{@transportation.id}/edit_transportation", class: "btn btn-default" %> 
+    <% if admin_signed_in? || transportation_signed_in? && (current_transportation.id == params[:id]) %>
+      <%= link_to "Delete Transportation", "/transportation/#{@transportation.id}", {method: :delete, class: "btn btn-default"} %>
+    <% end %>
      
 </div>

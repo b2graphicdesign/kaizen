@@ -1,9 +1,9 @@
+<legend><h3>List of Patients</h3></legend>
 <div class = "jumbotron">
   <%= form_tag "/patient", method: :get, id: "search-form" do %>
     <%= text_field_tag :search, params[:search], placeholder: "Search Patients by Name" %>
-    <%= submit_tag "Search" %>
+    <%= submit_tag "Search", class: "btn btn-default" %>
   <% end %>
-  <h1>List of Patients</h1>
   <% @patients.each do |patient| %>
     <div class ="row">
       <ul>
@@ -12,6 +12,6 @@
     </div>
   <% end %>
 
-  <%= link_to "Home page", "/" %>
+  <%= link_to "Home page", "/", class: "btn btn-default" %>
 
 </div>
