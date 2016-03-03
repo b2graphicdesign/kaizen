@@ -78,7 +78,6 @@ class DriversController < ApplicationController
         vehicle_color: params[:vehicle_color],
         vehicle_license_plate: params[:vehicle_license_plate],
         vehicle_registration_expiry: params[:vehicle_registration_expiry],
-        send_password_email: params[:send_password_email]
       )
         flash[:success] = "Driver updated"
         redirect_to "/driver/#{@driver.id}"
@@ -109,7 +108,6 @@ class DriversController < ApplicationController
         vehicle_color: params[:vehicle_color],
         vehicle_license_plate: params[:vehicle_license_plate],
         vehicle_registration_expiry: params[:vehicle_registration_expiry],
-        send_password_email: params[:send_password_email]
       )
         flash[:success] = "Driver updated"
         redirect_to "/driver/#{@driver.id}"

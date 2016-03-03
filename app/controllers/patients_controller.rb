@@ -85,7 +85,7 @@ class PatientsController < ApplicationController
         alert_alternate_call: params[:alert_alternate_call],
         alert_alternate_sms: params[:alert_alternate_sms],
         alert_alternate_email: params[:alert_alternate_email],
-        send_password_email: params[:send_password_email]
+        provider_id: params[:provider_id]
         )
         
         flash[:success] = "Patient Updated!"
@@ -120,7 +120,7 @@ class PatientsController < ApplicationController
         alert_alternate_call: params[:alert_alternate_call],
         alert_alternate_sms: params[:alert_alternate_sms],
         alert_alternate_email: params[:alert_alternate_email],
-        send_password_email: params[:send_password_email]
+        provider_id: params[:provider_id]
         )
         
         flash[:success] = "Patient Updated!"

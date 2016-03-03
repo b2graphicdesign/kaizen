@@ -68,6 +68,10 @@
       <%= label_tag :county %>
       <%= text_field_tag :county, @patient.county if present? %>
     </div>
+    <div>
+      <%= label_tag :provider_id %>
+      <%= select_tag :provider_id, options_for_select(all_providers, @patient.provider.facility_name) if present? %>
+    </div>
     <hr>
     <h3>Payment Information</h3>
     <div>
