@@ -40,15 +40,6 @@ class RidesController < ApplicationController
         ride_type: params[:ride_type]
         )
 
-      #instantiate a Twilio client
-        @client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
-
-        #create and then send an SMS message
-        @client.account.messages.create(
-          from: ENV['TWILIO_PHONE_NUMBER'],
-          to: "+1#{@patient.phone}",
-          body: "Thanks for signing up! To verify your account, please reply VERIFY to this message.")
-
       # respond_to do |format|
       #   if @ride.save
       #     RideMailer.ride_notification_email(@ride).deliver_now
@@ -61,6 +52,16 @@ class RidesController < ApplicationController
       #   end
       # end
       if @ride.save
+
+        #instantiate a Twilio client
+        @client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
+
+        #create and then send an SMS message
+        @client.account.messages.create(
+          from: ENV['TWILIO_PHONE_NUMBER'],
+          to: "+12244568338",
+          body: "Thanks for signing up! To verify your account, please reply VERIFY to this message.")
+
         redirect_to "/rides"
       else
         render :new
