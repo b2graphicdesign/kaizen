@@ -46,7 +46,7 @@ class RidesController < ApplicationController
         #create and then send an SMS message
         @client.account.messages.create(
           from: ENV['TWILIO_PHONE_NUMBER'],
-          to: "+1#{@transportation.phone}",
+          to: "+1#{@patient.phone}",
           body: "Thanks for signing up! To verify your account, please reply VERIFY to this message.")
 
       # respond_to do |format|
