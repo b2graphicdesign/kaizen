@@ -1,10 +1,17 @@
-<legend><h3>All Rides</h3></legend>
-<div class="jumbotron">
-<% @rides.each do |ride| %>
-  <h3><a href="/ride/<%= ride.id %>">Ride ID: <%= ride.id %></a></h3>
-  <p>Patient: <%= ride.patient.first_name %> <%= ride.patient.last_name %></p>
-  <p>Appointment: <%= ride.appointment_time.strftime("%m/%d/%Y at %I:%M%p") %></p>
+<legend><% if admin_signed_in? %>
+  <h3>All Rides</h3>
+<% else %>
+  <h3>All Rides for: <%= @current_user.username %></h3></legend>
 <% end %>
-
-<%= link_to "Home page", "/", class: "btn btn-default" %>
+<div class="jumbotron">
+  <% @rides.each do |ride| %>
+    <div class="row">
+      <ul>
+        <li>Appointment: <a href="/ride/<%= ride.id %>"><%= ride.appointment_time.strftime("%-m/%-d/%Y at %-I:%M %p") %></a>
+            <h5>Patient: <%= ride.patient.first_name %> <%= ride.patient.last_name %></h5>
+        </li>
+      </ul>
+    </div>
+  <% end %>
+  <%= link_to "Home page", "/", class: "btn btn-default" %>
 </div>
