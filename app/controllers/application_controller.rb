@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   def admin_only
     unless admin_signed_in?
-      redirect_to :back, alert: "Admin access only."
+      redirect_to :back, alert: "Access denied."
     end
   end
 
