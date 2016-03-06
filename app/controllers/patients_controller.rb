@@ -36,7 +36,7 @@ class PatientsController < ApplicationController
 
   def show
     patient = Patient.find(params[:id])
-    if admin_signed_in? || patient_signed_in? && (current_patient.id == params[:id])
+    if admin_signed_in? || patient_signed_in? && (current_patient.id == params[:id].to_i)
       @patient = Patient.find(params[:id])
     elsif provider_signed_in? && (current_provider.id == patient.provider_id)
       @patient = Patient.find(params[:id])
@@ -46,7 +46,8 @@ class PatientsController < ApplicationController
   end
 
   def edit_patient
-    if admin_signed_in? || patient_signed_in? && (current_patient.id == params[:id])
+    patient = Patient.find(params[:id])
+    if admin_signed_in? || patient_signed_in? && (current_patient.id == params[:id].to_i)
       @patient = Patient.find(params[:id])
     elsif provider_signed_in? && (current_provider.id == patient.provider_id)
       @patient = Patient.find(params[:id])
@@ -57,7 +58,7 @@ class PatientsController < ApplicationController
 
   def update_patient
     patient = Patient.find(params[:id])
-    if admin_signed_in? || patient_signed_in? && (current_patient.id == params[:id])
+    if admin_signed_in? || patient_signed_in? && (current_patient.id == params[:id].to_i)
       @patient = Patient.find(params[:id])
       if @patient.update(
         email: params[:email],

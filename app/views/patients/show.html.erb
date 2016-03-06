@@ -17,12 +17,12 @@
         <li>Comments: <%= @patient.comments %></li>
       </ul>
     </div>
-    <%= link_to "Schedule a Ride", "/patient/#{@patient.id}/schedule", class: "btn btn-default" %>
     <%= link_to "See All Rides", "/ride", class: "btn btn-default" %>
     <br>
     <br>
     <% if admin_signed_in? %>
         <% if provider_signed_in? %>
+            <%= link_to "Schedule a Ride", "/patient/#{@patient.id}/schedule", class: "btn btn-default" %>
             <%= link_to "Edit Patient", "/patient/#{@patient.id}/edit_patient", class: "btn btn-default" %>
         <% end %>
         <%= link_to "Delete Patient", "/patient/#{@patient.id}", {method: :delete, class: "btn btn-default"} %>
