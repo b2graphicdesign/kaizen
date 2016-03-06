@@ -42,7 +42,8 @@ class DriversController < ApplicationController
   end
 
   def edit_driver
-    if admin_signed_in? || driver_signed_in? && (current_driver.id == params[:id])
+    driver = Driver.find(params[:id])
+    if admin_signed_in? || driver_signed_in? && (current_driver.id == params[:id].to_i)
       @driver = Driver.find(params[:id])
     elsif transportation_signed_in? && (current_transportation.id == driver.transport_id)
       @driver = Driver.find(params[:id])
@@ -52,10 +53,10 @@ class DriversController < ApplicationController
   end
 
   def update_driver
+    driver = Driver.find(params[:id])
     if admin_signed_in? || driver_signed_in? && (current_driver.id == params[:id])
       @driver = Driver.find(params[:id])
       if @driver.update(
-        transport_id: params[:transport_id],
         username: params[:username],
         first_name: params[:first_name],
         last_name: params[:last_name],
@@ -87,7 +88,6 @@ class DriversController < ApplicationController
     elsif transportation_signed_in? && (current_transportation.id == driver.transport_id)
       @driver = Driver.find(params[:id])
       if @driver.update(
-        transport_id: params[:transport_id],
         username: params[:username],
         address_1: params[:address_1],
         address_2: params[:address_2],

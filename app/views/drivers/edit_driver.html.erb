@@ -29,10 +29,6 @@
   <%= form_tag "/driver/#{@driver.id}", method: :patch do %>
     <h3>Contact Information</h3>
     <div>
-      <%= label_tag :transport_id %>
-      <%= text_field_tag :transport_id, @driver.transport_id if present?%>
-    </div>
-    <div>
       <%= label_tag :username %>
       <%= text_field_tag :username, @driver.username if present?%>
     </div>
