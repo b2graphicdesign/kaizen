@@ -1,0 +1,15 @@
+<legend><h3><%= current_driver.username %></h3></legend>
+<div class = "jumbotron">
+    <div class ="row">
+      <ul>
+        <li>Patient: <%= @ride.patient.first_name %> <%= @ride.patient.last_name %></li>
+        <li>Appointment Date: <%= @ride.appointment_time.strftime("%B %e, %Y") %></li>
+        <li>Appointment Time: <%= @ride.appointment_time.strftime("%m:%M %p") %></li>
+        <li>Pick Up Time: <%= @ride.expected_start_time.strftime("%m:%M %p") %></li>
+        <li>Drop Off Time: <%= @ride.expected_end_time.strftime("%m:%M %p") %></li>
+        <li>Type of Ride: <%= @ride.ride_type %></li>
+      </ul>
+    </div>
+
+    <%= link_to "Back to list", "/driver/rides", class: "btn btn-default" %>
+</div>

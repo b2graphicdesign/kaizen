@@ -135,4 +135,25 @@ class DriversController < ApplicationController
     end
   end
 
+  def ride_index
+    if admin_signed_in? || driver_signed_in?
+      @rides = Ride.where("driver_id = ?", current_driver.id).order("appointment_time ASC")
+    elsif transportation_signed_in? && (current_transportation.id == driver.transport_id)
+      @rides = Ride.where("driver_id = ?", current_driver.id).order("appointment_time ASC")
+    else
+      # redirect_to :back, alert: "Access denied."
+    end
+  end
+
+  def ride_show
+    ride = Ride.find(params[:id])
+    if admin_signed_in? || driver_signed_in? && (current_driver.id == ride.driver_id)
+      @ride = Ride.find(params[:id])
+    elsif transportation_signed_in? && (current_transportation.id == ride.transport_id)
+      @ride = Ride.find(params[:id])
+    else
+      redirect_to :back, alert: "Access denied."
+    end
+  end
+
 end

@@ -1,0 +1,17 @@
+<legend><h3>List of Scheduled Rides</h3></legend>
+<div class = "jumbotron">
+  <% @rides.each do |ride| %>
+    <div class ="row">
+      <ul>
+        <li>Date/Time: <a href = "/driver/rides/<%= ride.id %>" ><%= ride.appointment_time.strftime("%B %e, %Y at %m:%M %p") %></a>
+          <h5>Patient: <%= ride.patient.first_name %> <%= ride.patient.last_name %></h5>
+        </li>
+
+      </ul>
+    </div>
+  <% end %>
+
+  <%= link_to "Home page", "/", class: "btn btn-default" %>
+
+
+</div>
