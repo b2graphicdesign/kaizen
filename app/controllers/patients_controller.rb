@@ -1,15 +1,14 @@
 class PatientsController < ApplicationController
 
   def index
-    if admin_signed_in?
+    if params[:search] && admin_signed_in?
+      @patients = Patient.search(params[:search]).order("last_name ASC")
+    elsif admin_signed_in?
       @patients = Patient.all.order("last_name ASC")
+    elsif provider_signed_in? && params[:search]
+      @patients = Patient.where("provider_id = ?", current_provider.id).search(params[:search]).order("last_name ASC")
     elsif provider_signed_in?
-      @patients = Patient.where("provider_ID = ?", current_provider.id).order("last_name ASC")
-      if params[:search]
-        @patients = Patient.search(params[:search]).order("last_name ASC")
-      else
-        @patients = Patient.all.order("last_name ASC")
-      end
+      @patients = Patient.where("provider_id = ?", current_provider.id).order("last_name ASC")
     else
       redirect_to :back, alert: "Access denied."
     end
@@ -134,7 +133,7 @@ class PatientsController < ApplicationController
   end
 
   def destroy
-    if admin_signed_in?)
+    if admin_signed_in?
       @patient = Patient.find(params[:id])
       @patient.destroy
       flash[:warning] = "Patient deleted."

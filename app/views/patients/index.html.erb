@@ -7,6 +7,8 @@
   <% @patients.each do |patient| %>
     <div class ="row">
       <ul>
+        <li>ID: <%= patient.id %></li>
+        <li>Provider ID: <%= patient.provider_id %></li>
         <li>Name:<a href = "/patient/<%= patient.id %>" > <%= patient.full_name %></a></li>
       </ul>
     </div>
