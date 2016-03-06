@@ -21,6 +21,7 @@ class RidesController < ApplicationController
   end
 
   def new
+    patient = Patient.find(params[:id])
     if admin_signed_in? || provider_signed_in? && (current_provider.id == patient.provider_id)
       @ride = Ride.new
       @patient = Patient.find(params[:id])
@@ -30,6 +31,7 @@ class RidesController < ApplicationController
   end
 
   def create
+    patient = Patient.find(params[:patient_id])
     if admin_signed_in? || provider_signed_in? && (current_provider.id == patient.provider_id)
       appointment_time = DateTime.strptime(params[:appointment_time], "%m/%d/%Y %H:%M %P").to_time
       expected_start_time = DateTime.strptime(params[:expected_start_time], "%m/%d/%Y %H:%M %P").to_time    
@@ -132,16 +134,13 @@ class RidesController < ApplicationController
   end
 
   def destroy
-    if admin_signed_in?
-      @ride = Ride.find(params[:id])
-      @ride.destroy
+    ride = Ride.find(params[:id])
+    if admin_signed_in? || provider_signed_in? && (current_provider.id == ride.provider_id)
+      ride.destroy
       flash[:warning] = "Ride deleted."
       redirect_to "/"
-    else provider_signed_in? && (current_provider.id == ride.provider_id)
-      @ride = Ride.find(params[:id])
-      @ride.destroy
-      flash[:warning] = "Ride deleted."
-      redirect_to "/"
+    else 
+      redirect_to :back, alert: "Access denied."
     end
   end
       
