@@ -6,8 +6,7 @@ class TransportationsController < ApplicationController
   end
 
   def show
-    transportation = Transportation.find(params[:id])
-    if admin_signed_in? || transportation_signed_in? && (current_transportation.id == transportation.id)
+    if admin_signed_in? || transportation_signed_in? && (current_transportation.id == params[:id])
       @transportation = Transportation.find(params[:id])
     else
       redirect_to :back, alert: "Access denied."
@@ -28,7 +27,7 @@ class TransportationsController < ApplicationController
 
   def edit
     if admin_signed_in? || transportation_signed_in? && (current_transportation.id == params[:id])
-      @transportation = Transportation.find_by(id: params[:id])
+      @transportation = Transportation.find(params[:id])
     else
       redirect_to :back, alert: "Access denied."
     end
@@ -53,7 +52,7 @@ class TransportationsController < ApplicationController
         if @transportation.send_password_email == true
           @transportation.send_reset_password_instructions
         end
-    
+
         flash[:success] = "Transportation created"
         redirect_to "/"
       else
@@ -66,7 +65,7 @@ class TransportationsController < ApplicationController
 
   def edit_transportation
     if admin_signed_in? || transportation_signed_in? && (current_transportation.id == params[:id])
-      @transportation = Transportation.find_by(id: params[:id])
+      @transportation = Transportation.find(params[:id])
     else
       redirect_to :back, alert: "Access denied."
     end
@@ -74,7 +73,7 @@ class TransportationsController < ApplicationController
 
   def update_transportation
     if admin_signed_in? || transportation_signed_in? && (current_transportation.id == params[:id])
-      @transportation = Transportation.find_by(id: params[:id])
+      @transportation = Transportation.find(params[:id])
       if @transportation.update(
         company_name: params[:company_name],
         username: params[:username],
@@ -99,7 +98,7 @@ class TransportationsController < ApplicationController
 
   def destroy
     if admin_signed_in? || transportation_signed_in? && (current_transportation.id == params[:id])
-      @transportation = Transportation.find_by(id: params[:id])
+      @transportation = Transportation.find(params[:id])
       @transportation.destroy
       flash[:warning] = "Tranportation Provider deleted."
       redirect_to "/"
