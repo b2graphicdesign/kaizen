@@ -43,9 +43,9 @@ class DriversController < ApplicationController
 
   def edit_driver
     if admin_signed_in? || driver_signed_in? && (current_driver.id == params[:id])
-      @driver = Driver.find_by(id: params[:id])
+      @driver = Driver.find(params[:id])
     elsif transportation_signed_in? && (current_transportation.id == driver.transport_id)
-      @driver = Driver.find_by(id: params[:id])
+      @driver = Driver.find(params[:id])
     else
       redirect_to :back, alert: "Access denied."
     end
@@ -53,7 +53,7 @@ class DriversController < ApplicationController
 
   def update_driver
     if admin_signed_in? || driver_signed_in? && (current_driver.id == params[:id])
-      @driver = Driver.find_by(id: params[:id])
+      @driver = Driver.find(params[:id])
       if @driver.update(
         transport_id: params[:transport_id],
         username: params[:username],
@@ -85,7 +85,7 @@ class DriversController < ApplicationController
         render :edit
       end
     elsif transportation_signed_in? && (current_transportation.id == driver.transport_id)
-      @driver = Driver.find_by(id: params[:id])
+      @driver = Driver.find(params[:id])
       if @driver.update(
         transport_id: params[:transport_id],
         username: params[:username],

@@ -23,7 +23,7 @@ class RidesController < ApplicationController
   def new
     if admin_signed_in? || provider_signed_in? && (current_provider.id == patient.provider_id)
       @ride = Ride.new
-      @patient = Patient.find_by(id: params[:id])
+      @patient = Patient.find(params[:id])
     else
       redirect_to :back, alert: "Access denied."
     end
@@ -71,13 +71,13 @@ class RidesController < ApplicationController
     if admin_signed_in?
       @ride = Ride.find(params[:id])
     elsif provider_signed_in? && (current_provider.id == ride.provider_id)
-      @ride = Ride.find_by(id: params[:id])
+      @ride = Ride.find(params[:id])
     elsif patient_signed_in? && (current_patient.id == ride.patient_id)
-      @ride = Ride.find_by(id: params[:id])
+      @ride = Ride.find(params[:id])
     elsif transportation_signed_in? && (current_transportation.id == ride.transport_id)
-      @ride = Ride.find_by(id: params[:id])
+      @ride = Ride.find(params[:id])
     elsif driver_signed_in? && (current_driver.id == ride.driver_id)
-      @ride = Ride.find_by(id: params[:id])
+      @ride = Ride.find(params[:id])
     else
       redirect_to :back, alert: "Access denied."
     end
@@ -133,12 +133,12 @@ class RidesController < ApplicationController
 
   def destroy
     if admin_signed_in?
-      @ride = Ride.find_by(id: params[:id])
+      @ride = Ride.find(params[:id])
       @ride.destroy
       flash[:warning] = "Ride deleted."
       redirect_to "/"
     else provider_signed_in? && (current_provider.id == ride.provider_id)
-      @ride = Ride.find_by(id: params[:id])
+      @ride = Ride.find(params[:id])
       @ride.destroy
       flash[:warning] = "Ride deleted."
       redirect_to "/"

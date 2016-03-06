@@ -34,7 +34,7 @@ class ProvidersController < ApplicationController
 
   def update
     if admin_signed_in? || provider_signed_in? && (current_provider.id == params[:id])
-      @provider = Provider.find_by(id: params[:id])
+      @provider = Provider.find(params[:id])
       if @provider.update(
         username: params[:username],
         facility_name: params[:facility_name],
@@ -99,7 +99,7 @@ class ProvidersController < ApplicationController
   end
 
   def destroy
-    if admin_signed_in? || provider_signed_in? && (current_provider.id == params[:id])
+    if admin_signed_in?
       @provider = Provider.find(params[:id])
       @provider.destroy
       flash[:warning] = "Provider deleted."

@@ -106,7 +106,7 @@ class TransportationsController < ApplicationController
   end
 
   def destroy
-    if admin_signed_in? || transportation_signed_in? && (current_transportation.id == params[:id])
+    if admin_signed_in?
       @transportation = Transportation.find(params[:id])
       @transportation.destroy
       flash[:warning] = "Tranportation Provider deleted."
