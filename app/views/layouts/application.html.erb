@@ -40,6 +40,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Providers<span class="caret"></span></a>
           <ul class="dropdown-menu">
           <% if provider_signed_in? %>
+            <li><%= link_to "Edit Profile", "/provider/#{current_provider.id}/edit_provider" %></li>
             <li><%= link_to "Log Out", "/providers/sign_out", method: :delete %></li>
           <% else %>
             <li><a href="/providers/sign_in">Log In</a></li>
@@ -50,6 +51,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Patients<span class="caret"></span></a>
           <ul class="dropdown-menu">
           <% if patient_signed_in? %>
+            <li><%= link_to "Edit Profile", "/patient/#{current_patient.id}/edit_patient" %></li>
             <li><%= link_to "Log Out", "/patients/sign_out", method: :delete %></li>
           <% else %>
             <li><a href="/patients/sign_in">Log In</a></li>
@@ -60,6 +62,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Transportation<span class="caret"></span></a>
           <ul class="dropdown-menu">
           <% if transportation_signed_in? %>
+            <li><%= link_to "Edit Profile", "/transportation/#{current_transportation.id}/edit_transportation" %></li>
             <li><%= link_to "Log Out", "/transportations/sign_out", method: :delete %>
           <% else %>
             <li><a href="/transportations/sign_in">Log In</a></li>
@@ -70,6 +73,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Drivers<span class="caret"></span></a>
           <ul class="dropdown-menu">
           <% if driver_signed_in? %>
+            <li><%= link_to "Edit Profile", "/driver/#{current_driver.id}/edit_driver" %></li>
             <li><%= link_to "Log Out", "/drivers/sign_out", method: :delete %></li>
           <% else %>
             <li><a href="/drivers/sign_in">Log In</a></li>

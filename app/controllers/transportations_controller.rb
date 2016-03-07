@@ -1,12 +1,12 @@
 class TransportationsController < ApplicationController
-  before_filter :admin_only, except: [:show, :edit, :update]
+  before_filter :admin_only, except: [:show, :edit, :update, :edit_transportation, :update_transportation]
 
   def index
     @transportations = Transportation.all.order("company_name ASC")
   end
 
   def show
-    if admin_signed_in? || transportation_signed_in? && (current_transportation.id == params[:id])
+    if admin_signed_in? || transportation_signed_in? && (current_transportation.id == params[:id].to_i)
       @transportation = Transportation.find(params[:id])
     else
       redirect_to :back, alert: "Access denied."
@@ -64,7 +64,7 @@ class TransportationsController < ApplicationController
   end
 
   def edit_transportation
-    if admin_signed_in? || transportation_signed_in? && (current_transportation.id == params[:id])
+    if admin_signed_in? || transportation_signed_in? && (current_transportation.id == params[:id].to_i)
       @transportation = Transportation.find(params[:id])
     else
       redirect_to :back, alert: "Access denied."
@@ -72,7 +72,7 @@ class TransportationsController < ApplicationController
   end
 
   def update_transportation
-    if admin_signed_in? || transportation_signed_in? && (current_transportation.id == params[:id])
+    if admin_signed_in? || transportation_signed_in? && (current_transportation.id == params[:id].to_i)
       @transportation = Transportation.find(params[:id])
       if @transportation.update(
         company_name: params[:company_name],
@@ -97,7 +97,7 @@ class TransportationsController < ApplicationController
   end
 
   def destroy
-    if admin_signed_in? || transportation_signed_in? && (current_transportation.id == params[:id])
+    if admin_signed_in?
       @transportation = Transportation.find(params[:id])
       @transportation.destroy
       flash[:warning] = "Tranportation Provider deleted."

@@ -1,15 +1,14 @@
 class PatientsController < ApplicationController
 
   def index
-    if admin_signed_in?
+    if params[:search] && admin_signed_in?
+      @patients = Patient.search(params[:search]).order("last_name ASC")
+    elsif admin_signed_in?
       @patients = Patient.all.order("last_name ASC")
+    elsif provider_signed_in? && params[:search]
+      @patients = Patient.where("provider_id = ?", current_provider.id).search(params[:search]).order("last_name ASC")
     elsif provider_signed_in?
-      @patients = Patient.where("provider_ID = ?", current_provider.id).order("last_name ASC")
-      if params[:search]
-        @patients = Patient.search(params[:search]).order("last_name ASC")
-      else
-        @patients = Patient.all.order("last_name ASC")
-      end
+      @patients = Patient.where("provider_id = ?", current_provider.id).order("last_name ASC")
     else
       redirect_to :back, alert: "Access denied."
     end
@@ -37,7 +36,7 @@ class PatientsController < ApplicationController
 
   def show
     patient = Patient.find(params[:id])
-    if admin_signed_in? || patient_signed_in? && (current_patient.id == params[:id])
+    if admin_signed_in? || patient_signed_in? && (current_patient.id == params[:id].to_i)
       @patient = Patient.find(params[:id])
     elsif provider_signed_in? && (current_provider.id == patient.provider_id)
       @patient = Patient.find(params[:id])
@@ -47,7 +46,8 @@ class PatientsController < ApplicationController
   end
 
   def edit_patient
-    if admin_signed_in? || patient_signed_in? && (current_patient.id == params[:id])
+    patient = Patient.find(params[:id])
+    if admin_signed_in? || patient_signed_in? && (current_patient.id == params[:id].to_i)
       @patient = Patient.find(params[:id])
     elsif provider_signed_in? && (current_provider.id == patient.provider_id)
       @patient = Patient.find(params[:id])
@@ -58,7 +58,7 @@ class PatientsController < ApplicationController
 
   def update_patient
     patient = Patient.find(params[:id])
-    if admin_signed_in? || patient_signed_in? && (current_patient.id == params[:id])
+    if admin_signed_in? || patient_signed_in? && (current_patient.id == params[:id].to_i)
       @patient = Patient.find(params[:id])
       if @patient.update(
         email: params[:email],
@@ -134,8 +134,8 @@ class PatientsController < ApplicationController
   end
 
   def destroy
-    if admin_signed_in? || patient_signed_in? && (current_patient.id == params[:id])
-      @patient = Patient.find_by(id: params[:id])
+    if admin_signed_in?
+      @patient = Patient.find(params[:id])
       @patient.destroy
       flash[:warning] = "Patient deleted."
       redirect_to "/"
@@ -143,4 +143,5 @@ class PatientsController < ApplicationController
       redirect_to :back, alert: "Access denied."
     end
   end 
+
 end

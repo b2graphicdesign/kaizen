@@ -2,29 +2,36 @@ class RidesController < ApplicationController
   def index
     if admin_signed_in?
       @rides = Ride.all.order("appointment_time ASC")
+
     elsif provider_signed_in?
-      @rides = Ride.where("provider_id = ?", current_provider.id)
+      @rides = Ride.where("provider_id = ?", current_provider.id).order("appointment_time ASC")
+      @current_user = current_provider
     elsif patient_signed_in?
-      @rides = Ride.where("patient_id = ?", current_patient.id)
+      @rides = Ride.where("patient_id = ?", current_patient.id).order("appointment_time ASC")
+      @current_user = current_patient
     elsif transportation_signed_in?
-      @rides = Ride.where("transport_id = ?", current_transportation.id)
+      @rides = Ride.where("transport_id = ?", current_transportation.id).order("appointment_time ASC")
+      @current_user = current_transportation
     elsif driver_signed_in?
-      @rides = Ride.where("driver_id = ?", current_driver.id)
+      @rides = Ride.where("driver_id = ?", current_driver.id).order("appointment_time ASC")
+      @current_user = current_driver
     else
       redirect_to :back, alert: "Access denied."
     end
   end
 
   def new
+    patient = Patient.find(params[:id])
     if admin_signed_in? || provider_signed_in? && (current_provider.id == patient.provider_id)
       @ride = Ride.new
-      @patient = Patient.find_by(id: params[:id])
+      @patient = Patient.find(params[:id])
     else
       redirect_to :back, alert: "Access denied."
     end
   end
 
   def create
+    patient = Patient.find(params[:patient_id])
     if admin_signed_in? || provider_signed_in? && (current_provider.id == patient.provider_id)
       appointment_time = DateTime.strptime(params[:appointment_time], "%m/%d/%Y %H:%M %P").to_time
       expected_start_time = DateTime.strptime(params[:expected_start_time], "%m/%d/%Y %H:%M %P").to_time    
@@ -72,36 +79,35 @@ class RidesController < ApplicationController
   end
 
   def show
+    ride = Ride.find(params[:id])
     if admin_signed_in?
-      @ride = Ride.find_by(id: params[:id])
+      @ride = Ride.find(params[:id])
     elsif provider_signed_in? && (current_provider.id == ride.provider_id)
-      @ride = Ride.find_by(id: params[:id])
+      @ride = Ride.find(params[:id])
     elsif patient_signed_in? && (current_patient.id == ride.patient_id)
-      @ride = Ride.find_by(id: params[:id])
+      @ride = Ride.find(params[:id])
     elsif transportation_signed_in? && (current_transportation.id == ride.transport_id)
-      @ride = Ride.find_by(id: params[:id])
+      @ride = Ride.find(params[:id])
     elsif driver_signed_in? && (current_driver.id == ride.driver_id)
-      @ride = Ride.find_by(id: param[:id])
+      @ride = Ride.find(params[:id])
     else
       redirect_to :back, alert: "Access denied."
     end
   end
 
   def edit
-    if admin_signed_in? || provider_signed_in? && (current_provider.id == patient.provider_id)
-      @ride = Ride.find_by(id: params[:id])
+    ride = Ride.find(params[:id])
+    if admin_signed_in? || provider_signed_in? && (current_provider.id == ride.provider_id)
+      @ride = Ride.find(params[:id])
     else
       redirect_to :back, alert: "Access denied."
     end
   end
 
   def update
-    if admin_signed_in? || provider_signed_in? && (current_provider.id == patient.provider_id)
-      # appointment_time = DateTime.strptime(params[:appointment_time], "%m/%d/%Y %H:%M %P").to_time
-      # expected_start_time = DateTime.strptime(params[:expected_start_time], "%m/%d/%Y %H:%M %P").to_time    
-      # expected_end_time = DateTime.strptime(params[:expected_end_time], "%m/%d/%Y %H:%M %P").to_time   
-
-      @ride = Ride.find_by(id: params[:id])
+    ride = Ride.find(params[:id])
+    if admin_signed_in? || provider_signed_in? && (current_provider.id == ride.provider_id)
+      @ride = Ride.find(params[:id])
       appointment_time = @ride.appointment_time
       expected_start_time = @ride.expected_start_time
       expected_end_time = @ride.expected_end_time
@@ -138,16 +144,13 @@ class RidesController < ApplicationController
   end
 
   def destroy
-    if admin_signed_in?
-      @ride = Ride.find_by(id: params[:id])
-      @ride.destroy
+    ride = Ride.find(params[:id])
+    if admin_signed_in? || provider_signed_in? && (current_provider.id == ride.provider_id)
+      ride.destroy
       flash[:warning] = "Ride deleted."
       redirect_to "/"
-    else provider_signed_in? && (current_provider.id == ride.provider_id)
-      @ride = Ride.find_by(id: params[:id])
-      @ride.destroy
-      flash[:warning] = "Ride deleted."
-      redirect_to "/"
+    else 
+      redirect_to :back, alert: "Access denied."
     end
   end
       

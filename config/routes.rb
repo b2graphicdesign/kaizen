@@ -35,6 +35,7 @@ Rails.application.routes.draw do
     resources :steps, only: [:show, :update], controller: 'driver/steps'
   end
 
+  get 'driver' => 'drivers#index'
   get '/driver/:id' => 'drivers#show'
   get '/driver/:id/edit_driver' => 'drivers#edit_driver'
   patch '/driver/:id' => 'drivers#update_driver'
@@ -55,6 +56,7 @@ Rails.application.routes.draw do
   get '/transportation/:id/edit_transportation' => 'transportations#edit_transportation'
   patch '/transportation/:id' => 'transportations#update_transportation'
   delete '/transportation/:id' => 'transportations#destroy'
+
 
   get '/provider' => 'providers#index'
   get '/provider/new' => 'providers#new'

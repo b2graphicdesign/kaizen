@@ -51,11 +51,11 @@
               <%= f.text_field :county, placeholder: "County" %>
             </div>
              <% if provider_signed_in? %>
-              <%= f.hidden_field :provider_id, current_user.id %>
+              <%= f.hidden_field :provider_id, value: current_provider.id %>
             <% elsif admin_signed_in? %>
-            <div>
-              <%= f.select :provider_id, options_for_select(all_providers) %>
-            </div>
+              <div>
+                <%= f.select :provider_id, options_for_select(all_providers) %>
+              </div>
             <% end %>
             <div>
               <%= f.submit 'Next Step', class: "btn btn-default" %>

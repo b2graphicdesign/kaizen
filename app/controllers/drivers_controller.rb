@@ -12,7 +12,7 @@ class DriversController < ApplicationController
 
   def show
     driver = Driver.find(params[:id])
-    if admin_signed_in? || driver_signed_in? && (current_driver.id == params[:id])
+    if admin_signed_in? || driver_signed_in? && (current_driver.id == params[:id].to_i)
       @driver = Driver.find(params[:id])
     elsif transportation_signed_in? && (current_transportation.id == driver.transport_id)
       @driver = Driver.find(params[:id])      
@@ -42,20 +42,21 @@ class DriversController < ApplicationController
   end
 
   def edit_driver
-    if admin_signed_in? || driver_signed_in? && (current_driver.id == params[:id])
-      @driver = Driver.find_by(id: params[:id])
+    driver = Driver.find(params[:id])
+    if admin_signed_in? || driver_signed_in? && (current_driver.id == params[:id].to_i)
+      @driver = Driver.find(params[:id])
     elsif transportation_signed_in? && (current_transportation.id == driver.transport_id)
-      @driver = Driver.find_by(id: params[:id])
+      @driver = Driver.find(params[:id])
     else
       redirect_to :back, alert: "Access denied."
     end
   end
 
   def update_driver
-    if admin_signed_in? || driver_signed_in? && (current_driver.id == params[:id])
-      @driver = Driver.find_by(id: params[:id])
+    driver = Driver.find(params[:id])
+    if admin_signed_in? || driver_signed_in? && (current_driver.id == params[:id].to_i)
+      @driver = Driver.find(params[:id])
       if @driver.update(
-        transport_id: params[:transport_id],
         username: params[:username],
         first_name: params[:first_name],
         last_name: params[:last_name],
@@ -85,9 +86,8 @@ class DriversController < ApplicationController
         render :edit
       end
     elsif transportation_signed_in? && (current_transportation.id == driver.transport_id)
-      @driver = Driver.find_by(id: params[:id])
+      @driver = Driver.find(params[:id])
       if @driver.update(
-        transport_id: params[:transport_id],
         username: params[:username],
         address_1: params[:address_1],
         address_2: params[:address_2],
@@ -120,12 +120,8 @@ class DriversController < ApplicationController
   end
 
   def destroy
-    if admin_signed_in? || driver_signed_in? && (current_driver.id == params[:id])
-      @driver = Driver.find(params[:id])
-      @driver.destroy
-      flash[:warning] = "Driver deleted"
-      redirect_to "/"
-    elsif transportation_signed_in? && (current_transportation.id == driver.transport_id)
+    driver = Driver.find(params[:id])
+    if admin_signed_in? || transportation_signed_in? && (current_transportation.id == driver.transport_id)
       @driver = Driver.find(params[:id])
       @driver.destroy
       flash[:warning] = "Driver deleted"

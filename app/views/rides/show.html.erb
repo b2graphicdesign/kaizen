@@ -1,14 +1,19 @@
-<legend>Ride No. <%= @ride.id %></legend>
+<legend><h3>Ride ID: <%= @ride.id %></h3></legend>
 <div class = "jumbotron">
-<h3>Patient: <%= @ride.patient.first_name %> <%= @ride.patient.last_name %></h3>
-<p>Appointment: <%= @ride.appointment_time.strftime("%m/%d/%Y at %I:%M%p") %></p>
-<p>Ride Type: <%= @ride.ride_type %></p>
-<p>Expected Mileage: <%= @ride.expected_mileage %></p>
-<br>
-<%= link_to "See All Rides", "/ride", class: "btn btn-default" %>
-<%= link_to "Patient Information", "/patient/#{@ride.patient_id}", class: "btn btn-default" %>
-<% if admin_signed_in? || provider_signed_in? && (current_provider.id == params[:id]) %>
-  <%= link_to "Edit Ride", "/ride/#{@ride.id}/edit", class: "btn btn-default" %>
-  <%= link_to "Delete Ride", "/ride/#{@ride.id}", {method: :delete, class: "btn btn-default"} %>
-<% end %>
+    <div class ="row">
+      <ul>
+        <li>Patient: <%= @ride.patient.first_name %> <%= @ride.patient.last_name %></li>
+        <li>Appointment Date: <%= @ride.appointment_time.strftime("%B %e, %Y") %></li>
+        <li>Appointment Time: <%= @ride.appointment_time.strftime("%m:%M %p") %></li>
+        <li>Pick Up Time: <%= @ride.expected_start_time.strftime("%m:%M %p") %></li>
+        <li>Drop Off Time: <%= @ride.expected_end_time.strftime("%m:%M %p") %></li>
+        <li>Type of Ride: <%= @ride.ride_type %></li>
+      </ul>
+    </div>
+
+  <% if admin_signed_in? || provider_signed_in? && (current_provider.id == @ride.provider_id) %>
+    <%= link_to  "Edit Ride", "/ride/#{@ride.id}/edit", class: "btn btn-default" %>
+    <%= link_to "Delete Ride", "/ride/#{@ride.id}", { method: :delete, class: "btn btn-default"} %>
+  <% end %>
+  <%= link_to "Back to list", "/ride", class: "btn btn-default" %>
 </div>

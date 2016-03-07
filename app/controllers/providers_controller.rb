@@ -1,12 +1,12 @@
 class ProvidersController < ApplicationController
-  before_filter :admin_only, except: [:show, :edit, :update]
+  before_filter :admin_only, except: [:show, :edit, :update, :edit_provider, :update_provider]
 
   def index
     @providers = Provider.all.order("facility_name ASC")
   end
 
   def show
-    if admin_signed_in? || provider_signed_in? && (current_provider.id == params[:id])
+    if admin_signed_in? || provider_signed_in? && (current_provider.id == params[:id].to_i)
       @provider = Provider.find(params[:id])
     else
       redirect_to :back, alert: "Access denied."
@@ -25,7 +25,7 @@ class ProvidersController < ApplicationController
   end
 
   def edit
-    if admin_signed_in? || provider_signed_in? && (current_provider.id == params[:id])
+    if admin_signed_in? || provider_signed_in? && (current_provider.id == params[:id].to_i)
       @provider = Provider.find(params[:id])
     else
       redirect_to :back, alert: "Access denied."
@@ -33,8 +33,8 @@ class ProvidersController < ApplicationController
   end
 
   def update
-    if admin_signed_in? || provider_signed_in? && (current_provider.id == params[:id])
-      @provider = Provider.find_by(id: params[:id])
+    if admin_signed_in? || provider_signed_in? && (current_provider.id == params[:id].to_i)
+      @provider = Provider.find(params[:id])
       if @provider.update(
         username: params[:username],
         facility_name: params[:facility_name],
@@ -64,7 +64,7 @@ class ProvidersController < ApplicationController
   end
 
   def edit_provider
-    if admin_signed_in? || provider_signed_in? && (current_provider.id == params[:id])
+    if admin_signed_in? || provider_signed_in? && (current_provider.id == params[:id].to_i)
       @provider = Provider.find(params[:id])
     else
       redirect_to :back, alert: "Access denied."
@@ -72,7 +72,7 @@ class ProvidersController < ApplicationController
   end
 
   def update_provider
-    if admin_signed_in? || provider_signed_in? && (current_provider.id == params[:id])
+    if admin_signed_in? || provider_signed_in? && (current_provider.id == params[:id].to_i)
       @provider = Provider.find(params[:id])
       if @provider.update(
         username: params[:username],
@@ -99,7 +99,7 @@ class ProvidersController < ApplicationController
   end
 
   def destroy
-    if admin_signed_in? || provider_signed_in? && (current_provider.id == params[:id])
+    if admin_signed_in?
       @provider = Provider.find(params[:id])
       @provider.destroy
       flash[:warning] = "Provider deleted."
