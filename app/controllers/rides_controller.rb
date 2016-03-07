@@ -52,7 +52,17 @@ class RidesController < ApplicationController
       #   end
       # end
       if @ride.save
-        redirect_to "/rides"
+
+        # #instantiate a Twilio client
+        # @client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
+
+        # #create and then send an SMS message
+        # @client.account.messages.create(
+        #   from: ENV['TWILIO_PHONE_NUMBER'],
+        #   to: "+1#{@ride.patient.phone}",
+        #   body: "Pickup for #{@ride.patient.first_name} is set for #{@ride.expected_start_time}.")
+
+         redirect_to "/rides"
       else
         render :new
       end
