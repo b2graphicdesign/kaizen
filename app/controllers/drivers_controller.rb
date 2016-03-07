@@ -12,7 +12,7 @@ class DriversController < ApplicationController
 
   def show
     driver = Driver.find(params[:id])
-    if admin_signed_in? || driver_signed_in? && (current_driver.id == params[:id])
+    if admin_signed_in? || driver_signed_in? && (current_driver.id == params[:id].to_i)
       @driver = Driver.find(params[:id])
     elsif transportation_signed_in? && (current_transportation.id == driver.transport_id)
       @driver = Driver.find(params[:id])      
@@ -54,7 +54,7 @@ class DriversController < ApplicationController
 
   def update_driver
     driver = Driver.find(params[:id])
-    if admin_signed_in? || driver_signed_in? && (current_driver.id == params[:id])
+    if admin_signed_in? || driver_signed_in? && (current_driver.id == params[:id].to_i)
       @driver = Driver.find(params[:id])
       if @driver.update(
         username: params[:username],
