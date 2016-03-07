@@ -5,7 +5,7 @@ class Transportation < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:username]
 
   has_many :drivers
-  has_many :rides, dependent: :destroy
+  has_many :rides
 
   validates :username, :company_name, :address_1, :city, :state, :zip, :phone, presence: true
   validates :email, format: { with: /@/, message: "must contain @" }
