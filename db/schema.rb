@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160229055945) do
+ActiveRecord::Schema.define(version: 20160228160918) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,45 +82,6 @@ ActiveRecord::Schema.define(version: 20160229055945) do
   add_index "drivers", ["email"], name: "index_drivers_on_email", unique: true, using: :btree
   add_index "drivers", ["reset_password_token"], name: "index_drivers_on_reset_password_token", unique: true, using: :btree
   add_index "drivers", ["username"], name: "index_drivers_on_username", unique: true, using: :btree
-
-  create_table "event_instances", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "events", force: :cascade do |t|
-    t.integer  "patient_id"
-    t.integer  "driver_id"
-    t.integer  "transportation_id"
-    t.integer  "provider_id"
-    t.string   "ride_type"
-    t.datetime "appointment_time"
-    t.decimal  "expected_mileage"
-    t.boolean  "is_all_day"
-    t.date     "from_date"
-    t.time     "from_time"
-    t.date     "to_date"
-    t.time     "to_time"
-    t.string   "repeats"
-    t.integer  "repeats_every_n_days"
-    t.integer  "repeats_every_n_weeks"
-    t.integer  "repeats_weekly_each_days_of_the_week_mask"
-    t.integer  "repeats_every_n_months"
-    t.string   "repeats_monthly"
-    t.integer  "repeats_monthly_each_days_of_the_month_mask"
-    t.integer  "repeats_monthly_on_ordinals_mask"
-    t.integer  "repeats_monthly_on_days_of_the_week_mask"
-    t.integer  "repeats_every_n_years"
-    t.integer  "repeats_yearly_each_months_of_the_year_mask"
-    t.boolean  "repeats_yearly_on"
-    t.integer  "repeats_yearly_on_ordinals_mask"
-    t.integer  "repeats_yearly_on_days_of_the_week_mask"
-    t.string   "repeat_ends"
-    t.date     "repeat_ends_on"
-    t.string   "time_zone"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "patients", force: :cascade do |t|
     t.string   "email",                              default: "", null: false
