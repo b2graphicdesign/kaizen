@@ -85,15 +85,15 @@
   </div><!-- /.container-fluid -->
 </nav>
 </header>
-  <div class="container-fluid">
+
+<div class="container">
+ <div class="container-fluid">
   <% flash.each do |name, message| %>
     <div class="alert alert-<%= name %> alert-dismissible" role="alert">
       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><p><%= message %></p>
     </div>
   <% end %>
   </div>
-
-<div class="container">
   <%= yield %>
 </div>
 
