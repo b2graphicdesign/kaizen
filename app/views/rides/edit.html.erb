@@ -23,7 +23,8 @@
   <script type="text/javascript">
     $(function () {
       $('#datetimepicker1').datetimepicker({
-        defaultDate: "<%= @ride.appointment_time.strftime("%A, %d %b %Y %l:%M %p")%>"
+        defaultDate: "<%= @ride.appointment_time %>",
+        format: "YYYY-MM-DD hh:mm a"
       });
     });
   </script>
@@ -37,7 +38,8 @@
   <script type="text/javascript">
     $(function () {
       $('#datetimepicker2').datetimepicker({
-        defaultDate: "<%= @ride.expected_start_time.strftime("%A, %d %b %Y %l:%M %p") %>"
+        defaultDate: "<%= @ride.expected_start_time %>",
+        format: "YYYY-MM-DD hh:mm a"
       });
     });
   </script>
@@ -51,7 +53,8 @@
   <script type="text/javascript">
     $(function () {
       $('#datetimepicker3').datetimepicker({
-        defaultDate: "<%= @ride.expected_end_time.strftime("%A, %d %b %Y %l:%M %p") %>"
+        defaultDate: "<%= @ride.expected_end_time %>",
+        format: "YYYY-MM-DD hh:mm a"
       });
     });
   </script>
