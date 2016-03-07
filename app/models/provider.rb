@@ -7,7 +7,7 @@ class Provider < ActiveRecord::Base
   has_many :patients
   has_many :rides, dependent: :destroy
 
-  validates :username, :city, :state, :zip, :facility_name, :address_1, :county, :address_notes, :phone, :fax, presence: true
+  validates :username, :city, :state, :zip, :facility_name, :address_1, :county, :phone, :fax, presence: true
   validates :email, format: { with: /@/, message: "must contain @" }
   validates :username, length: { minimum: 6, maximum: 15, message: "must be between 6 and 15 characters" }
   validates :zip, :phone, :fax, length: { maximum: 15, message: "must be less than 15 characters" }
