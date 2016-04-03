@@ -1,0 +1,823 @@
+
+---
+admins:
+  columns:
+  - id
+  - email
+  - encrypted_password
+  - reset_password_token
+  - reset_password_sent_at
+  - remember_created_at
+  - sign_in_count
+  - current_sign_in_at
+  - last_sign_in_at
+  - current_sign_in_ip
+  - last_sign_in_ip
+  - created_at
+  - updated_at
+  - first_name
+  - last_name
+  - full_name
+  - company_name
+  - username
+  records: 
+  - - '1'
+    - seanmcnally88@gmail.com
+    - "$2a$10$89Q0SzJ.zK3Zmmsypp1jA.KX9WImqhwH6f7YCZNXfoUjjtDwuc65C"
+    - 
+    - 
+    - 
+    - '6'
+    - '2016-03-07 02:28:27.862763'
+    - '2016-03-07 02:15:28.745411'
+    - "::1/128"
+    - "::1/128"
+    - '2016-03-02 21:37:27.451714'
+    - '2016-03-07 02:28:27.864539'
+    - 
+    - 
+    - 
+    - 
+    - seanmcnally
+
+---
+rides:
+  columns:
+  - id
+  - created_at
+  - updated_at
+  - patient_id
+  - provider_id
+  - comments
+  - driver_id
+  - transport_id
+  - ride_type
+  - appointment_time
+  - expected_start_time
+  - actual_start_time
+  - expected_end_time
+  - actual_end_time
+  - expected_mileage
+  - actual_mileage
+  - ride_status
+  - feedback_rating
+  - feedback_comments
+  records: 
+  - - '10'
+    - '2016-03-03 01:59:03.621327'
+    - '2016-03-07 04:51:15.239722'
+    - '76'
+    - '52'
+    - 
+    - 
+    - 
+    - Airship
+    - '2016-02-03 12:09:00'
+    - '2016-02-03 12:10:00'
+    - 
+    - '2016-02-03 12:25:00'
+    - 
+    - '5.00'
+    - 
+    - 
+    - 
+    - 
+  - - '13'
+    - '2016-03-07 02:31:33.362975'
+    - '2016-03-07 04:50:49.757687'
+    - '76'
+    - '52'
+    - 
+    - 
+    - 
+    - Limo
+    - '2016-06-03 12:00:00'
+    - '2016-06-03 12:05:00'
+    - 
+    - '2016-06-03 12:15:00'
+    - 
+    - '2.00'
+    - 
+    - 
+    - 
+    - 
+  - - '14'
+    - '2016-03-07 03:41:15.277814'
+    - '2016-03-07 03:47:08.65812'
+    - '76'
+    - '52'
+    - 
+    - 
+    - 
+    - Parasail
+    - '2016-03-06 00:05:00'
+    - '2016-03-06 00:07:00'
+    - 
+    - '2016-03-06 00:10:00'
+    - 
+    - '2.00'
+    - 
+    - 
+    - 
+    - 
+  - - '16'
+    - '2016-03-07 04:01:47.903295'
+    - '2016-03-07 04:51:43.904796'
+    - '76'
+    - '52'
+    - 
+    - 
+    - 
+    - blimp
+    - '2016-03-07 00:03:00'
+    - '2016-03-07 00:05:00'
+    - 
+    - '2016-03-07 00:08:00'
+    - 
+    - '55.00'
+    - 
+    - 
+    - 
+    - 
+  - - '17'
+    - '2016-03-07 04:10:04.157509'
+    - '2016-03-07 04:50:22.67468'
+    - '76'
+    - '52'
+    - 
+    - 
+    - 
+    - Raft
+    - '2016-03-06 12:04:00'
+    - '2016-03-06 12:05:00'
+    - 
+    - '2016-03-06 12:08:00'
+    - 
+    - '1111.00'
+    - 
+    - 
+    - 
+    - 
+  - - '18'
+    - '2016-03-07 04:13:23.118494'
+    - '2016-03-07 04:49:37.374996'
+    - '76'
+    - '52'
+    - 
+    - 
+    - 
+    - Glider
+    - '2016-06-03 13:02:00'
+    - '2016-06-03 13:03:00'
+    - 
+    - '2016-06-03 13:05:00'
+    - 
+    - '234.00'
+    - 
+    - 
+    - 
+    - 
+
+---
+patients:
+  columns:
+  - id
+  - email
+  - encrypted_password
+  - reset_password_token
+  - reset_password_sent_at
+  - remember_created_at
+  - sign_in_count
+  - current_sign_in_at
+  - last_sign_in_at
+  - current_sign_in_ip
+  - last_sign_in_ip
+  - created_at
+  - updated_at
+  - first_name
+  - last_name
+  - city
+  - state
+  - zip
+  - phone
+  - username
+  - provider_id
+  - address_1
+  - address_2
+  - county
+  - address_notes
+  - alternate_contact_name
+  - alternate_contact_phone
+  - alternate_contact_email
+  - alert_call
+  - alert_sms
+  - alert_email
+  - alert_alternate_call
+  - alert_alternate_sms
+  - alert_alternate_email
+  - payer
+  - payer_state
+  - payer_id
+  - transportation_type
+  - assistance_notes
+  - comments
+  - send_password_email
+  records: 
+  - - '76'
+    - seanmcnally88@gmail.com
+    - ''
+    - af8a8dd7315e1076cf8ef30eba8a7a4cb86fc076a2c2afeca3ba2f98124bc617
+    - '2016-02-29 00:50:30.662436'
+    - 
+    - '0'
+    - 
+    - 
+    - 
+    - 
+    - '2016-02-29 00:50:06.028202'
+    - '2016-03-07 02:30:51.769083'
+    - 'Sean '
+    - McNally
+    - Chicago
+    - IL
+    - '60657'
+    - 555-432-4567
+    - seannny
+    - '52'
+    - '2936 N. Racine #1R'
+    - Lakeview
+    - Cook
+    - 
+    - Robert Plant
+    - 555-444-2345
+    - plant@zeppelin.com
+    - false
+    - true
+    - false
+    - true
+    - false
+    - false
+    - BCBS Illinois
+    - IL
+    - '9898989'
+    - Car
+    - 
+    - 
+    - false
+
+---
+drivers:
+  columns:
+  - id
+  - email
+  - encrypted_password
+  - reset_password_token
+  - reset_password_sent_at
+  - remember_created_at
+  - sign_in_count
+  - current_sign_in_at
+  - last_sign_in_at
+  - current_sign_in_ip
+  - last_sign_in_ip
+  - created_at
+  - updated_at
+  - transport_id
+  - username
+  - first_name
+  - last_name
+  - address_1
+  - address_2
+  - city
+  - state
+  - zip
+  - phone
+  - insurance_company
+  - insurance_account
+  - drivers_license_state
+  - drivers_license_no
+  - drivers_license_expiry
+  - vehicle_year
+  - vehicle_make
+  - vehicle_model
+  - vehicle_type
+  - vehicle_color
+  - vehicle_license_plate
+  - vehicle_registration_expiry
+  - send_password_email
+  records: 
+  - - '5'
+    - hnhmbdig@test.com
+    - ''
+    - 
+    - 
+    - 
+    - '0'
+    - 
+    - 
+    - 
+    - 
+    - '2016-02-12 20:14:23.672315'
+    - '2016-02-12 20:22:14.053046'
+    - 
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - false
+  - - '14'
+    - ben@franklin.com
+    - ''
+    - 
+    - 
+    - 
+    - '0'
+    - 
+    - 
+    - 
+    - 
+    - '2016-02-23 04:15:05.936118'
+    - '2016-03-02 23:48:40.574784'
+    - '2'
+    - ridezrusman
+    - Benjamin
+    - Franklin
+    - 3 Penn Ave
+    - ''
+    - Chicago
+    - IL
+    - '99999'
+    - 333-333-3333
+    - Aetna
+    - '333333333'
+    - IL
+    - '997928349238'
+    - '2017-03-01 00:00:00'
+    - '1945'
+    - Jalopy
+    - Jalopy
+    - Jalopy
+    - Blue
+    - '2325566'
+    - '2017-12-01 00:00:00'
+    - false
+
+---
+providers:
+  columns:
+  - id
+  - email
+  - encrypted_password
+  - reset_password_token
+  - reset_password_sent_at
+  - remember_created_at
+  - sign_in_count
+  - current_sign_in_at
+  - last_sign_in_at
+  - current_sign_in_ip
+  - last_sign_in_ip
+  - created_at
+  - updated_at
+  - city
+  - state
+  - zip
+  - username
+  - facility_name
+  - address_1
+  - address_2
+  - county
+  - address_notes
+  - phone
+  - fax
+  - send_password_email
+  records: 
+  - - '24'
+    - advocate@yahoo.com
+    - ''
+    - 
+    - 
+    - 
+    - '0'
+    - 
+    - 
+    - 
+    - 
+    - '2016-02-23 20:34:22.387928'
+    - '2016-02-24 19:55:13.618531'
+    - Chicago
+    - IL
+    - '60657'
+    - providerperson
+    - Advocate Masonic
+    - 2 Wellington
+    - Unit 2
+    - Cook
+    - Hospital
+    - 555-555-3333
+    - 333-444-3322
+    - false
+  - - '26'
+    - jhopkins@askjeeves.com
+    - ''
+    - 
+    - 
+    - 
+    - '0'
+    - 
+    - 
+    - 
+    - 
+    - '2016-02-24 20:07:59.466331'
+    - '2016-02-24 20:08:45.65887'
+    - Chicago
+    - IL
+    - '60777'
+    - hospital
+    - John Hopkins
+    - 333 Erie
+    - ''
+    - Cook
+    - Its a hospital
+    - 555-444-3333
+    - 555-666-4444
+    - false
+  - - '27'
+    - judgejude@gmail.net
+    - ''
+    - 
+    - 
+    - 
+    - '0'
+    - 
+    - 
+    - 
+    - 
+    - '2016-02-24 20:09:19.105767'
+    - '2016-02-24 20:10:18.349588'
+    - Chicago
+    - IL
+    - '60655'
+    - judgejudy
+    - Judge Judy
+    - 3 Legal Way
+    - ''
+    - Cook
+    - None
+    - 555-999-8888
+    - 555-999-8877
+    - false
+  - - '33'
+    - pleasework@gmail.com
+    - ''
+    - 
+    - 
+    - 
+    - '0'
+    - 
+    - 
+    - 
+    - 
+    - '2016-02-28 16:18:33.916136'
+    - '2016-02-28 16:19:21.355277'
+    - Chicago
+    - IL
+    - '60657'
+    - pleasework
+    - Please Work
+    - 333 Please work st
+    - ''
+    - Cook
+    - wok
+    - 555-000-9999
+    - 555-666-3333
+    - false
+  - - '34'
+    - hosp@gmail.com
+    - ''
+    - 
+    - 
+    - 
+    - '0'
+    - 
+    - 
+    - 
+    - 
+    - '2016-02-28 16:23:46.648698'
+    - '2016-02-28 16:24:25.573507'
+    - Elgin
+    - IL
+    - '60666'
+    - Thiswillwork
+    - HospitalTown
+    - 444 Hospital ST
+    - ''
+    - Cook
+    - In Elgin yo
+    - 555-999-9999
+    - 555-999-1000
+    - true
+  - - '52'
+    - jw1314@gmail.com
+    - ''
+    - bd4a6e4978af3ccdf4afdd3662ceb8a119e96126e17e92fdc1807eb27a3408c8
+    - '2016-02-28 20:10:00.154397'
+    - 
+    - '0'
+    - 
+    - 
+    - 
+    - 
+    - '2016-02-28 20:09:11.2489'
+    - '2016-02-28 20:10:00.154893'
+    - Chicago
+    - IL
+    - '55503'
+    - jenwu1314
+    - Jen's Hospital Place
+    - 22 Hospital St
+    - ''
+    - Cook
+    - Jen's place to heal peeps
+    - 555-432-4543
+    - 555-678-3333
+    - true
+  - - '74'
+    - bart@ljlkfsjdklfjsl.com
+    - ''
+    - ea23a8d630a26b71e4a62954b3b31ee0b6a7c9bd0db739a67d09c4d52246fa0a
+    - '2016-03-04 03:44:59.978253'
+    - 
+    - '0'
+    - 
+    - 
+    - 
+    - 
+    - '2016-03-04 03:44:18.049623'
+    - '2016-03-04 03:44:59.978695'
+    - 'Springfield '
+    - IL
+    - '54567'
+    - bart_simpson
+    - Springfield General Hospital
+    - 2 Evergreen Terrace
+    - ''
+    - Burns
+    - Hiii Everybody
+    - 555-678-7654
+    - 555-667-3221
+    - true
+  - - '75'
+    - fartsrus@fartsun.com
+    - ''
+    - cbf4ebf2427214e428eaeaf0d9866bdb21cc869659e917d8485cf9eaf9af0970
+    - '2016-03-05 00:06:27.539543'
+    - 
+    - '0'
+    - 
+    - 
+    - 
+    - 
+    - '2016-03-05 00:04:46.456624'
+    - '2016-03-05 00:06:27.540036'
+    - Wlgin
+    - IL
+    - '33433'
+    - farty_mcfart
+    - Fart City
+    - 45 8th
+    - ''
+    - Cook
+    - Its  yo
+    - 555-555-5555
+    - 555-322-4568
+    - true
+  - - '79'
+    - seanmcnally88@gmail.com
+    - ''
+    - 3a48869e60890da72e9a1526d0bf320adfeba6b686c094851f0a43ec231d42e0
+    - '2016-03-05 00:22:14.088648'
+    - 
+    - '0'
+    - 
+    - 
+    - 
+    - 
+    - '2016-03-05 00:21:51.689563'
+    - '2016-03-05 00:22:14.089045'
+    - Chicago
+    - IL
+    - '60657'
+    - dslfaksjdl
+    - alksdjflak
+    - 234 ljdfkljaslk
+    - ''
+    - ckjals
+    - lskajdlk
+    - 555-432-4566
+    - 555-432-4561
+    - true
+
+---
+transportations:
+  columns:
+  - id
+  - email
+  - encrypted_password
+  - reset_password_token
+  - reset_password_sent_at
+  - remember_created_at
+  - sign_in_count
+  - current_sign_in_at
+  - last_sign_in_at
+  - current_sign_in_ip
+  - last_sign_in_ip
+  - created_at
+  - updated_at
+  - username
+  - company_name
+  - address_1
+  - address_2
+  - city
+  - state
+  - zip
+  - phone
+  - fax
+  - send_password_email
+  records: 
+  - - '2'
+    - ''
+    - ''
+    - 
+    - 
+    - 
+    - '0'
+    - 
+    - 
+    - 
+    - 
+    - '2016-02-16 17:46:32.599434'
+    - '2016-02-16 17:46:32.599434'
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - 
+    - false
+  - - '4'
+    - uber@uber.com
+    - ''
+    - 
+    - 
+    - 
+    - '0'
+    - 
+    - 
+    - 
+    - 
+    - '2016-02-18 23:07:28.274382'
+    - '2016-02-24 20:17:13.852447'
+    - uberrideschi
+    - Uber
+    - 2 Michigan Ave
+    - Apartment 3
+    - Chicago
+    - IL
+    - '60621'
+    - 777-909-8909
+    - ''
+    - false
+  - - '5'
+    - coolcarco@gmail.com
+    - ''
+    - 
+    - 
+    - 
+    - '0'
+    - 
+    - 
+    - 
+    - 
+    - '2016-02-18 23:16:23.687326'
+    - '2016-02-18 23:17:25.669339'
+    - coolcarco
+    - Cool Car Co.
+    - 33 N. Harlem
+    - ''
+    - Chicago
+    - IL
+    - '60888'
+    - 666-555-4444
+    - 666-777-4444
+    - false
+  - - '25'
+    - ridesrus@ridesrus.com
+    - ''
+    - 
+    - 
+    - 
+    - '0'
+    - 
+    - 
+    - 
+    - 
+    - '2016-02-23 20:08:38.810628'
+    - '2016-02-23 20:10:29.29944'
+    - ridesrus
+    - Rides r us
+    - 3 Harlem
+    - ''
+    - Chicago
+    - IL
+    - '60657'
+    - 555-666-5555
+    - 333-444-5555
+    - false
+  - - '30'
+    - immabus@gmail.com
+    - ''
+    - 
+    - 
+    - 
+    - '0'
+    - 
+    - 
+    - 
+    - 
+    - '2016-02-23 20:31:00.14456'
+    - '2016-02-23 20:31:38.683205'
+    - immabus
+    - 'Bus '
+    - 3 Chicago
+    - ''
+    - Chicago
+    - IL
+    - '60620'
+    - 847-287-4588
+    - 555-555-2222
+    - false
+  - - '33'
+    - hertzcarzzzz.@gmail.com
+    - ''
+    - 
+    - 
+    - 
+    - '0'
+    - 
+    - 
+    - 
+    - 
+    - '2016-02-23 20:59:31.234719'
+    - '2016-02-23 21:00:14.907864'
+    - hertzcarzzz
+    - Hertz Carzzzz
+    - 5 Touhy
+    - ''
+    - Bartlett
+    - IL
+    - '60111'
+    - 555-666-6666
+    - 555-333-9988
+    - false
+  - - '35'
+    - carruswoo@askjeeves.com
+    - ''
+    - 
+    - 
+    - 
+    - '0'
+    - 
+    - 
+    - 
+    - 
+    - '2016-02-23 21:24:15.319128'
+    - '2016-02-23 21:26:38.936552'
+    - carsruswoo
+    - Car R Us
+    - 2 Sheffield
+    - ''
+    - Chicago
+    - IL
+    - '60657'
+    - '2244568338'
+    - 555-111-2222
+    - false
