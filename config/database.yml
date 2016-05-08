@@ -1,9 +1,14 @@
 development:
+   # adapter: mysql
+   # database: kaizen
+   # username: kaizenuser
+   # password: l8nd5c8p37
+   # host: kaizen-staging.csltrie4omxw.us-west-2.rds.amazonaws.com
    adapter: mysql
    database: kaizen
-   username: kaizenuser
-   password: l8nd5c8p37
-   host: kaizen-staging.csltrie4omxw.us-west-2.rds.amazonaws.com	
+   username: root
+   password:
+   host: localhost
 test:
    adapter: mysql
    database: kaizen
