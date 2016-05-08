@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   devise_for :admins, :controllers => { registrations: 'registrations' }
   devise_for :providers
 
+
   root 'pages#home'
   resources :rides
   resources :patients do
@@ -34,6 +35,8 @@ Rails.application.routes.draw do
     resources :steps, only: [:show, :update], controller: 'driver/steps'
   end
 
+  get '/patientEhr' => 'patient_ehr#index'
+  post '/patientEhr/search' => 'patient_ehr#search'
   get 'driver' => 'drivers#index'
   get '/driver/:id' => 'drivers#show'
   get '/driver/:id/edit_driver' => 'drivers#edit_driver'

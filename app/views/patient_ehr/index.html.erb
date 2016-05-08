@@ -1,0 +1,12 @@
+<legend><h3>Search EHR for Patient</h3></legend>
+<div class = "jumbotron">
+  <%= form_tag "/patientEhr/search", method: :post, id: "search-form" do %>
+    <%= text_field_tag :last_name, params[:last_name], placeholder: "Patient Last Name" %>
+    <%= text_field_tag :patient_id, params[:patient_id], placeholder: "Patient ID" %>
+    <%= text_field_tag :access_token, @access_token, placeholder: "Access Token" %>
+    <%= submit_tag "Search", class: "btn btn-default" %>
+  <% end %>
+
+  <%= link_to "Home page", "/", class: "btn btn-default" %>
+
+</div>
