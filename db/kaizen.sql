@@ -65,8 +65,8 @@ INSERT INTO `admins` (`admin_id`, `username`, `encrypted_password`, `email`, `fi
 CREATE TABLE IF NOT EXISTS `patients` (
   `patient_id` int(11) NOT NULL AUTO_INCREMENT,
   `provider_id` int(11) NOT NULL DEFAULT '0',
-  `username` varchar(25) NOT NULL DEFAULT '',
-  `encrypted_password` varchar(100) NOT NULL DEFAULT '',
+  -- `username` varchar(25) NOT NULL DEFAULT '',
+  -- `encrypted_password` varchar(100) NOT NULL DEFAULT '',
   `email` varchar(100) NOT NULL DEFAULT '',
   `first_name` varchar(25) NOT NULL DEFAULT '',
   `last_name` varchar(25) NOT NULL DEFAULT '',
@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `patients` (
   `state` varchar(50) NOT NULL DEFAULT '',
   `zip` varchar(15) NOT NULL DEFAULT '',
   `county` varchar(50) NOT NULL DEFAULT '',
-  `address_notes` text NOT NULL,
+  `address_notes` text NOT NULL DEFAULT '',
   `phone` varchar(15) NOT NULL DEFAULT '',
   `payer` varchar(50) NOT NULL DEFAULT '',
   `payer_state` varchar(25) NOT NULL DEFAULT '',
@@ -91,32 +91,30 @@ CREATE TABLE IF NOT EXISTS `patients` (
   `alert_alternate_sms` tinyint(1) DEFAULT NULL,
   `alert_alternate_email` tinyint(1) DEFAULT NULL,
   `transportation_type` varchar(25) NOT NULL DEFAULT '',
-  `assistance_notes` text NOT NULL,
-  `comments` text NOT NULL,
-  `reset_password_token` varchar(50) DEFAULT NULL,
-  `reset_password_sent_at` datetime DEFAULT NULL,
-  `send_password_email` tinyint(1) DEFAULT '0',
-  `remember_created_at` datetime DEFAULT NULL,
-  `sign_in_count` int(11) NOT NULL DEFAULT '0',
-  `current_sign_in_at` datetime DEFAULT NULL,
-  `last_sign_in_at` datetime DEFAULT NULL,
-  `current_sign_in_ip` varchar(15) NOT NULL DEFAULT '',
-  `last_sign_in_ip` varchar(15) NOT NULL DEFAULT '',
+  `assistance_notes` text NOT NULL DEFAULT '',
+  `comments` text NOT NULL DEFAULT '',
+  -- `reset_password_token` varchar(50) DEFAULT NULL,
+  -- `reset_password_sent_at` datetime DEFAULT NULL,
+  -- `send_password_email` tinyint(1) DEFAULT '0',
+  -- `remember_created_at` datetime DEFAULT NULL,
+  -- `sign_in_count` int(11) NOT NULL DEFAULT '0',
+  -- `current_sign_in_at` datetime DEFAULT NULL,
+  -- `last_sign_in_at` datetime DEFAULT NULL,
+  -- `current_sign_in_ip` varchar(15) NOT NULL DEFAULT '',
+  -- `last_sign_in_ip` varchar(15) NOT NULL DEFAULT '',
   `created_at` datetime DEFAULT NULL,
   `update_at` datetime DEFAULT NULL,
   PRIMARY KEY (`patient_id`),
-  UNIQUE KEY `username` (`username`)
+  UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `patients`
 --
 
-INSERT INTO `patients` (`patient_id`, `provider_id`, `username`, `encrypted_password`, `email`, `first_name`, `last_name`, `address_1`, `address_2`, `city`, `state`, `zip`, `county`, `address_notes`, `phone`, `payer`, `payer_state`, `payer_id`, `alternate_contact_name`, `alternate_contact_phone`, `alternate_contact_email`, `alert_call`, `alert_sms`, `alert_email`, `alert_alternate_call`, `alert_alternate_sms`, `alert_alternate_email`, `transportation_type`, `assistance_notes`, `comments`, `reset_password_token`, `reset_password_sent_at`, `send_password_email`, `remember_created_at`, `sign_in_count`, `current_sign_in_at`, `last_sign_in_at`, `current_sign_in_ip`, `last_sign_in_ip`, `created_at`, `update_at`) VALUES
-(1, 3, 'testtesttest', '', 'test@test.com', 'testy', 'testy', 'test', 'test', 'test', 'IL', 'test', 'test', '', 'test', 'test', 'IL', 'test', 'test', 'test', 'test', 1, 1, 1, 1, 1, 1, 'Car', '', '', '0', '2016-04-19 21:47:10', 1, NULL, 0, NULL, NULL, '', '', '2016-04-19 21:42:25', NULL),
-(2, 1, 'jimmycracker', '', 'jimmy@cracker.com', 'Jimm', 'Cracker', 'jdsfkjasdkfj', 'sdfjkasdjfl', 'sdfjaksldfja;', 'IL', 'sdsjfsd', 'sdfjasdklf', '', '', 'sdjkflajkln', 'IL', 'fjsdklfasdl;f', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, 'Car', '', '', NULL, NULL, 0, NULL, 0, NULL, NULL, '', '', '2016-04-20 03:20:49', NULL),
-(3, 0, 'NTGBAMSZ@test.c', '', 'NTGBAMSZ@test.com', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', NULL, NULL, 0, NULL, 0, NULL, NULL, '', '', '2016-04-21 20:46:39', NULL);
-
+-- INSERT INTO `patients` (`patient_id`, `provider_id`, `email`, `first_name`, `last_name`, `address_1`, `address_2`, `city`, `state`, `zip`, `county`, `address_notes`, `phone`, `payer`, `payer_state`, `payer_id`, `alternate_contact_name`, `alternate_contact_phone`, `alternate_contact_email`, `alert_call`, `alert_sms`, `alert_email`, `alert_alternate_call`, `alert_alternate_sms`, `alert_alternate_email`, `transportation_type`, `assistance_notes`, `comments`, `created_at`, `update_at`) VALUES
+-- (1, 3, 'test@test.com', 'testy', 'testy', 'test', 'test', 'test', 'IL', 'test', 'test', '', 'test', 'test', 'IL', 'test', 'test', 'test', 'test', 1, 1, 1, 1, 1, 1, 'Car', '2016-04-19 21:42:25', NULL),
+-- (2, 1, 'jimmy@cracker.com', 'Jimm', 'Cracker', 'jdsfkjasdkfj', 'sdfjkasdjfl', 'sdfjaksldfja;', 'IL', 'sdsjfsd', 'sdfjasdklf', '', '', 'sdjkflajkln', 'IL', 'fjsdklfasdl;f', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, 'Car', '2016-04-20 03:20:49', NULL)
 -- --------------------------------------------------------
 
 --
