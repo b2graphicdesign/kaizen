@@ -41,6 +41,6 @@ module Kaizen
         g.fixture_replacement :factory_girl, dir: "spec/factories"
     end
     config.active_record.raise_in_transactional_callbacks = true
-    config.force_ssl = true
+    # config.force_ssl = false
   end
 end
