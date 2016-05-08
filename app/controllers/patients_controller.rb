@@ -24,21 +24,18 @@ class PatientsController < ApplicationController
 
   def create
     if admin_signed_in? || provider_signed_in?
-      @patient = Patient.new(
-        email: (0...8).map { (65 + rand(26)).chr }.join + "@test.com"
-        )
+      @patient = Patient.new(patient_params)
       @patient.save(validate: false)
-      redirect_to patient_step_path(@patient, Patient.form_steps.first)
+      redirect_to patient_path(@patient)
     else
       redirect_to :back, alert: "Access denied."
     end
   end
 
   def show
-    patient = Patient.find(params[:id])
-    if admin_signed_in? || patient_signed_in? && (current_patient.id == params[:id].to_i)
+    if admin_signed_in? #|| patient_signed_in? && (current_patient.id == params[:id].to_i)
       @patient = Patient.find(params[:id])
-    elsif provider_signed_in? && (current_provider.id == patient.provider_id)
+    elsif provider_signed_in? #&& (current_provider.id == patient.provider_id)
       @patient = Patient.find(params[:id])
     else
       redirect_to :back, alert: "Access denied."
@@ -87,7 +84,7 @@ class PatientsController < ApplicationController
         alert_alternate_email: params[:alert_alternate_email],
         provider_id: params[:provider_id]
         )
-        
+
         flash[:success] = "Patient Updated!"
         redirect_to "/patient/#{@patient.id}"
       else
@@ -122,7 +119,7 @@ class PatientsController < ApplicationController
         alert_alternate_email: params[:alert_alternate_email],
         provider_id: params[:provider_id]
         )
-        
+
         flash[:success] = "Patient Updated!"
         redirect_to "/patient/#{@patient.id}"
       else
@@ -142,6 +139,37 @@ class PatientsController < ApplicationController
     else
       redirect_to :back, alert: "Access denied."
     end
-  end 
+  end
+
+  private
+
+  def patient_params
+    params.require(:patient).permit(
+                              :email,
+                              :first_name,
+                              :last_name,
+                              :address_1,
+                              :address_2,
+                              :city,
+                              :state,
+                              :zip,
+                              :county,
+                              :payer,
+                              :payer_id,
+                              :payer_state,
+                              :transportation_type,
+                              :phone,
+                              :alert_call,
+                              :alert_sms,
+                              :alert_email,
+                              :alternate_contact_name,
+                              :alternate_contact_phone,
+                              :alternate_contact_email,
+                              :alert_alternate_call,
+                              :alert_alternate_sms,
+                              :alert_alternate_email,
+                              :provider_id
+                            )
+  end
 
 end
