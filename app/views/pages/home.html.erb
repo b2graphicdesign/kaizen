@@ -3,7 +3,7 @@
 <h3>Improving access to healthcare for the underserved.</h3>
 
 <% if admin_signed_in? %>
-  <%= link_to 'New Patient', patients_path, class: "btn btn-default", method: :create %>
+  <%= link_to 'New Patient', new_patient_path, class: "btn btn-default" %>
 
   <%= link_to 'New Transportation', transportation_path, class: "btn btn-default", method: :create %>
 
@@ -24,11 +24,11 @@
   <%= link_to 'See All Rides', "/ride", class: "btn btn-default" %>
 
 <% elsif provider_signed_in? %>
-  <%= link_to 'New Patient', patients_path, class: "btn btn-default", method: :create %>
+  <%= link_to 'New Patient', new_patient_path, class: "btn btn-default" %>
 
 
   <hr>
-  
+
   <%= link_to 'See All Patients', "/patient", class: "btn btn-default" %>
 
   <%= link_to 'See All Rides', "/rides", class: "btn btn-default" %>
@@ -37,13 +37,13 @@
   <%= link_to 'New Driver', drivers_path, class: "btn btn-default", method: :create %>
 
   <hr>
-  
+
   <%= link_to 'See All Drivers', '/drivers', class: "btn btn-default" %>
 
   <%= link_to 'See All Rides', "/rides", class: "btn btn-default" %>
 
 <% elsif patient_signed_in? || driver_signed_in? %>
-    
+
     <%= link_to 'See All Rides', "/rides", class: "btn btn-default" %>
 
   <% end %>
