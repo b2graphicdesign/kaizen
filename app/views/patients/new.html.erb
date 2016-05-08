@@ -20,7 +20,7 @@
   <% if @patient.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@patient.errors.count, "error") %> prohibited this patient from being saved:</h2>
-   
+
       <ul>
       <% @patient.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -33,47 +33,29 @@
     <h2>New Patient</h2>
   </div>
   <div class="row">
-   <%= form_tag "/patients", method: :post do %>
+   <%= form_for @patient, method: :post do |f| %>
     <div class="col-md-4">
       <div class="add_padding">
         <div>
-          <%= text_field_tag :first_name, nil, placeholder: "First Name" %>
+          <%= f.text_field :first_name, placeholder: "First Name" %>
         </div>
         <div>
-          <%= text_field_tag :last_name, nil, placeholder: "Last Name" %>
+          <%= f.text_field :last_name, placeholder: "Last Name" %>
         </div>
         <div>
-          <%= text_field_tag :address_1, nil, placeholder: "Address 1" %>
+          <%= f.text_field :address_1, placeholder: "Address 1" %>
         </div>
         <div>
-          <%= text_field_tag :address_2, nil, placeholder: "Address 2" %>
+          <%= f.text_field :address_2, placeholder: "Address 2" %>
         </div>
         <div>
-          <%= text_field_tag :city, nil, placeholder: "City" %>
+          <%= f.text_field :city, placeholder: "City" %>
         </div>
         <div>
-          <%= text_field_tag :state, nil, placeholder: "State" %>
+          <%= f.text_field :state, placeholder: "State" %>
         </div>
         <div>
-          <%= text_field_tag :county, nil, placeholder: "County" %>
-        </div>
-      </div>
-    </div>
-    
-    <div class="add_padding">
-      <div class="col-md-4">
-        <div>
-          <%= text_field_tag :payer, nil, placeholder: "Payer" %>
-        </div>
-         <div>
-          <%= text_field_tag :payer_id, nil, placeholder: "Payer ID" %>
-        </div>
-        <div>
-          <%= text_field_tag :payer_state, nil, placeholder: "Payer State" %>
-        </div>
-        <div class="select_padding">
-          <h5>Transportation Type</h5>
-          <%= select_tag :transportation_type, "<option>Car</option><option>Van</option><option>Ambulance</option>".html_safe %>
+          <%= f.text_field :county, placeholder: "County" %>
         </div>
       </div>
     </div>
@@ -81,27 +63,45 @@
     <div class="add_padding">
       <div class="col-md-4">
         <div>
-          <%= text_field_tag :phone, nil, placeholder: "Phone" %>
+          <%= f.text_field :payer, placeholder: "Payer" %>
+        </div>
+         <div>
+          <%= f.text_field :payer_id, placeholder: "Payer ID" %>
         </div>
         <div>
-          <%= text_field_tag :email, nil, placeholder: "Email" %>
+          <%= f.text_field :payer_state, placeholder: "Payer State" %>
+        </div>
+        <div class="select_padding">
+          <h5>Transportation Type</h5>
+          <%= f.select :transportation_type, "<option>Car</option><option>Van</option><option>Ambulance</option>".html_safe %>
+        </div>
+      </div>
+    </div>
+
+    <div class="add_padding">
+      <div class="col-md-4">
+        <div>
+          <%= f.text_field :phone, placeholder: "Phone" %>
+        </div>
+        <div>
+          <%= f.text_field :email, placeholder: "Email" %>
         </div>
         <div class="select_padding">
           <h5>Reminder Preference</h5>
-           <%= select_tag :transportation_type, "<option>SMS</option><option>Phone Call</option><option>Email</option>".html_safe %>
+           <%= f.select :transportation_type, "<option>SMS</option><option>Phone Call</option><option>Email</option>".html_safe %>
         </div>
         <div>
-          <%= text_field_tag :alternate_contact_name, nil, placeholder: "Alternate Contact Name" %>
+          <%= f.text_field :alternate_contact_name, placeholder: "Alternate Contact Name" %>
         </div>
         <div>
-          <%= text_field_tag :alternate_contact_phone, nil, placeholder: "Alternate Contact Phone" %>
+          <%= f.text_field :alternate_contact_phone, placeholder: "Alternate Contact Phone" %>
         </div>
         <div>
-          <%= text_field_tag :alternate_contact_email, nil, placeholder: "Alternate Contact Email" %>
+          <%= f.text_field :alternate_contact_email, placeholder: "Alternate Contact Email" %>
         </div>
         <div class="select_padding">
           <h5>Reminder Preference</h5>
-           <%= select_tag :transportation_type, "<option>SMS</option><option>Phone Call</option><option>Email</option>".html_safe %>
+           <%= f.select :transportation_type, "<option>SMS</option><option>Phone Call</option><option>Email</option>".html_safe %>
         </div>
       </div>
     </div>
@@ -109,7 +109,7 @@
 
   <div class="row" id="center_submit">
     <div>
-        <%= submit_tag "Add Patient", class: "btn btn-success" %>
+        <%= f.submit "Add Patient", class: "btn btn-success" %>
     </div>
   </div>
   <% end %>
