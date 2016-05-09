@@ -75,11 +75,11 @@ class PatientsController < ApplicationController
   end
 
   def destroy
-    if admin_signed_in?
+    if admin_signed_in? || provider_signed_in?
       @patient = Patient.find(params[:id])
       @patient.destroy
       flash[:warning] = "Patient deleted."
-      redirect_to "/"
+      redirect_to :root
     else
       redirect_to :back, alert: "Access denied."
     end
