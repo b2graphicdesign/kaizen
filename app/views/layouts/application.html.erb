@@ -2,9 +2,9 @@
 <html>
 <head>
   <title>Kaizen</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
   <link rel="stylesheet" media="all" href="/assets/style.css">
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 </head>
@@ -36,7 +36,7 @@
               <li><%= link_to "Log Out", "/admins/sign_out", method: :delete %></li>
             </ul>
           </li>
-        <% end %> 
+        <% end %>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Providers<span class="caret"></span></a>
           <ul class="dropdown-menu">
