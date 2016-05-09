@@ -106,11 +106,15 @@
       </div>
     </div>
   </div>
-
   <div class="row" id="center_submit">
     <div>
-        <%= f.submit "Add Patient", class: "btn btn-success" %>
+      <%= f.submit "Add Patient", class: "btn btn-success" %>
+    </div>
+    <br>
+    <div>
+      <%= link_to "Cancel", :back, class: "btn btn-default" %>
     </div>
   </div>
   <% end %>
+
 </div>
