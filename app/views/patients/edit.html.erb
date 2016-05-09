@@ -1,0 +1,140 @@
+<style>
+  input{
+    padding: 1px;
+    width: 250px
+  }
+  select{
+    width: 250px;
+  }
+  .btn{
+    width: 425px;
+  }
+</style>
+
+<legend>Edit Patient: <%= @patient.first_name %> <%=@patient.last_name %></legend>
+
+<% if @patient.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@patient.errors.count, "error") %> prohibited this patient from being saved:</h2>
+
+    <ul>
+    <% @patient.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="jumbotron">
+  <%= form_for @patient, method: :patch do |f| %>
+    <h3>Basic Information</h3>
+    <div>
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </div>
+    <div>
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name  %>
+    </div>
+    <div>
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name %>
+    </div>
+    <div>
+      <%= f.label :address_1 %>
+      <%= f.text_field :address_1 %>
+    </div>
+    <div>
+      <%= f.label :address_2 %>
+      <%= f.text_field :address_2 %>
+    </div>
+    <div>
+      <%= f.label :city %>
+      <%= f.text_field :city %>
+    </div>
+    <div>
+      <%= f.label :state %>
+      <%= f.select :state, options_for_select(us_states, @patient.state) if present? %>
+    </div>
+    <div>
+      <%= f.label :zip %>
+      <%= f.text_field :zip %>
+    </div>
+    <div>
+      <%= f.label :county %>
+      <%= f.text_field :county %>
+    </div>
+    <div>
+      <%= f.label :provider_id %>
+      <%= f.select :provider_id, options_for_select(all_providers, selected: @patient.provider.id) if present? %>
+    </div>
+    <hr>
+    <h3>Payment Information</h3>
+    <div>
+      <%= f.label :payer %>
+      <%= f.text_field :payer %>
+    </div>
+    <div>
+      <%= f.label "Payer Identification" %>
+      <%= f.text_field :payer_id %>
+    </div>
+    <div>
+      <%= f.label :payer_state %>
+      <%= f.select :payer_state, options_for_select(us_states, @patient.payer_state) if present? %>
+    </div>
+    <div>
+      <%= f.label :transportation_type %>
+      <%= f.select :transportation_type, options_for_select(["Car", "Van", "Ambulance"], @patient.transportation_type) if present? %>
+    </div>
+    <hr>
+    <h3>Contact Information</h3>
+    <div>
+      <%= f.label :phone %>
+      <%= f.text_field :phone %>
+    </div>
+    <div>
+      <%= f.label "Enable phone call alerts?" %>
+      <%= f.select :alert_call, options_for_select([["Yes", true], ["No", false]], @patient.alert_call) %>
+    </div>
+    <div>
+      <%= f.label "Enable sms alerts?" %>
+      <%= f.select :alert_sms, options_for_select([["Yes", true], ["No", false]], @patient.alert_sms) %>
+    </div>
+    <div>
+      <%= f.label "Enable email alerts?" %>
+      <%= f.select :alert_email, options_for_select([["Yes", true], ["No", false]], @patient.alert_email) %>
+    </div>
+    <div>
+      <%= f.label :alternate_contact_name %>
+      <%= f.text_field :alternate_contact_name %>
+    </div>
+    <div>
+      <%= f.label :alternate_contact_phone %>
+      <%= f.text_field :alternate_contact_phone %>
+    </div>
+    <div>
+      <%= f.label :alternate_contact_email %>
+      <%= f.text_field :alternate_contact_email %>
+    </div>
+    <div>
+      <%= f.label "Enable alternate contact phone call alerts?" %>
+      <%= f.select :alert_alternate_call, options_for_select([["Yes", true], ["No", false]], @patient.alert_alternate_call) %>
+    </div>
+    <div>
+      <%= f.label "Enable alternate contact sms alerts?" %>
+      <%= f.select :alert_alternate_sms, options_for_select([["Yes", true], ["No", false]], @patient.alert_alternate_sms) %>
+    </div>
+    <div>
+      <%= f.label "Enable alternate contact email alerts?" %>
+      <%= f.select :alert_alternate_email, options_for_select([["Yes", true], ["No", false]], @patient.alert_alternate_email) %>
+    </div>
+    <hr>
+    <div>
+      <%= f.submit "Update Patient", class: "btn btn-default" %>
+    </div>
+    <br>
+    <div>
+      <%= link_to "Cancel", :back, class: "btn btn-default" %>
+    </div>
+  <% end %>
+</div>
