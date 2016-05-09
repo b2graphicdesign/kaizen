@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `patients` (
   -- `current_sign_in_ip` varchar(15) NOT NULL DEFAULT '',
   -- `last_sign_in_ip` varchar(15) NOT NULL DEFAULT '',
   `created_at` datetime DEFAULT NULL,
-  `update_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`patient_id`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
@@ -112,8 +112,8 @@ CREATE TABLE IF NOT EXISTS `patients` (
 -- Dumping data for table `patients`
 --
 
--- INSERT INTO `patients` (`patient_id`, `provider_id`, `email`, `first_name`, `last_name`, `address_1`, `address_2`, `city`, `state`, `zip`, `county`, `address_notes`, `phone`, `payer`, `payer_state`, `payer_id`, `alternate_contact_name`, `alternate_contact_phone`, `alternate_contact_email`, `alert_call`, `alert_sms`, `alert_email`, `alert_alternate_call`, `alert_alternate_sms`, `alert_alternate_email`, `transportation_type`, `assistance_notes`, `comments`, `created_at`, `update_at`) VALUES
--- (1, 3, 'test@test.com', 'testy', 'testy', 'test', 'test', 'test', 'IL', 'test', 'test', '', 'test', 'test', 'IL', 'test', 'test', 'test', 'test', 1, 1, 1, 1, 1, 1, 'Car', '2016-04-19 21:42:25', NULL),
+INSERT INTO `patients` (`patient_id`, `provider_id`, `email`, `first_name`, `last_name`, `address_1`, `address_2`, `city`, `state`, `zip`, `county`, `address_notes`, `phone`, `payer`, `payer_state`, `payer_id`, `alternate_contact_name`, `alternate_contact_phone`, `alternate_contact_email`, `alert_call`, `alert_sms`, `alert_email`, `alert_alternate_call`, `alert_alternate_sms`, `alert_alternate_email`, `transportation_type`, `assistance_notes`, `comments`, `created_at`, `updated_at`) VALUES
+(1, 3, 'test@test.com', 'testy', 'testy', 'test', 'test', 'test', 'IL', 'test', 'test', '', 'test', 'test', 'IL', 'test', 'test', 'test', 'test', 1, 1, 1, 1, 1, 1, 'Car', '', '', '2016-04-19 21:42:25', NULL);
 -- (2, 1, 'jimmy@cracker.com', 'Jimm', 'Cracker', 'jdsfkjasdkfj', 'sdfjkasdjfl', 'sdfjaksldfja;', 'IL', 'sdsjfsd', 'sdfjasdklf', '', '', 'sdjkflajkln', 'IL', 'fjsdklfasdl;f', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, 'Car', '2016-04-20 03:20:49', NULL)
 -- --------------------------------------------------------
 
@@ -165,7 +165,8 @@ INSERT INTO `providers` (`provider_id`, `username`, `encrypted_password`, `email
 --
 
 CREATE TABLE IF NOT EXISTS `rides` (
-  `ride_id` int(11) NOT NULL,
+  `ride_id` int(11) NOT NULL AUTO_INCREMENT,
+  `patient_id` int(11) NOT NULL,
   PRIMARY KEY (`ride_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
