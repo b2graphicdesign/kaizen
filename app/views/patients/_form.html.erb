@@ -12,7 +12,9 @@
   <% if f.object.errors.any? %>
     <div class="error_messages">
       <% f.object.errors.full_messages.each do |error| %>
-        <p><%= error %></p>
+      <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><p><%= error %></p>
+      </div>
       <% end %>
     </div>
   <% end %>
@@ -23,20 +25,20 @@
     #    Patient's name and address
     -->
 
-    <div class="row">
-      <div class="col-md-4">
-        <fieldset>
-          <legend>Patient's name and address</legend>
+    <fieldset>
+      <legend>1. Patient's name and address</legend>
+      <div class="row" id="patient_basic_info">
+        <div class="col-md-4">
           <div>
-            <%= f.label :first_name, "First Name: *" %>
+            <%= f.label :first_name, "First Name:" %>
             <%= f.text_field :first_name, required: true, autofocus: true %>
           </div>
           <div>
-            <%= f.label :last_name, "Last Name: *" %>
+            <%= f.label :last_name, "Last Name:" %>
             <%= f.text_field :last_name, required: true %>
           </div>
           <div>
-            <%= f.label :address_1, "Address 1: *" %>
+            <%= f.label :address_1, "Address 1:" %>
             <%= f.text_field :address_1, required: true %>
           </div>
           <div>
@@ -44,15 +46,15 @@
             <%= f.text_field :address_2 %>
           </div>
           <div>
-            <%= f.label :city, "City: *" %>
+            <%= f.label :city, "City:" %>
             <%= f.text_field :city, required: true %>
           </div>
           <div>
-            <%= f.label :state, "State: *" %>
+            <%= f.label :state, "State:" %>
             <%= f.select :state, options_for_select(us_states, @patient.state), required: true %>
           </div>
           <div>
-            <%= f.label :zip, "Zip: *" %>
+            <%= f.label :zip, "Zip:" %>
             <%= f.text_field :zip, pattern: "^[0-9]{5}", maxlength: 5, min: 0, required: true %>
             <br>
             <small class="text-muted">
@@ -60,31 +62,32 @@
             </small>
           </div>
           <div>
-            <%= f.label :county, "County: *" %>
+            <%= f.label :county, "County:" %>
             <%= f.text_field :county, required: true %>
           </div>
           <% if provider_signed_in? %>
             <%= f.hidden_field :provider_id, value: current_provider.id %>
           <% elsif admin_signed_in? %>
             <div>
-              <%= f.lable :provider_id, "Provider ID: *" %>
+              <%= f.lable :provider_id, "Provider ID:" %>
               <%= f.select :provider_id, options_for_select(all_providers), required: true %>
             </div>
           <% end %>
-        </fieldset>
+          <button class="btn btn-success">Next step</button>
+        </div>
       </div>
-    </div>
+    </fieldset>
 
     <!--
     #    Patient's and Alternate contact information
     -->
 
-    <div class="row">
-      <div class="col-md-4">
-        <fieldset>
-          <legend>Patient contact information</legend>
+    <fieldset>
+      <legend>2. Patient contact information</legend>
+      <div class="row" id="patient_contact_info">
+        <div class="col-md-4">
           <div>
-            <%= f.label :phone, "Phone: *" %>
+            <%= f.label :phone, "Phone:" %>
             <%= f.telephone_field :phone, pattern: "^[0-9]{3}-[0-9]{3}-[0-9]{4}$", required: true %>
             <br>
             <small class="text-muted">
@@ -92,7 +95,7 @@
             </small>
           </div>
           <div>
-            <%= f.label :email, "Email: *" %>
+            <%= f.label :email, "Email:" %>
             <%= f.text_field :email, required: true %>
           </div>
           <div>
@@ -110,25 +113,26 @@
             <%= f.check_box :alert_email %>
             <%= f.label :alert_email, "Enable email alerts" %>
           </div>
-        </fieldset>
+          <button class="btn btn-success">Next step</button>
+        </div>
       </div>
-    </div>
+    </fieldset>
 
     <!--
     #    Alternate contact information
     -->
 
-    <div class="row">
-      <div class="col-md-4">
-        <fieldset>
-          <legend>Alternate contact information</legend>
+    <fieldset>
+      <legend>3. Alternate contact information</legend>
+      <div class="row" id="alternate_contact_info">
+        <div class="col-md-4">
           <div>
             <%= f.label :alternate_contact_name, "Alternate contact name:" %>
-            <%= f.text_field :alternate_contact_name %>
+            <%= f.text_field :alternate_contact_name, required: true %>
           </div>
           <div>
             <%= f.label :alternate_contact_phone, "Alternate contact phone:" %>
-            <%= f.telephone_field :alternate_contact_phone, pattern: "^[0-9]{3}-[0-9]{3}-[0-9]{4}$" %>
+            <%= f.telephone_field :alternate_contact_phone, pattern: "^[0-9]{3}-[0-9]{3}-[0-9]{4}$", required: true %>
             <br>
             <small class="text-muted">
               ex: 555-555-5555
@@ -136,7 +140,7 @@
           </div>
           <div>
             <%= f.label :alternate_contact_email, "Alternate contact email:" %>
-            <%= f.email_field :alternate_contact_email %>
+            <%= f.email_field :alternate_contact_email, required: true %>
           </div>
           <div>
             <%= f.label "Alert preferences:" %>
@@ -153,53 +157,55 @@
             <%= f.check_box :alert_alternate_email %>
             <%= f.label :alert_alternate_email, "Enable email alerts" %>
           </div>
-        </fieldset>
+          <button class="btn btn-success">Next step</button>
+        </div>
       </div>
-    </div>
+    </fieldset>
 
     <!--
     #    Patient's transportation preference
     -->
 
-    <div class="row">
-      <div class="col-md-4">
-        <fieldset>
-          <legend>Transportation</legend>
+    <fieldset>
+      <legend>4. Transportation</legend>
+      <div class="row" id="patient_transportation">
+        <div class="col-md-4">
           <div>
-            <%= f.label :transportation_type, "Transportation type: *" %>
+            <%= f.label :transportation_type, "Transportation type:" %>
             <%= f.select :transportation_type, options_for_select([['Car', 'Car'], ['Van', 'Van'], ['Ambulance', 'Ambulance']], 'Car'), required: true %>
             <br>
             <small class="text-muted">
               What type of transportation does the patient require?
             </small>
           </div>
-        </fieldset>
+          <button class="btn btn-success">Next step</button>
+        </div>
       </div>
-    </div>
+    </fieldset>
 
     <!--
     #    Payer information
     -->
 
-    <div class="row">
-      <div class="col-md-4">
-        <fieldset>
-          <legend>Payer Information</legend>
+    <fieldset>
+      <legend>5. Payer Information</legend>
+      <div class="row" id="patient_payer_info">
+        <div class="col-md-4">
           <div>
-            <%= f.label :payer, "Payer: *" %>
+            <%= f.label :payer, "Payer:" %>
             <%= f.text_field :payer, required: true %>
           </div>
           <div>
-            <%= f.label :payer_id, "Payer ID: *"  %>
+            <%= f.label :payer_id, "Payer ID:"  %>
             <%= f.text_field :payer_id, required: true %>
           </div>
           <div>
-            <%= f.label :payer_state, "Payer State: *"  %>
+            <%= f.label :payer_state, "Payer State:"  %>
             <%= f.select :payer_state, options_for_select(us_states, @patient.payer_state), required: true %>
           </div>
-        </fieldset>
+        </div>
       </div>
-    </div>
+    </fieldset>
 
     <div class="row" id="center_submit">
       <div>
