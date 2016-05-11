@@ -113,8 +113,8 @@ CREATE TABLE IF NOT EXISTS `patients` (
 --
 
 INSERT INTO `patients` (`patient_id`, `provider_id`, `email`, `first_name`, `last_name`, `address_1`, `address_2`, `city`, `state`, `zip`, `county`, `address_notes`, `phone`, `payer`, `payer_state`, `payer_id`, `alternate_contact_name`, `alternate_contact_phone`, `alternate_contact_email`, `alert_call`, `alert_sms`, `alert_email`, `alert_alternate_call`, `alert_alternate_sms`, `alert_alternate_email`, `transportation_type`, `assistance_notes`, `comments`, `created_at`, `updated_at`) VALUES
-(1, 3, 'test@test.com', 'testy', 'testy', 'test', 'test', 'test', 'IL', 'test', 'test', '', 'test', 'test', 'IL', 'test', 'test', 'test', 'test', 1, 1, 1, 1, 1, 1, 'Car', '', '', '2016-04-19 21:42:25', NULL);
--- (2, 1, 'jimmy@cracker.com', 'Jimm', 'Cracker', 'jdsfkjasdkfj', 'sdfjkasdjfl', 'sdfjaksldfja;', 'IL', 'sdsjfsd', 'sdfjasdklf', '', '', 'sdjkflajkln', 'IL', 'fjsdklfasdl;f', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, 'Car', '2016-04-20 03:20:49', NULL)
+(1, 1, 'test@test.com', 'testy', 'testy', 'test', 'test', 'test', 'IL', 'test', 'test', '', 'test', 'test', 'IL', 'test', 'test', 'test', 'test', 1, 1, 1, 1, 1, 1, 'Car', '', '', '2016-04-19 21:42:25', NULL),
+(2, 1, 'jimmy@cracker.com', 'Jimm', 'Cracker', 'jdsfkjasdkfj', 'sdfjkasdjfl', 'sdfjaksldfja;', 'IL', 'sdsjfsd', 'sdfjasdklf', '', '', 'sdjkflajkln', 'IL', 'fjsdklfasdl;f', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, 'Car', '', '', '2016-04-20 03:20:49', NULL);
 -- --------------------------------------------------------
 
 --
