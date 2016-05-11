@@ -1,0 +1,214 @@
+<style>
+  #center_submit{
+    text-align: center;
+    margin-top: 30px;
+  }
+  .checkbox input[type="checkbox"] {
+    margin-left: 0;
+  }
+</style>
+
+<%= form_for @patient do |f| %>
+  <% if f.object.errors.any? %>
+    <div class="error_messages">
+      <% f.object.errors.full_messages.each do |error| %>
+        <p><%= error %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="jumbotron">
+
+    <!--
+    #    Patient's name and address
+    -->
+
+    <div class="row">
+      <div class="col-md-4">
+        <fieldset>
+          <legend>Patient's name and address</legend>
+          <div>
+            <%= f.label :first_name, "First Name: *" %>
+            <%= f.text_field :first_name, required: true, autofocus: true %>
+          </div>
+          <div>
+            <%= f.label :last_name, "Last Name: *" %>
+            <%= f.text_field :last_name, required: true %>
+          </div>
+          <div>
+            <%= f.label :address_1, "Address 1: *" %>
+            <%= f.text_field :address_1, required: true %>
+          </div>
+          <div>
+            <%= f.label :address_2, "Address 2:" %>
+            <%= f.text_field :address_2 %>
+          </div>
+          <div>
+            <%= f.label :city, "City: *" %>
+            <%= f.text_field :city, required: true %>
+          </div>
+          <div>
+            <%= f.label :state, "State: *" %>
+            <%= f.select :state, options_for_select(us_states, @patient.state), required: true %>
+          </div>
+          <div>
+            <%= f.label :zip, "Zip: *" %>
+            <%= f.text_field :zip, pattern: "^[0-9]{5}", maxlength: 5, min: 0, required: true %>
+            <br>
+            <small class="text-muted">
+              ex: 55555
+            </small>
+          </div>
+          <div>
+            <%= f.label :county, "County: *" %>
+            <%= f.text_field :county, required: true %>
+          </div>
+          <% if provider_signed_in? %>
+            <%= f.hidden_field :provider_id, value: current_provider.id %>
+          <% elsif admin_signed_in? %>
+            <div>
+              <%= f.lable :provider_id, "Provider ID: *" %>
+              <%= f.select :provider_id, options_for_select(all_providers), required: true %>
+            </div>
+          <% end %>
+        </fieldset>
+      </div>
+    </div>
+
+    <!--
+    #    Patient's and Alternate contact information
+    -->
+
+    <div class="row">
+      <div class="col-md-4">
+        <fieldset>
+          <legend>Patient contact information</legend>
+          <div>
+            <%= f.label :phone, "Phone: *" %>
+            <%= f.telephone_field :phone, pattern: "^[0-9]{3}-[0-9]{3}-[0-9]{4}$", required: true %>
+            <br>
+            <small class="text-muted">
+              ex: 555-555-5555
+            </small>
+          </div>
+          <div>
+            <%= f.label :email, "Email: *" %>
+            <%= f.text_field :email, required: true %>
+          </div>
+          <div>
+            <%= f.label "Alert preferences:" %>
+          </div>
+          <div class="checkbox">
+            <%= f.check_box :alert_call %>
+            <%= f.label :alert_call, "Enable phone call alerts" %>
+          </div>
+          <div class="checkbox">
+            <%= f.check_box :alert_sms %>
+            <%= f.label :alert_sms, "Enable SMS alerts" %>
+          </div>
+          <div class="checkbox">
+            <%= f.check_box :alert_email %>
+            <%= f.label :alert_email, "Enable email alerts" %>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+
+    <!--
+    #    Alternate contact information
+    -->
+
+    <div class="row">
+      <div class="col-md-4">
+        <fieldset>
+          <legend>Alternate contact information</legend>
+          <div>
+            <%= f.label :alternate_contact_name, "Alternate contact name:" %>
+            <%= f.text_field :alternate_contact_name %>
+          </div>
+          <div>
+            <%= f.label :alternate_contact_phone, "Alternate contact phone:" %>
+            <%= f.telephone_field :alternate_contact_phone, pattern: "^[0-9]{3}-[0-9]{3}-[0-9]{4}$" %>
+            <br>
+            <small class="text-muted">
+              ex: 555-555-5555
+            </small>
+          </div>
+          <div>
+            <%= f.label :alternate_contact_email, "Alternate contact email:" %>
+            <%= f.email_field :alternate_contact_email %>
+          </div>
+          <div>
+            <%= f.label "Alert preferences:" %>
+          </div>
+          <div class="checkbox">
+            <%= f.check_box :alert_alternate_call %>
+            <%= f.label :alert_alternate_call, "Enable phone call alerts" %>
+          </div>
+          <div class="checkbox">
+            <%= f.check_box :alert_alternate_sms %>
+            <%= f.label :alert_alternate_sms, "Enable SMS alerts" %>
+          </div>
+          <div class="checkbox">
+            <%= f.check_box :alert_alternate_email %>
+            <%= f.label :alert_alternate_email, "Enable email alerts" %>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+
+    <!--
+    #    Patient's transportation preference
+    -->
+
+    <div class="row">
+      <div class="col-md-4">
+        <fieldset>
+          <legend>Transportation</legend>
+          <div>
+            <%= f.label :transportation_type, "Transportation type: *" %>
+            <%= f.select :transportation_type, options_for_select([['Car', 'Car'], ['Van', 'Van'], ['Ambulance', 'Ambulance']], 'Car'), required: true %>
+            <br>
+            <small class="text-muted">
+              What type of transportation does the patient require?
+            </small>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+
+    <!--
+    #    Payer information
+    -->
+
+    <div class="row">
+      <div class="col-md-4">
+        <fieldset>
+          <legend>Payer Information</legend>
+          <div>
+            <%= f.label :payer, "Payer: *" %>
+            <%= f.text_field :payer, required: true %>
+          </div>
+          <div>
+            <%= f.label :payer_id, "Payer ID: *"  %>
+            <%= f.text_field :payer_id, required: true %>
+          </div>
+          <div>
+            <%= f.label :payer_state, "Payer State: *"  %>
+            <%= f.select :payer_state, options_for_select(us_states, @patient.payer_state), required: true %>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+
+    <div class="row" id="center_submit">
+      <div>
+        <%= f.submit class: "btn btn-success" %>
+      </div>
+      <br>
+      <div>
+        <%= link_to "Cancel", :back %>
+      </div>
+    </div>
+  </div>
+<% end %>
