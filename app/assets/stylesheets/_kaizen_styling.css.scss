@@ -56,7 +56,18 @@ body{
 
 input, button, select, textarea {
   padding: 5px;
-  width: 450px;
+  width: auto;
+  max-width: 450px;
+}
+
+label { display: block; }
+
+fieldset > div {
+  margin-bottom: 20px
+}
+
+fieldset {
+  margin-top: 20px
 }
 
 .alert-success {

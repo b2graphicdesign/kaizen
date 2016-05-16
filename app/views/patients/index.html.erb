@@ -7,7 +7,7 @@
   <% @patients.each do |patient| %>
     <div class ="row">
       <ul>
-        <li>Name:<a href = "/patient/<%= patient.id %>" > <%= patient.full_name %></a></li>
+        <li>Name:<a href = "<%= patient_path(patient) %>" > <%= patient.full_name %></a></li>
       </ul>
     </div>
   <% end %>

@@ -3,24 +3,24 @@ class Patient < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   # removed :registerable -SM
 
-  devise :database_authenticatable, 
-         :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:username]
+  # devise :database_authenticatable,
+  #        :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:username]
 
   belongs_to :provider
   has_many :rides, dependent: :destroy
 
-  cattr_accessor :form_steps do 
+  cattr_accessor :form_steps do
     %w(basic payment contact)
   end
-  
+
   attr_accessor :form_step
 
-  validates :username, :first_name, :last_name, :address_1, :city, :state, :zip, :county, presence: true, if: -> { required_for_step?(:basic) }
+  validates :first_name, :last_name, :address_1, :city, :state, :zip, :county, presence: true, if: -> { required_for_step?(:basic) }
   validates :payer, :payer_state, :transportation_type , presence: true, if: -> { required_for_step?(:payment) }
   validates :phone, :alternate_contact_name, :alternate_contact_phone, :alternate_contact_email, presence: true, if: -> { required_for_step?(:contact) }
 
-  validates :username, uniqueness: true, format: { with: /\A[a-zA-Z0-9]+\Z/ }, if: -> { required_for_step?(:basic) }
-  validates :username, length: { minimum: 6, maximum: 15, message: "must be between 6-15 chracters" }, if: -> { required_for_step?(:basic) }
+  # validates :username, uniqueness: true, format: { with: /\A[a-zA-Z0-9]+\Z/ }, if: -> { required_for_step?(:basic) }
+  # validates :username, length: { minimum: 6, maximum: 15, message: "must be between 6-15 chracters" }, if: -> { required_for_step?(:basic) }
   validates :email, format: { with: /@/, message: "must contain @" }, if: -> { required_for_step?(:basic) }
   validates :first_name, :last_name, :city, :state, :address_1, :address_2, :county, length: { maximum: 25, message: "must be less than 25 characters" }, if: -> { required_for_step?(:basic) }
   validates :zip, length: { maximum: 15, message: "must be less than 15 characters" }, if: -> { required_for_step?(:basic) }
