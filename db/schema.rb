@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.string   "phone_from",  limit: 15
     t.string   "phone_to",    limit: 15
     t.string   "msg",         limit: 50, default: "", null: false
+    t.string   "status",      limit: 15,              null: false
     t.integer  "patient_id",  limit: 4,  default: 0,  null: false
     t.integer  "provider_id", limit: 4,  default: 0,  null: false
     t.integer  "ride_id",     limit: 4,  default: 0,  null: false
@@ -181,7 +182,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.text     "address_notes",          limit: 65535,              null: false
     t.string   "phone",                  limit: 15,    default: "", null: false
     t.string   "fax",                    limit: 15,    default: "", null: false
-    t.string   "reset_password_token",   limit: 100,   default: "", null: false
+    t.string   "reset_password_token",   limit: 100
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.integer  "sign_in_count",          limit: 4,     default: 0,  null: false
@@ -219,7 +220,7 @@ ActiveRecord::Schema.define(version: 0) do
 
   create_table "ride_queue", primary_key: "ride_queue_id", force: :cascade do |t|
     t.integer  "patient_id",        limit: 4,                  null: false
-    t.integer  "provider_id",       limit: 4,                  null: false
+    t.integer  "system_id",         limit: 4,                  null: false
     t.datetime "appointment_at",                               null: false
     t.string   "status",            limit: 15,                 null: false
     t.boolean  "verified",                     default: false, null: false
@@ -245,6 +246,8 @@ ActiveRecord::Schema.define(version: 0) do
     t.string   "phone_to",    limit: 15,  default: "",    null: false
     t.string   "msg",         limit: 255, default: ""
     t.boolean  "sent",                    default: false, null: false
+    t.string   "status",      limit: 15
+    t.string   "errorcode",   limit: 10
     t.integer  "patient_id",  limit: 4,   default: 0
     t.integer  "provider_id", limit: 4,   default: 0,     null: false
     t.integer  "ride_id",     limit: 4,   default: 0,     null: false
