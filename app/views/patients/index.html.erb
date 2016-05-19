@@ -1,6 +1,6 @@
 <legend><h3>List of Patients</h3></legend>
 <div class = "jumbotron">
-  <%= form_tag "/patient", method: :get, id: "search-form" do %>
+  <%= form_tag "/patients", method: :get, id: "search-form" do %>
     <%= text_field_tag :search, params[:search], placeholder: "Search Patients by Name" %>
     <%= submit_tag "Search", class: "btn btn-default" %>
   <% end %>
