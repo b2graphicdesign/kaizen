@@ -6,9 +6,9 @@ class PatientsController < ApplicationController
     elsif admin_signed_in?
       @patients = Patient.all.order("last_name ASC")
     elsif provider_signed_in? && params[:search]
-      @patients = Patient.where("provider_id = ?", current_provider.id).search(params[:search]).order("last_name ASC")
+      @patients = Patient.where("system_id = ?", current_provider.id).search(params[:search]).order("last_name ASC")
     elsif provider_signed_in?
-      @patients = Patient.where("provider_id = ?", current_provider.id).order("last_name ASC")
+      @patients = Patient.where("system_id = ?", current_provider.id).order("last_name ASC")
     else
       redirect_to :back, alert: "Access denied."
     end
@@ -25,7 +25,7 @@ class PatientsController < ApplicationController
   def create
     if admin_signed_in? || provider_signed_in?
       @patient = Patient.new(patient_params)
-      @patient.provider_id = current_provider.id
+      @patient.system_id = 1
       @patient.save(validate: false)
       redirect_to patient_path(@patient)
     else
@@ -62,7 +62,7 @@ class PatientsController < ApplicationController
       else
         render :edit
       end
-    elsif provider_signed_in? && (current_provider.id == @patient.provider_id)
+    elsif provider_signed_in? #&& (current_provider.id == @patient.provider_id)
       if @patient.update(patient_params)
         flash[:success] = "Patient Updated!"
         redirect_to patient_path @patient
@@ -111,8 +111,7 @@ class PatientsController < ApplicationController
                               :alternate_contact_email,
                               :alert_alternate_call,
                               :alert_alternate_sms,
-                              :alert_alternate_email,
-                              :provider_id
+                              :alert_alternate_email
                             )
   end
 
