@@ -33,8 +33,12 @@
       <%= text_field_tag :username, @provider.username if present? %>
     </div>
     <div>
-      <%= label_tag :facility_name %>
-      <%= text_field_tag :facility_name, @provider.facility_name if present? %>
+      <%= label_tag :first_name %>
+      <%= text_field_tag :first_name, @provider.first_name if present? %>
+    </div>
+    <div>
+      <%= label_tag :last_name %>
+      <%= text_field_tag :last_name, @provider.last_name if present? %>
     </div>
     <div>
       <%= label_tag :address_1 %>

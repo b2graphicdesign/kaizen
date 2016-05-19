@@ -2,7 +2,7 @@ class ProvidersController < ApplicationController
   before_filter :admin_only, except: [:show, :edit, :update, :edit_provider, :update_provider]
 
   def index
-    @providers = Provider.all.order("facility_name ASC")
+    @providers = Provider.all.order("last_name ASC")
   end
 
   def show
@@ -37,7 +37,8 @@ class ProvidersController < ApplicationController
       @provider = Provider.find(params[:id])
       if @provider.update(
         username: params[:username],
-        facility_name: params[:facility_name],
+	first_name: params[:first_name],
+        last_name: params[:last_name],
         address_1: params[:address_1],
         address_2: params[:address_2],
         city: params[:city],
@@ -76,7 +77,8 @@ class ProvidersController < ApplicationController
       @provider = Provider.find(params[:id])
       if @provider.update(
         username: params[:username],
-        facility_name: params[:facility_name],
+        first_name: params[:first_name],
+        last_name: params[:last_name],
         address_1: params[:address_1],
         address_2: params[:address_2],
         city: params[:city],

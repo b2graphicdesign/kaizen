@@ -1,8 +1,9 @@
-<legend><h3><%= @provider.facility_name %></h3></legend>
+<legend><h3><%= @provider.first_name %> <%= @provider.last_name %></h3></legend>
 <div class = "jumbotron">
     <div class ="row">
       <ul>
         <li>Username: <%= @provider.username %></li>
+        <li>Name: <%= @provider.first_name %> <%= @provider.last_name %></li>
         <li>Address: <%= @provider.address_1 %> <%= @provider.address_2 %></li>
                      <%= @provider.city %>, <%= @provider.state %>  
         <li>Notes: <%= @provider.address_notes %></li>

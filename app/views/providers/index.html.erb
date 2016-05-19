@@ -3,7 +3,7 @@
   <% @providers.each do |provider| %>
     <div class ="row">
       <ul>
-        <li>Facility: <a href = "/provider/<%= provider.id %>" ><%= provider.facility_name %></a></li>
+        <li>Providers: <a href = "/provider/<%= provider.id %>" ><%= provider.first_name %> <%= provider.last_name %></a></li>
       </ul>
     </div>
   <% end %>
